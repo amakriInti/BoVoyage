@@ -11,7 +11,8 @@ namespace BoVoyage.Scenario1.Dal
         private BoVoyageContext Context = new BoVoyageContext();
         internal List<string> GetAllMails(StatutEnum statut)
         {
-            return Context.Employes
+            var liste = Context.Employes.ToList();
+            return liste
                 .Where(e => (StatutEnum)e.Statut == statut)
                 .Select(e => e.Login)
                 .ToList();

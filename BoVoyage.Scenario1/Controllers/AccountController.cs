@@ -134,9 +134,7 @@ namespace BoVoyage.Scenario1.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             return View();
