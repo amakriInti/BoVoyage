@@ -6,29 +6,33 @@ namespace BoVoyage.Scenario1.Dal
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Destination")]
-    public partial class Destination
+    public partial class aspnet_Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Destination()
+        public aspnet_Roles()
         {
-            Voyages = new HashSet<Voyage>();
+            aspnet_Users = new HashSet<aspnet_Users>();
         }
 
-        public Guid Id { get; set; }
+        public Guid ApplicationId { get; set; }
+
+        [Key]
+        public Guid RoleId { get; set; }
 
         [Required]
-        public string Continent { get; set; }
+        [StringLength(256)]
+        public string RoleName { get; set; }
 
         [Required]
-        public string Pays { get; set; }
+        [StringLength(256)]
+        public string LoweredRoleName { get; set; }
 
-        public string Region { get; set; }
-
-        [Required]
+        [StringLength(256)]
         public string Description { get; set; }
 
+        public virtual aspnet_Applications aspnet_Applications { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Voyage> Voyages { get; set; }
+        public virtual ICollection<aspnet_Users> aspnet_Users { get; set; }
     }
 }

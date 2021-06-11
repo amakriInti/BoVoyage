@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyage.Scenario1.Dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,13 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult UploadCsv()
+        {
+            Repository Repo = new Repository();
+            Repo.ReadCsv();
+            return View("Index");
         }
     }
 }

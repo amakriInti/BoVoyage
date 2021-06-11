@@ -187,43 +187,27 @@
     <Compile Include="Controllers\ComController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Dal\Assurance.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Client.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Destination.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Dossier.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Employe.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Dal\aspnet_Applications.cs" />
+    <Compile Include="Dal\aspnet_Membership.cs" />
+    <Compile Include="Dal\aspnet_Paths.cs" />
+    <Compile Include="Dal\aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="Dal\aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="Dal\aspnet_Profile.cs" />
+    <Compile Include="Dal\aspnet_Roles.cs" />
+    <Compile Include="Dal\aspnet_SchemaVersions.cs" />
+    <Compile Include="Dal\aspnet_Users.cs" />
+    <Compile Include="Dal\aspnet_WebEvent_Events.cs" />
+    <Compile Include="Dal\Assurance.cs" />
+    <Compile Include="Dal\Client.cs" />
+    <Compile Include="Dal\Destination.cs" />
+    <Compile Include="Dal\Dossier.cs" />
+    <Compile Include="Dal\Employe.cs" />
+    <Compile Include="Dal\Fournisseur.cs" />
+    <Compile Include="Dal\Model1.cs" />
     <Compile Include="Dal\Repository.cs" />
-    <Compile Include="Dal\Voyage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Dal\Voyageur.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Dal\Voyage.cs" />
+    <Compile Include="Dal\VoyageClient.cs" />
+    <Compile Include="Dal\Voyageur.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,16 +223,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Dal\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Dal\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Dessins\1.png" />
     <Content Include="Dessins\2.png" />
     <Content Include="Dessins\0.png" />
@@ -258,13 +232,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Dal\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Dal\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

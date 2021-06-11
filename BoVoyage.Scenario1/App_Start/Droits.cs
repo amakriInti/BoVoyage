@@ -25,6 +25,7 @@ namespace BoVoyage.Scenario1
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
             if (!Roles.IsUserInRole("ali@bovoyage.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("ali@bovoyage.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("andre@bovoyage.com", StatutEnum.Commercial.ToString())) Roles.AddUserToRole("andre@bovoyage.com", StatutEnum.Commercial.ToString());
 
             var mails = Repo.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)
