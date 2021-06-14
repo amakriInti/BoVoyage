@@ -113,3 +113,7 @@ Une fonction qui reaffecte le commercial
 J'ai essayé de faire une action qui affecte un commercial à un dossier.
 J'ai pour l'instant un problème d'affichage... En effet le fait que le commercial soit null peut poser problème à plusieurs niveaux ce qu'il faudra régler
 On repasse sur la question de l'ajout des fichiers.
+
+14/06/2021 : 15:34 
+La fonction d'ajout de fichier à la base de données fonctionne. (testée avec 2 fichiers voyages)
+La fonction d'ajout d'un commercial à un dossier fonctionne et si on affiche les dossiers on voit le commercial responsable.

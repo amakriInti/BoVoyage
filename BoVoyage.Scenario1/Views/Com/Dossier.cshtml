@@ -1,7 +1,7 @@
 ﻿@model List<BoVoyage.Scenario1.Dal.Dossier>
 
 @{
-    ViewBag.Title = "Dossier";
+    ViewBag.Title = "Dossiers";
 }
 
 <h2>Dossier</h2>
@@ -13,11 +13,20 @@
             foreach (var v in Model)
             {
 
-                <li>
-                    <hr />
-                    @v.Client1.Nom | @v.Voyage1.Libelle | @ViewBag.DossEnum.@v.Etat  |  @v.Commercial  | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id })
-                </li>
-
+                if (v.Commercial != null)
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @ViewBag.DossEnum.@v.Etat  |  @v.Employe.Login | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id })
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @ViewBag.DossEnum.@v.Etat  | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id })
+                    </li>
+                }
 
 
             }
