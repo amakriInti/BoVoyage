@@ -66,5 +66,16 @@ namespace BoVoyage.Scenario1.Dal
                 return false;
             }
         }
+
+        internal bool ValiderDossier(Guid? id_doss)
+        {
+            if (id_doss != null)
+            {
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 2;
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
     }
 }

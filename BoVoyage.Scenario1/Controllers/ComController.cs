@@ -39,5 +39,12 @@ namespace BoVoyage.Scenario1.Controllers
             bool valid = Repo.ChangeCommercial(id, User.Identity.GetUserName());
             return View("Dossier");
         }
+
+        public ActionResult ValidDossier(Guid? id)
+        {
+            Repository Repo = new Repository();
+            bool valid = Repo.ValiderDossier(id);
+            return RedirectToAction("Dossier");
+        }
     }
 }
