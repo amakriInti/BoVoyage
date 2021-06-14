@@ -7,31 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoVoyage.Scenario1.Dal
+namespace BoVoyage.Donnees
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Dossier
+    public partial class Assurance
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Dossier()
+        public Assurance()
         {
-            this.Voyageurs = new HashSet<Voyageur>();
+            this.Dossiers = new HashSet<Dossier>();
         }
     
         public System.Guid Id { get; set; }
-        public System.Guid Voyage { get; set; }
-        public System.Guid Client { get; set; }
-        public byte Etat { get; set; }
-        public Nullable<System.Guid> Assurance { get; set; }
-        public Nullable<System.Guid> Commercial { get; set; }
+        public bool Annulation { get; set; }
+        public Nullable<decimal> Prix { get; set; }
     
-        public virtual Assurance Assurance1 { get; set; }
-        public virtual Client Client1 { get; set; }
-        public virtual Employe Employe { get; set; }
-        public virtual Voyage Voyage1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Voyageur> Voyageurs { get; set; }
+        public virtual ICollection<Dossier> Dossiers { get; set; }
     }
 }

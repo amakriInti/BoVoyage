@@ -1,14 +1,14 @@
-﻿using BoVoyage.Scenario1.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BoVoyage.Scenario1.Dal
+namespace BoVoyage.Donnees
 {
     public class Repository
     {
-        private BoVoyageContext Context = new BoVoyageContext();
+        private BoVoyageContext1 Context = new BoVoyageContext1();
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();

@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2beb51932c544a9ab6aaf075c29e6df7" Name="Diagram1">
-        <EntityTypeShape EntityType="BoVoyageModel.Assurance" Width="1.5" PointX="13.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Client" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Destination" Width="1.5" PointX="1.375" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Dossier" Width="1.5" PointX="10.875" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Employe" Width="1.5" PointX="13.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Voyage" Width="1.5" PointX="3.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Voyageur" Width="1.5" PointX="5.375" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="7dacb711da384c90a55694f201c3a845" Name="Diagram1">
+        <EntityTypeShape EntityType="BoVoyageModel.Assurance" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Client" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Destination" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Dossier" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Employe" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Voyage" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Voyageur" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="BoVoyageModel.FK_Dossier_Assurance" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyageModel.FK_Dossier_Client" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyageModel.FK_Dossier_Employe" ManuallyRouted="false" />
