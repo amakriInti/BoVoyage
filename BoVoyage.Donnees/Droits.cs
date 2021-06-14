@@ -1,17 +1,15 @@
-﻿using BoVoyage.Scenario1.Dal;
-using BoVoyage.Scenario1.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace BoVoyage.Scenario1
+namespace BoVoyage.Donnees
 {
-    public static class Droits
+    public class Droits
     {
-        private static Repository Repo = new Repository();
-        internal static void Load()
+        private Repository repository = new Repository();
+        public void Load()
         {
             // aspnet_regsql.exe -S .\SQLEXPRESS -E -A all -d BoVoyage
 
@@ -30,7 +28,7 @@ namespace BoVoyage.Scenario1
             if (!Roles.IsUserInRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString());
             if (!Roles.IsUserInRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString());
 
-            var mails = Repo.GetAllMails(StatutEnum.Commercial);
+            var mails = repository.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)
             {
                 if (!Roles.IsUserInRole(mail, StatutEnum.Commercial.ToString())) Roles.AddUserToRole(mail, StatutEnum.Commercial.ToString());

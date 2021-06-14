@@ -1,5 +1,4 @@
-﻿using BoVoyage.Scenario1.Dal;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 using System.IO;
@@ -9,7 +8,7 @@ namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
-        private BoVoyageContext Context = new BoVoyageContext();
+        //private BoVoyageContext Context = new BoVoyageContext();
         public ActionResult Index()
         {
             return View();
@@ -29,7 +28,7 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-       public ActionResult LectureCsv()
+       /*public ActionResult LectureCsv()
         {
 
             // Lecture du fichier csv -> ps
@@ -62,6 +61,6 @@ namespace BoVoyage.Scenario1.Controllers
             List<Voyage> ps = new List<Voyage>();
             ps=Context.Voyages.ToList();
             return View(ps);
-        }
+        }*/
     }
 }
