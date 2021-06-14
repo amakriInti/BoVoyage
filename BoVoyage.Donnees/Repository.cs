@@ -17,6 +17,48 @@ namespace BoVoyage.Donnees
                 .Select(e => e.Login)
                 .ToList();
         }
+
+        //Ajouter les voyages dans la base de donnée
+        public bool AddVoyage(string[] tab)
+        {
+            try
+            {
+                Context.Voyages.Add(new Voyage
+                {
+                    Id = Guid.NewGuid(),
+                    DateAller = DateTime.Parse(tab[0]),
+                    DateRetour = DateTime.Parse(tab[1]),
+                    MaxVoyageur = byte.Parse(tab[2]),
+                    Fournisseur = Guid.NewGuid(),
+                    PrixAchatTotal = decimal.Parse(tab[4]),
+                    PrixVenteUnitaire = decimal.Parse(tab[5]),
+                    Description = tab[6]
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public object DBVoyages()
+        {
+            return Context.Voyages.ToList();
+        }
     }
-    //Version Quentin
+    /*public class ListeVoyageClass
+    {
+        private BoVoyageContext1 Context = new BoVoyageContext1();
+        //Appel des voyages
+        public List<Voyage> DBVoyages
+        {
+            get
+            {
+                return Context.Voyages.ToList();
+            }
+        }
+    }*/
 }
