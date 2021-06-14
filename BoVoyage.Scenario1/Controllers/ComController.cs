@@ -1,4 +1,5 @@
 ﻿using BoVoyage.Scenario1.Dal;
+using BoVoyage.Scenario1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace BoVoyage.Scenario1.Controllers
         {
             Repository Repo = new Repository();
             var Doss = Repo.GetAllDossiers();
+            ViewBag.DossEnum = new DossierEnum();
             return View(Doss);
         }
     }

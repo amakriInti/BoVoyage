@@ -96,3 +96,8 @@ go
 14/06/2021 : 10:47
 On a crée deux clients avec chacun un voyage correspondant => on va demander au site web de les afficher
 
+14/06/2021 : 11:20
+On a une page dossier qui affiche les dossiers dans la base de données mais que les Id => On va tenter d'aggréger la liste des dossiers des voyages et des clients
+
+14/06/2021 : 11:40
+Pas besoin de s'embeter avec une classe on peut utiliser les "jointures"
