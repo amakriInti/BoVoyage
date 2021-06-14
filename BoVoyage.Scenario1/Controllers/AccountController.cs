@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BoVoyage.Scenario1.Models;
+using System.Web.Security;
 
 namespace BoVoyage.Scenario1.Controllers
 {
@@ -79,7 +80,16 @@ namespace BoVoyage.Scenario1.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                        var name = model.Email;
+                        if (Roles.IsUserInRole(name, StatutEnum.Admin.ToString())|| Roles.IsUserInRole(name, StatutEnum.Commercial.ToString()))
+                        {
+                            return RedirectToAction("Index", "Com");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

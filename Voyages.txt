@@ -65,3 +65,12 @@ go
 (à demander : correspondance entre les tables user et Employe)
 
 On a pu mettre ça dans le comm controller qui est acessible aux admin et aux employés
+
+aspnet_regsql.exe -S .\SQLEXPRESS -E -A all -d BoVoyageDB (commande à rentrer pour qu'il rajoute le rôle manager)
+
+=========================================================================================
+14/06/2021 :
+
+On veut faire en sorte que si on se connecte en tant qu'Admin ou commercial on soit rediriger vers l'intranet où on peut faire 
+la mise à jour avec le CSV
+
