@@ -393,7 +393,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
           <End Role="Voyageur" Type="Self.Voyageur" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BoVoyageContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BoVoyageContext1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Assurances" EntityType="Self.Assurance" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Destinations" EntityType="Self.Destination" />
@@ -431,7 +431,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BoVoyageModelStoreContainer" CdmEntityContainer="BoVoyageContext">
+        <EntityContainerMapping StorageEntityContainer="BoVoyageModelStoreContainer" CdmEntityContainer="BoVoyageContext1">
           <EntitySetMapping Name="Assurances">
             <EntityTypeMapping TypeName="BoVoyageModel.Assurance">
               <MappingFragment StoreEntitySet="Assurance">

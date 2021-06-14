@@ -1,3 +1,4 @@
+using BoVoyage.Metier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace BoVoyage.Scenario1
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private ClassMetier metier = new ClassMetier();
         protected void Application_Start() 
         {
             AreaRegistration.RegisterAllAreas();
@@ -18,7 +20,7 @@ namespace BoVoyage.Scenario1
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Droits.Load();
+            metier.Load();
         }
     }
 }

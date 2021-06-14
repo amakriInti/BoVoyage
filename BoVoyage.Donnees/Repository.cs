@@ -8,7 +8,7 @@ namespace BoVoyage.Donnees
 {
     public class Repository
     {
-        private BoVoyageContext Context = new BoVoyageContext();
+        private BoVoyageContext1 Context = new BoVoyageContext1();
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();

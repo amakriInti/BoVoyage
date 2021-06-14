@@ -10,6 +10,10 @@ namespace BoVoyage.Metier
     public class ClassMetier
     {
         private Repository repository = new Repository();
-
+        private Droits droits = new Droits();
+        public void Load()
+        {
+            droits.Load();
+        }
     }
 }
