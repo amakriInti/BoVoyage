@@ -1,6 +1,7 @@
 ﻿using BoVoyage.Scenario1.Dal;
 using BoVoyage.Scenario1.Models;
 using System;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,10 @@ using System.Web.Mvc;
 
 namespace BoVoyage.Scenario1.Controllers
 {
-    [Authorize(Roles ="Commercial, Admin")]
+    [Authorize(Roles = "Commercial, Admin")]
     public class ComController : Controller
     {
-        
+
         public ActionResult Index()
         {
             return View();
@@ -30,6 +31,13 @@ namespace BoVoyage.Scenario1.Controllers
             var Doss = Repo.GetAllDossiers();
             ViewBag.DossEnum = new DossierEnum();
             return View(Doss);
+        }
+
+        public ActionResult AffecterCommercial(Guid? id)
+        {
+            Repository Repo = new Repository();
+            bool valid = Repo.ChangeCommercial(id, User.Identity.GetUserName());
+            return View("Dossier");
         }
     }
 }
