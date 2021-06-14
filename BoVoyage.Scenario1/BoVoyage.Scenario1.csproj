@@ -257,6 +257,7 @@
     <Content Include="Views\Com\Index.cshtml" />
     <Content Include="Views\Home\LectureCsv.cshtml" />
     <Content Include="Voyage_csv\New_Voyage.csv" />
+    <Content Include="Views\Home\AffichageVoyage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
