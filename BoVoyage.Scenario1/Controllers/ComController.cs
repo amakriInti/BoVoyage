@@ -22,5 +22,12 @@ namespace BoVoyage.Scenario1.Controllers
             Repo.ReadCsv();
             return View("Index");
         }
+
+        public ActionResult Dossier()
+        {
+            Repository Repo = new Repository();
+            var Doss = Repo.GetAllDossiers();
+            return View(Doss);
+        }
     }
 }

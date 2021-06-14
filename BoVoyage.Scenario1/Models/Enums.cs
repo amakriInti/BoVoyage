@@ -9,4 +9,9 @@ namespace BoVoyage.Scenario1.Models
     {
         Inconnu = 0, Commercial = 1, Admin = 2
     }
+
+    public enum DossierEnum // Enum pour le statut des dossiers
+    {
+        EnCours = 0, Refuse = 1, Accepte = 2
+    }
 }

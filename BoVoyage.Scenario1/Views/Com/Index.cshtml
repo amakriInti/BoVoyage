@@ -2,10 +2,11 @@
 @{
     ViewBag.Title = "Index";
 }
+<h1>Intranet</h1>
 
 <p>
     @Html.ActionLink("Mise à jour liste voyages", "UploadCsv", "Com", new { area = "" })
 </p>
 <p>
-    Creation dossier 
+    @Html.ActionLink("Dossiers", "Dossier", "Com", new { area = "" })
 </p>

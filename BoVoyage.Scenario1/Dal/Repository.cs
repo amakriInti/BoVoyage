@@ -39,5 +39,11 @@ namespace BoVoyage.Scenario1.Dal
             }
             return vy;
         }
+
+        internal List<Dossier> GetAllDossiers()//retourne la liste des dossiers
+        {
+            var liste = Context.Dossiers.ToList();
+            return liste;
+        }
     }
 }

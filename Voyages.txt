@@ -71,6 +71,28 @@ aspnet_regsql.exe -S .\SQLEXPRESS -E -A all -d BoVoyageDB (commande à rentrer p
 =========================================================================================
 14/06/2021 :
 
-On veut faire en sorte que si on se connecte en tant qu'Admin ou commercial on soit rediriger vers l'intranet où on peut faire 
-la mise à jour avec le CSV
+On veut faire en sorte que s
+
+Si on se connecte en tant qu'Admin ou commercial on soit rediriger vers l'intranet où on peut faire 
+la mise à jour avec le CSV : fait 
+
+on  va essayer de créer des dossiers mais pour ça il faut des clients...
+use BoVoyageDB
+go 
+insert into Client (Id,Nom,email,Prenom) values (NEWID(), Legrand,LegrandVoyageur@email.com,Voyageur)
+insert into Client (Id,Nom,email,Prenom) values (NEWID(), Lepetit,LepetitTrotteur@email.com,Trotteur)
+go
+
+Id voyage 1 : 5CD4BAED-DE5A-4CB6-A9C7-1906544EE467
+id  voyage 2 : 0D814B8D-435B-4CCB-86E5-1EF9C32DB6687
+
+use BoVoyageDB
+go 
+insert into Dossier (Id,Voyage,Client,Etat) values (NEWID(), 5CD4BAED-DE5A-4CB6-A9C7-1906544EE467,C05CC53D-2696-4065-96FD-AECC5E7D6C9D,0)
+insert into Dossier (Id,Voyage,Client,Etat) values (NEWID(), 0D814B8D-435B-4CCB-86E5-1EF9C32DB668,99BFC4E8-497C-4FA7-9544-D4AEF148120B,0)
+go
+
+
+14/06/2021 : 10:47
+On a crée deux clients avec chacun un voyage correspondant => on va demander au site web de les afficher
 
