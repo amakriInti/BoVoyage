@@ -21,11 +21,14 @@ namespace BoVoyage.Scenario1
             //           < add connectionStringName = "BoVoyage" applicationName = "/" name = "DefaultRoleProvider" type = "System.Web.Security.SqlRoleProvider" />
             //                </ providers >
             //              </ roleManager >
-
+            
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("krystal.ml.frances@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("krystal.ml.frances@gmail.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("vincentrigoni68@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("vincentrigoni68@gmail.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("alexandre.argento@ymail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("alexandre.argento@ymail.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString());
             if (!Roles.IsUserInRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString());
-
 
             var mails = Repo.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)
