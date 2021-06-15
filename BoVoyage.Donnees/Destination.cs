@@ -17,7 +17,7 @@ namespace BoVoyage.Donnees
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Destination()
         {
-            this.Voyages = new HashSet<Voyage>();
+            this.DestinationVoyages = new HashSet<DestinationVoyage>();
         }
     
         public System.Guid Id { get; set; }
@@ -27,6 +27,6 @@ namespace BoVoyage.Donnees
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Voyage> Voyages { get; set; }
+        public virtual ICollection<DestinationVoyage> DestinationVoyages { get; set; }
     }
 }
