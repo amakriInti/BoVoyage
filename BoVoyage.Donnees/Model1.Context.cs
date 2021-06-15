@@ -13,10 +13,10 @@ namespace BoVoyage.Donnees
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BoVoyageContext1 : DbContext
+    public partial class BoVoyageContext : DbContext
     {
-        public BoVoyageContext1()
-            : base("name=BoVoyageContext1")
+        public BoVoyageContext()
+            : base("name=BoVoyageContext")
         {
         }
     
@@ -28,6 +28,7 @@ namespace BoVoyage.Donnees
         public virtual DbSet<Assurance> Assurances { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Destination> Destinations { get; set; }
+        public virtual DbSet<DestinationVoyage> DestinationVoyages { get; set; }
         public virtual DbSet<Dossier> Dossiers { get; set; }
         public virtual DbSet<Employe> Employes { get; set; }
         public virtual DbSet<Voyage> Voyages { get; set; }

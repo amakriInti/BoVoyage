@@ -63,6 +63,9 @@
     <Compile Include="Destination.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DestinationVoyage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dossier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

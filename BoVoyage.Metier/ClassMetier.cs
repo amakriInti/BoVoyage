@@ -16,7 +16,7 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des voyages depuis fichier CSV
         -----------------------------------*/
-        public bool AddVoyage()
+        public bool AddVoyageCSV_Metier()
         {
             //Lecture du fichier csv -> ps
             //Récupère tous les fichier .csv du répertoire et le met dans un tableau de string
@@ -48,6 +48,21 @@ namespace BoVoyage.Metier
                 File.Delete(files[i]);
             }
             return true;
+        }
+
+        /*----------------------------------
+        //Ajout des voyages depuis formulaire
+        -----------------------------------*/
+        public bool AddVoyageFormulaire_Metier()
+        {
+            try
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /*----------------------------------

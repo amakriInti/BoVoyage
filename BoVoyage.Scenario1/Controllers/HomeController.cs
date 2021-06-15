@@ -50,39 +50,6 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-        /*----------------------------------
-        //Ajout des voyages depuis fichier CSV
-        -----------------------------------*/
-        public ActionResult LectureCsv()
-        {
-            try
-            {
-                metier.AddVoyage();
-                var ps = metier.DBVoyages();
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
-            
-        }
 
-        /*----------------------------------
-        //Affichage des voyages
-        -----------------------------------*/
-        public ActionResult AffichageVoyage()
-        {
-            try
-            {
-                var ps = metier.DBVoyages();
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
-
-        }
     }
 }

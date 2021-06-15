@@ -8,7 +8,7 @@ namespace BoVoyage.Donnees
 {
     public class Repository
     {
-        private BoVoyageContext1 Context = new BoVoyageContext1();
+        private BoVoyageContext Context = new BoVoyageContext();
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();
@@ -31,7 +31,7 @@ namespace BoVoyage.Donnees
                     DateAller = DateTime.Parse(tab[0]),
                     DateRetour = DateTime.Parse(tab[1]),
                     MaxVoyageur = byte.Parse(tab[2]),
-                    Fournisseur = Guid.NewGuid(),
+                    Fournisseur = tab[3],
                     PrixAchatTotal = decimal.Parse(tab[4]),
                     PrixVenteUnitaire = decimal.Parse(tab[5]),
                     Description = tab[6]

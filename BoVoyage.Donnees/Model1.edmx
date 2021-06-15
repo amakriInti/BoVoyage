@@ -34,13 +34,11 @@
           <Property Name="Region" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'BoVoyage.dbo.DestinationVoyage' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="DestinationVoyage">
           <Key>
-            <PropertyRef Name="Destination" />
-            <PropertyRef Name="Voyage" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Destination" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyage" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -82,7 +80,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="DateAller" Type="datetime" Nullable="false" />
           <Property Name="DateRetour" Type="datetime" Nullable="false" />
           <Property Name="MaxVoyageur" Type="tinyint" Nullable="false" />
-          <Property Name="Fournisseur" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Fournisseur" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PrixAchatTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
@@ -198,16 +196,11 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <EntitySet Name="Assurance" EntityType="Self.Assurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Destination" EntityType="Self.Destination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DestinationVoyage" EntityType="Self.DestinationVoyage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dossier" EntityType="Self.Dossier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voyage" EntityType="Self.Voyage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voyageur" EntityType="Self.Voyageur" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DestinationVoyage" EntityType="Self.DestinationVoyage" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DestinationVoyage].[Destination] AS [Destination], 
-    [DestinationVoyage].[Voyage] AS [Voyage]
-    FROM [dbo].[DestinationVoyage] AS [DestinationVoyage]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="DossierVoyageur" EntityType="Self.DossierVoyageur" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DossierVoyageur].[Voyageur] AS [Voyageur], 
@@ -282,7 +275,17 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="Pays" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Region" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Voyages" Relationship="Self.DestinationVoyage" FromRole="Destination" ToRole="Voyage" />
+          <NavigationProperty Name="DestinationVoyages" Relationship="Self.FK_DestinationVoyage_Destination" FromRole="Destination" ToRole="DestinationVoyage" />
+        </EntityType>
+        <EntityType Name="DestinationVoyage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destination" Type="Guid" Nullable="false" />
+          <Property Name="Voyage" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Destination1" Relationship="Self.FK_DestinationVoyage_Destination" FromRole="DestinationVoyage" ToRole="Destination" />
+          <NavigationProperty Name="Voyage1" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="DestinationVoyage" ToRole="Voyage" />
         </EntityType>
         <EntityType Name="Dossier">
           <Key>
@@ -318,12 +321,12 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="DateAller" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateRetour" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MaxVoyageur" Type="Byte" Nullable="false" />
-          <Property Name="Fournisseur" Type="Guid" Nullable="false" />
+          <Property Name="Fournisseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PrixAchatTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DestinationVoyages" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="Voyage" ToRole="DestinationVoyage" />
           <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Voyage" FromRole="Voyage" ToRole="Dossier" />
-          <NavigationProperty Name="Destinations" Relationship="Self.DestinationVoyage" FromRole="Voyage" ToRole="Destination" />
         </EntityType>
         <EntityType Name="Voyageur">
           <Key>
@@ -361,6 +364,30 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DestinationVoyage_Destination">
+          <End Role="Destination" Type="Self.Destination" Multiplicity="1" />
+          <End Role="DestinationVoyage" Type="Self.DestinationVoyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Destination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DestinationVoyage">
+              <PropertyRef Name="Destination" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DestinationVoyage_Voyage">
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="DestinationVoyage" Type="Self.DestinationVoyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voyage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DestinationVoyage">
+              <PropertyRef Name="Voyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Dossier_Employe">
           <End Role="Employe" Type="Self.Employe" Multiplicity="0..1" />
           <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
@@ -385,18 +412,15 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DestinationVoyage">
-          <End Role="Destination" Type="Self.Destination" Multiplicity="*" />
-          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
-        </Association>
         <Association Name="DossierVoyageur">
           <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
           <End Role="Voyageur" Type="Self.Voyageur" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BoVoyageContext1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BoVoyageContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Assurances" EntityType="Self.Assurance" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Destinations" EntityType="Self.Destination" />
+          <EntitySet Name="DestinationVoyages" EntityType="Self.DestinationVoyage" />
           <EntitySet Name="Dossiers" EntityType="Self.Dossier" />
           <EntitySet Name="Employes" EntityType="Self.Employe" />
           <EntitySet Name="Voyages" EntityType="Self.Voyage" />
@@ -409,6 +433,14 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
             <End Role="Client" EntitySet="Clients" />
             <End Role="Dossier" EntitySet="Dossiers" />
           </AssociationSet>
+          <AssociationSet Name="FK_DestinationVoyage_Destination" Association="Self.FK_DestinationVoyage_Destination">
+            <End Role="Destination" EntitySet="Destinations" />
+            <End Role="DestinationVoyage" EntitySet="DestinationVoyages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DestinationVoyage_Voyage" Association="Self.FK_DestinationVoyage_Voyage">
+            <End Role="Voyage" EntitySet="Voyages" />
+            <End Role="DestinationVoyage" EntitySet="DestinationVoyages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Dossier_Employe" Association="Self.FK_Dossier_Employe">
             <End Role="Employe" EntitySet="Employes" />
             <End Role="Dossier" EntitySet="Dossiers" />
@@ -416,10 +448,6 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <AssociationSet Name="FK_Dossier_Voyage" Association="Self.FK_Dossier_Voyage">
             <End Role="Voyage" EntitySet="Voyages" />
             <End Role="Dossier" EntitySet="Dossiers" />
-          </AssociationSet>
-          <AssociationSet Name="DestinationVoyage" Association="Self.DestinationVoyage">
-            <End Role="Destination" EntitySet="Destinations" />
-            <End Role="Voyage" EntitySet="Voyages" />
           </AssociationSet>
           <AssociationSet Name="DossierVoyageur" Association="Self.DossierVoyageur">
             <End Role="Dossier" EntitySet="Dossiers" />
@@ -431,7 +459,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BoVoyageModelStoreContainer" CdmEntityContainer="BoVoyageContext1">
+        <EntityContainerMapping StorageEntityContainer="BoVoyageModelStoreContainer" CdmEntityContainer="BoVoyageContext">
           <EntitySetMapping Name="Assurances">
             <EntityTypeMapping TypeName="BoVoyageModel.Assurance">
               <MappingFragment StoreEntitySet="Assurance">
@@ -461,6 +489,15 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
                 <ScalarProperty Name="Pays" ColumnName="Pays" />
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DestinationVoyages">
+            <EntityTypeMapping TypeName="BoVoyageModel.DestinationVoyage">
+              <MappingFragment StoreEntitySet="DestinationVoyage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Voyage" ColumnName="Voyage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -512,14 +549,6 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="DestinationVoyage" TypeName="BoVoyageModel.DestinationVoyage" StoreEntitySet="DestinationVoyage">
-            <EndProperty Name="Destination">
-              <ScalarProperty Name="Id" ColumnName="Destination" />
-            </EndProperty>
-            <EndProperty Name="Voyage">
-              <ScalarProperty Name="Id" ColumnName="Voyage" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="DossierVoyageur" TypeName="BoVoyageModel.DossierVoyageur" StoreEntitySet="DossierVoyageur">
             <EndProperty Name="Dossier">
               <ScalarProperty Name="Id" ColumnName="Dossier" />
