@@ -127,3 +127,9 @@ On rajoute donc simplement la validation
 
 15/06/2021 :11:38
 L'organisation en sous listes correspondant à l'employé connecté et aux autres fonctionne.
+
+15/06/2021 : 11:44
+On va débuguer et tester l'ajout de commercial
+
+15/06/2021 : 12:05 
+Un commercial peut prendre un dossier "vacant" abandonner un dossier qu'il gère

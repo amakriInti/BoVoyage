@@ -65,19 +65,6 @@ namespace BoVoyage.Scenario1.Dal
             return liste_doss;
         }
 
-        /*internal List<Dossier> GetAllDossiersEmp(string email)//retourne la liste des dossiers de l'employé connecté
-        {
-            var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
-            var liste = Context.Dossiers.Where(l => l.Commercial == employe.Id).ToList();
-            return liste;
-        }
-
-        internal List<Dossier> GetAllDossiersEmpBar(string email)//retourne la liste des dossiers de l'employé connecté
-        {
-            var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
-            var liste = Context.Dossiers.Where(l => l.Commercial!=employe.Id).ToList();
-            return liste;
-        }*/
 
         internal bool ChangeCommercial(Guid? id_doss,string email)//Change le commercial du dossier sur l'utilisateur connecté
         {
@@ -103,6 +90,31 @@ namespace BoVoyage.Scenario1.Dal
                 return true;
             }
             else return false;
+        }
+
+        internal bool RefuserDossier(Guid? id_doss)
+        {
+            if (id_doss != null)
+            {
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 1;
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
+
+        internal bool AbandonnerDossier(Guid? id_doss)
+        {
+            if (id_doss != null)
+            {
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Commercial =null;
+                Context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

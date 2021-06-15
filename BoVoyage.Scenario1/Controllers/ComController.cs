@@ -28,10 +28,9 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult Dossier()
         {
             Repository Repo = new Repository();
-            var Doss = Repo.GetAllDossiers();
+            //var Doss = Repo.GetAllDossiers();
             var Doss2 = Repo.GetAllDossiersEmp(User.Identity.GetUserName());
             ViewBag.DossEnum = new DossierEnum();
-            var Doss3 = Doss2[0];
             return View(Doss2);
         }
 
@@ -39,13 +38,28 @@ namespace BoVoyage.Scenario1.Controllers
         {
             Repository Repo = new Repository();
             bool valid = Repo.ChangeCommercial(id, User.Identity.GetUserName());
-            return View("Dossier");
+            return RedirectToAction("Dossier");
         }
 
         public ActionResult ValidDossier(Guid? id)
         {
             Repository Repo = new Repository();
             bool valid = Repo.ValiderDossier(id);
+            //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
+            return RedirectToAction("Dossier");
+        }
+
+        public ActionResult RefuseDossier(Guid? id)
+        {
+            Repository Repo = new Repository();
+            bool valid = Repo.RefuserDossier(id);
+            //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
+            return RedirectToAction("Dossier");
+        }
+        public ActionResult AbandonnerDossier(Guid? id)
+        {
+            Repository Repo = new Repository();
+            bool valid = Repo.AbandonnerDossier(id);
             //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
         }
