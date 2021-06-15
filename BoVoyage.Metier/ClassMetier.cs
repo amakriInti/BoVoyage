@@ -49,6 +49,13 @@ namespace BoVoyage.Metier
             }
             return true;
         }
+        /*----------------------------------
+        //Ajout des clients
+        -----------------------------------*/
+        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        {
+            return repository.AddClient(nom, mail, telephone, prenom, personneMorale);
+        }
 
         /*----------------------------------
         //Liste des voyages

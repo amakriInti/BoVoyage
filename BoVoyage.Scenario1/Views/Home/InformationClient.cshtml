@@ -1,6 +1,18 @@
-﻿<script>
+﻿@model BoVoyage.Donnees.Client
+<script>
     function GoToParticipant() {
-        window.location = "https://localhost:44307/Home/Participant";
+
+        var Nom = document.getElementById("nom").value;
+        var Prenom = document.getElementById("prenom").value;
+        var Mail = document.getElementById("mail").value;
+        var Tel = document.getElementById("tel").value;
+        var PersMor;
+        if (document.getElementById("mr").checked == true) { PersMor = "Mr" };
+        if (document.getElementById("mme").checked == true) { PersMor = "Mme" };
+        if (document.getElementById("entreprise").checked == true) { PersMor = "Entreprise" };
+
+        var url = "https://localhost:44307/Home/Participant/?nom=" + Nom + "&mail=" + Mail + "&telephone=" + Tel + "&prenom=" + Prenom + "&personneMorale=" + PersMor;
+        window.location = url;
     }
 </script>
 
@@ -8,11 +20,9 @@
 <br />
 <br />
 <br />
-<h2>Voyage : XXXXXXXX</h2> (place disponible : X)
-<br />
 <br />
 <form>
-    <input type="checkbox" /> J'enregistre au nom d'une entreprise <br />
+    <input type="checkbox" id="entreprise" /> J'enregistre au nom d'une entreprise <br />
     <input type="checkbox" /> Je participe <br /><br />
 </form>
 
@@ -22,15 +32,16 @@
         <th>
             <form>
                 <select>
-                    <option> Mr.</option>
-                    <option> Mme.</option>
+                    <option id="mr"> Mr.</option>
+                    <option id="mme"> Mme.</option>
                 </select>
             </form>
         </th>
     </tr>
-    <tr><th>Nom : </th><th><input type="text" size="25" /></th></tr>
-    <tr><th>Prenom : </th><th><input type="text" size="25" /></th></tr>
-    <tr><th>Adresse Mail : </th><th><input type="text" size="25" /></th></tr>
-    <tr><th>Telephone : </th><th><input type="text" size="25" /></th></tr>
+    <tr><th>Nom : </th><th><input type="text" size="25" id="nom" /></th></tr>
+    <tr><th>Prenom : </th><th><input type="text" size="25" id="prenom" /></th></tr>
+    <tr><th>Adresse Mail : </th><th><input type="text" size="25" id="mail" /></th></tr>
+    <tr><th>Telephone : </th><th><input type="text" size="25" id="tel" /></th></tr>
 </table>
 <button type="button" onclick="GoToParticipant()"> Inscrire les participants</button>
+
