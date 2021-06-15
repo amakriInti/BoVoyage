@@ -249,6 +249,12 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Dessins\0.png" />
+    <Content Include="Dessins\1.png" />
+    <Content Include="Dessins\2.png" />
+    <Content Include="Dessins\Image1.jpg" />
+    <Content Include="Dessins\Image2.jpg" />
+    <Content Include="Dessins\Image3.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
