@@ -29,7 +29,10 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-       public ActionResult LectureCsv()
+        /*----------------------------------
+        //Ajout des voyages depuis fichier CSV
+        -----------------------------------*/
+        public ActionResult LectureCsv()
         {
             try
             {
@@ -44,6 +47,9 @@ namespace BoVoyage.Scenario1.Controllers
             
         }
 
+        /*----------------------------------
+        //Affichage des voyages
+        -----------------------------------*/
         public ActionResult AffichageVoyage()
         {
             try
