@@ -1,0 +1,36 @@
+﻿<script>
+    function GoToParticipant() {
+        window.location = "https://localhost:44307/Home/Participant";
+    }
+</script>
+
+
+<br />
+<br />
+<br />
+<h2>Voyage : XXXXXXXX</h2> (place disponible : X)
+<br />
+<br />
+<form>
+    <input type="checkbox" /> J'enregistre au nom d'une entreprise <br />
+    <input type="checkbox" /> Je participe <br /><br />
+</form>
+
+<table>
+    <tr>
+        <th>Civilité : </th>
+        <th>
+            <form>
+                <select>
+                    <option> Mr.</option>
+                    <option> Mme.</option>
+                </select>
+            </form>
+        </th>
+    </tr>
+    <tr><th>Nom : </th><th><input type="text" size="25" /></th></tr>
+    <tr><th>Prenom : </th><th><input type="text" size="25" /></th></tr>
+    <tr><th>Adresse Mail : </th><th><input type="text" size="25" /></th></tr>
+    <tr><th>Telephone : </th><th><input type="text" size="25" /></th></tr>
+</table>
+<button type="button" onclick="GoToParticipant()"> Inscrire les participants</button>
