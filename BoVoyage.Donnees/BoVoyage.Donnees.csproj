@@ -57,7 +57,6 @@
     <Compile Include="Assurance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="VoyageDetail.cs" />
     <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -70,11 +69,9 @@
     <Compile Include="Dossier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Droits.cs" />
     <Compile Include="Employe.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enums.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,11 +87,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Repository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Voyage.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="VoyageDetail.cs" />
+    <Compile Include="Droits.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Voyageur.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

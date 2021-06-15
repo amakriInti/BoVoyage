@@ -18,7 +18,9 @@ namespace BoVoyage.Donnees
                 .ToList();
         }
 
+        /*------------------------------------------
         //Ajouter les voyages dans la base de donnée
+        -------------------------------------------*/
         public bool AddVoyage(string[] tab)
         {
             try
@@ -61,7 +63,7 @@ namespace BoVoyage.Donnees
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -104,29 +106,7 @@ namespace BoVoyage.Donnees
 
                 return true;
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
-        {
-            try
-            {
-                Context.Clients.Add(new Client
-                {
-                    Id = Guid.NewGuid(),
-                    Nom = nom,
-                    Prenom = prenom,
-                    Mail = mail,
-                    Telephone = telephone,
-                    PersonneMorale = personneMorale,
-                });
-                Context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

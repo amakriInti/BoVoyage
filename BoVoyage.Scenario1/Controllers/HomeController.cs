@@ -15,24 +15,6 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
-        //public ActionResult InformationClient(string id)
-        //{
-        //    var ps = metier.DBVoyages();
-        //    try
-        //    {
-        //        foreach (var item in ps)
-        //        {
-        //            if (item.Id = id)
-        //            {
-        //                return View(id);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //}
 
         public ActionResult InformationClient()
         {
@@ -51,15 +33,11 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
