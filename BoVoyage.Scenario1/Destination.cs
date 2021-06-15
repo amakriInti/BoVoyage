@@ -7,24 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoVoyage.Scenario1.Dal
+namespace BoVoyage.Scenario1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Assurance
+    public partial class Destination
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Assurance()
+        public Destination()
         {
-            this.Dossiers = new HashSet<Dossier>();
+            this.Voyages = new HashSet<Voyage>();
         }
     
         public System.Guid Id { get; set; }
-        public bool Annulation { get; set; }
-        public Nullable<decimal> Prix { get; set; }
+        public string Continent { get; set; }
+        public string Pays { get; set; }
+        public string Region { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dossier> Dossiers { get; set; }
+        public virtual ICollection<Voyage> Voyages { get; set; }
     }
 }

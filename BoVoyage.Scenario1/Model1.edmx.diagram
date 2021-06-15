@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a79694599d964746a67acf966e868dc3" Name="Diagram1">
+        <EntityTypeShape EntityType="BoVoyage1Model.Assurance" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Client" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Destination" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Dossier" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Employe" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Voyage" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyage1Model.Voyageur" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="BoVoyage1Model.FK_Dossier_Assurance" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage1Model.FK_Dossier_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage1Model.FK_Dossier_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage1Model.FK_Dossier_Voyage" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage1Model.DestinationVoyage" ManuallyRouted="false" />
+        <AssociationConnector Association="BoVoyage1Model.DossierVoyageur" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
