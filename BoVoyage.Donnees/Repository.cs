@@ -53,5 +53,27 @@ namespace BoVoyage.Donnees
         {
             return Context.Voyages.ToList();
         }
+        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        {
+            try
+            {
+                Context.Clients.Add(new Client
+                {
+                    Id = Guid.NewGuid(),
+                    Nom = nom,
+                    Prenom = prenom,
+                    Mail = mail,
+                    Telephone = telephone,
+                    PersonneMorale = personneMorale,
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

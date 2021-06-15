@@ -2,6 +2,11 @@
     function GoToAssurance() {
         window.location = "https://localhost:44307/Home/Assurance";
     }
+    function MultipliParticipant() {
+        var newDiv = document.createElement("div");
+        var newContent = document.createTextNode('Hi there');
+        newDiv.appendChild(newContent);
+    }
 </script>
 
 
@@ -11,7 +16,7 @@
 <br />
 <form>
     Vous souhaitez inscrire :
-    <select>
+    <select onchange="MultipliParticipant()">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -24,8 +29,9 @@
     </select>
     Participants
 </form>
+<button type="button" onclick="MultipliParticipant()"> Test </button>
 <br />
-<div>
+<div id="formulaire">
     <h3>Participant numero : X</h3>
     <table>
         <tr>
@@ -91,6 +97,16 @@
                     </select>
                     année
                     <select>
+                        <option>1980</option>
+                        <option>1981</option>
+                        <option>1982</option>
+                        <option>1983</option>
+                        <option>1984</option>
+                        <option>1985</option>
+                        <option>1986</option>
+                        <option>1987</option>
+                        <option>1988</option>
+                        <option>1989</option>
                         <option>1990</option>
                         <option>1991</option>
                         <option>1992</option>

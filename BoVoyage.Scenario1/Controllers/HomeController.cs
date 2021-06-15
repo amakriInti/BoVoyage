@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System;
 using BoVoyage.Metier;
+using System.Collections;
 
 namespace BoVoyage.Scenario1.Controllers
 {
@@ -14,21 +15,33 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+        //public ActionResult InformationClient(string id)
+        //{
+        //    var ps = metier.DBVoyages();
+        //    try
+        //    {
+        //        foreach (var item in ps)
+        //        {
+        //            if (item.Id = id)
+        //            {
+        //                return View(id);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //}
+
         public ActionResult InformationClient()
         {
-            try
-            {
-                var ps = metier.DBVoyages();
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
+            return View();
         }
 
-        public ActionResult Participant()
+        public ActionResult Participant(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
+            metier.AddClient(nom, mail, telephone, prenom, personneMorale);
             return View();
         }
         public ActionResult Assurance()
