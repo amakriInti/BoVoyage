@@ -141,11 +141,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Krystal.config" />
-    <None Include="Diego.config" />
-    <None Include="Vincent.config" />
-    <None Include="Quentin.config" />
-    <None Include="Alexandre.config" />
     <None Include="App.config" />
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -181,6 +176,7 @@
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>copy C:\Users\Alexandre\Source\Repos\amakriInti\BoVoyage\BoVoyage.Donnees\Alexandre.config C:\Users\Alexandre\Source\Repos\amakriInti\BoVoyage\BoVoyage.Donnees\App.config /Y</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
