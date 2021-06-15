@@ -28,5 +28,10 @@ namespace BoVoyage.Scenario1.Controllers
 
             return View();
         }
+        public ActionResult VoyageDescription()
+        {
+
+            return View();
+        }
     }
 }

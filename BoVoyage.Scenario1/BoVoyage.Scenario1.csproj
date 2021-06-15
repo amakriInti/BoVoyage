@@ -242,6 +242,12 @@
     <Content Include="Dessins\1.png" />
     <Content Include="Dessins\2.png" />
     <Content Include="Dessins\0.png" />
+    <Content Include="Dessins\londres.jpg" />
+    <Content Include="Dessins\moscou.jpg" />
+    <Content Include="Dessins\mulhouse.jpg" />
+    <Content Include="Dessins\seoul2.jpg" />
+    <Content Include="Dessins\tokyo.jpg" />
+    <Content Include="Dessins\valenciennes.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -256,6 +262,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="photo\corse.jpeg" />
+    <Content Include="photo\cshark.png" />
+    <Content Include="photo\vacances.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Model1.edmx">
@@ -311,6 +320,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Com\Index.cshtml" />
+    <Content Include="Views\Home\VoyageDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -330,7 +340,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="photo\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
