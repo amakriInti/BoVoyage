@@ -44,6 +44,7 @@ namespace BoVoyage.Scenario1.Controllers
         {
             Repository Repo = new Repository();
             bool valid = Repo.ValiderDossier(id);
+            //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
         }
     }
