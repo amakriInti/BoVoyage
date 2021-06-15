@@ -1,4 +1,5 @@
-﻿@model List<BoVoyage.Scenario1.Dal.Dossier>
+﻿@*model List<BoVoyage.Scenario1.Dal.Dossier>*@
+@model List<List<BoVoyage.Scenario1.Dal.Dossier>>
 @using BoVoyage.Scenario1.Models;
 @{
     ViewBag.Title = "Dossier";
@@ -10,7 +11,8 @@
     <ul>
         @{
             //<li>@Model.Count()</li>;
-            foreach (var v in Model)
+                <li><strong>Mes dossiers</strong></li>
+            foreach (var v in Model[0])//affiche les dossier de l'employé
             {
                 var etat = (DossierEnum)v.Etat;
                 if (v.Commercial != null)
@@ -27,14 +29,32 @@
                         @v.Client1.Nom | @v.Voyage1.Libelle | @etat  | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id })
                     </li>
                 }
-
-
+            }
+            <hr />
+            <li><strong>Autres dossiers</strong></li>
+            foreach (var v in Model[1])//affiche les autres dossiers de l'employé
+            {
+                var etat = (DossierEnum)v.Etat;
+                if (v.Commercial != null)
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login  | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id }) | @Html.ActionLink("Valider Dossier", "ValidDossier", new { id = v.Id })
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  | @Html.ActionLink("Affecter/Changer Commerical", "AffecterCommercial", new { id = v.Id })
+                    </li>
+                }
             }
         }
     </ul>
     <br />
     <p>
-        @Html.ActionLink("Back to Menu", "Index2")
+        @Html.ActionLink("Back to Menu", "Index")
     </p>
 </body>
 </html>

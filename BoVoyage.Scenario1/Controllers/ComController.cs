@@ -29,8 +29,10 @@ namespace BoVoyage.Scenario1.Controllers
         {
             Repository Repo = new Repository();
             var Doss = Repo.GetAllDossiers();
+            var Doss2 = Repo.GetAllDossiersEmp(User.Identity.GetUserName());
             ViewBag.DossEnum = new DossierEnum();
-            return View(Doss);
+            var Doss3 = Doss2[0];
+            return View(Doss2);
         }
 
         public ActionResult AffecterCommercial(Guid? id)

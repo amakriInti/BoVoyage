@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using Microsoft.AspNet.Identity;
 using System.Web.Security;
+
 //haha
 namespace BoVoyage.Scenario1.Dal
 {
@@ -51,6 +53,31 @@ namespace BoVoyage.Scenario1.Dal
             var liste = Context.Dossiers.ToList();
             return liste;
         }
+
+        internal List<List<Dossier>> GetAllDossiersEmp(string email)//retourne la liste des dossiers
+        {
+            var liste_doss = new List<List<Dossier>>();
+            var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
+            var liste_comm = Context.Dossiers.Where(l => l.Commercial == employe.Id).ToList();
+            var liste_comm_bar = Context.Dossiers.Where(l => l.Commercial != employe.Id).ToList();
+            liste_doss.Add(liste_comm);
+            liste_doss.Add(liste_comm_bar);
+            return liste_doss;
+        }
+
+        /*internal List<Dossier> GetAllDossiersEmp(string email)//retourne la liste des dossiers de l'employé connecté
+        {
+            var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
+            var liste = Context.Dossiers.Where(l => l.Commercial == employe.Id).ToList();
+            return liste;
+        }
+
+        internal List<Dossier> GetAllDossiersEmpBar(string email)//retourne la liste des dossiers de l'employé connecté
+        {
+            var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
+            var liste = Context.Dossiers.Where(l => l.Commercial!=employe.Id).ToList();
+            return liste;
+        }*/
 
         internal bool ChangeCommercial(Guid? id_doss,string email)//Change le commercial du dossier sur l'utilisateur connecté
         {

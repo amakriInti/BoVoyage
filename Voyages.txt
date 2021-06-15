@@ -122,3 +122,8 @@ On va regrouper et trier les dossiers (cad afficher les dossiers du commerciaux 
 14/06/2021 : 16:18
 Le fait que le commercial associé à une voyage puisse être nul complique beaucoup les choses puisque le programme plante si on appelle le login d'un employe non défini
 On rajoute donc simplement la validation
+
+15/06/2021 : 10:09 La validation du dossier fonctionne
+
+15/06/2021 :11:38
+L'organisation en sous listes correspondant à l'employé connecté et aux autres fonctionne.
