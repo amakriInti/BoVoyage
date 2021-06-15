@@ -256,6 +256,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Com\Index.cshtml" />
     <Content Include="Views\Home\LectureCsv.cshtml" />
+    <Content Include="Voyage_csv\New_Voyage.csv" />
+    <Content Include="Views\Home\AffichageVoyage.cshtml" />
+    <Content Include="Views\Home\InformationClient.cshtml" />
+    <Content Include="Views\Home\Participant.cshtml" />
+    <Content Include="Views\Home\Assurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
