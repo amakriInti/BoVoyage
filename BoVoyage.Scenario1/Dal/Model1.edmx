@@ -86,6 +86,8 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="PrixAchatTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Agence" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Voyageur">
           <Key>
@@ -322,6 +324,8 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="PrixAchatTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Agence" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Voyage" FromRole="Voyage" ToRole="Dossier" />
           <NavigationProperty Name="Destinations" Relationship="Self.DestinationVoyage" FromRole="Voyage" ToRole="Destination" />
         </EntityType>
@@ -497,6 +501,8 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
                 <ScalarProperty Name="PrixAchatTotal" ColumnName="PrixAchatTotal" />
                 <ScalarProperty Name="PrixVenteUnitaire" ColumnName="PrixVenteUnitaire" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Agence" ColumnName="Agence" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
