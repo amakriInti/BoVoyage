@@ -83,18 +83,42 @@
             .active, .dot:hover {
                 background-color: #717171;
             }
+
+        .collapsible {
+            background-color: white;
+            color: deepskyblue;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+            .active, .collapsible:hover {
+                background-color: white;
+            }
+
+        .content2 {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: white;
+        }
     </style>
 </head>
 
-<body>   
+<body>
     <div class="modal-body row">
         <!-- Your first column here -->
         <div class="col-md-9">
             <div>
                 <div>
-                    <h3>Continent</h3>
+                    <h3 style="color:deepskyblue;font-style:italic">Seoul</h3>
                     <p>Pays - Region</p>
                 </div>
+                <hr />
                 <div id="carrousel">
                     <div class="slideshow-container">
                         <div class="mySlides">
@@ -120,6 +144,39 @@
                         <span class="dot" onclick="currentSlide(1)"></span>
                         <span class="dot" onclick="currentSlide(2)"></span>
                         <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
+                <hr />
+                <div style="font-size:20px;color:deepskyblue">Votre voyage :</div><br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Date Aller : <span style="font-style:italic">00/00/00</span></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Date Retour : <span style="font-style:italic">00/00/00</span></p>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div style="font-size:20px;color:deepskyblue">Nombre de voyageur :</div><br />
+                    <p>
+                        Choisir :
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>Max DB</option>
+
+                        </select>
+                    </p>
+                </div>
+                <hr />
+                <div>
+                    <button type="button" class="collapsible" style="box-shadow: 1px 1px 12px #D8D8D8"><strong>Description</strong></button>
+                    <div class="content2">
+                        <br /><p>J'aime le pâté et le fromage.</p>
                     </div>
                 </div>
             </div>
@@ -172,6 +229,21 @@
                 }
                 slides[slideIndex - 1].style.display = "block";
                 dots[slideIndex - 1].className += " active";
+            }
+
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
             }
         </script>
     </div>
