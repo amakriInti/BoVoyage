@@ -1,7 +1,21 @@
 ﻿<!DOCTYPE html>
+
+<style>
+    .taille {
+        width: 100%;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 10%;
+    }
+</style>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mon application ASP.NET</title>
@@ -9,32 +23,41 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <img src="~/photo/corse.jpeg" class="taille" />
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BoVoyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+                <div>
+                    <input type="checkbox" id="checkbox1" value="option1">
+                    <label class="form-check-label" for="checkbox1">Amerique du Sud</label>
+                    <input type="checkbox" id="checkbox2" value="option2">
+                    <label class="form-check-label" for="checkbox2">Afrique</label>
+                    <input type="checkbox" id="checkbox3" value="option3">
+                    <label class="form-check-label" for="checkbox3">Europe</label>
+                    <input type="checkbox" id="checkbox4" value="option4">
+                    <label class="form-check-label" for="checkbox4">Asie</label>
+                    <input type="checkbox" id="checkbox5" value="option5">
+                    <label class="form-check-label" for="checkbox5">Amérique du Nord</label>
+                    <input type="checkbox" id="checkbox6" value="option6">
+                    <label class="form-check-label" for="checkbox6">Océanie</label>
+                </div>
             </div>
         </div>
+    </nav>
+
+    <div class="jumbotron" style="background-color:white">
+        <h1 class="display-4" style="text-align:center">C-Shark</h1>
+        <p class="lead" style="text-align:center">Des voyages complètement maretaux ! </p>
+        <img src="~/photo/cshark.png" class="center" />
+        <hr class="my-4">
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Voyagez en toute serénité avec BoVoyage</p>
+            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
         </footer>
     </div>
 
