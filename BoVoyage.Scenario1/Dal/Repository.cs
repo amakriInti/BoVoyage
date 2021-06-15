@@ -118,5 +118,14 @@ namespace BoVoyage.Scenario1.Dal
                 return false;
             }
         }
+
+        internal Dossier GetDetailsDossier(Guid? id_doss)
+        {
+            if (id_doss != null)
+            {
+                return Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault();
+            }
+            else return null;
+        }
     }
 }

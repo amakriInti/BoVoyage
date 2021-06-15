@@ -63,5 +63,14 @@ namespace BoVoyage.Scenario1.Controllers
             //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
         }
+
+        public ActionResult Details_Dossier(Guid? id)
+        {
+            Repository Repo = new Repository();
+            //var Doss = Repo.GetAllDossiers();
+            var Doss = Repo.GetDetailsDossier(id);
+            return View(Doss);
+        }
+            
     }
 }

@@ -148,3 +148,19 @@ On va faire en sorte qu'un dossier accepté ne puisse plus être validé
 
 15/06/2021 : 12:27
 Dossiers bien organisés avec les bonnes options de validation qui dépendent de la personne connectée
+
+15/06/2021 : 15:21 
+Création d'une page dossier regroupant toutes les infos importantes du dossier pour un voyage (Client, Destination, voyageurs etc...)
+Il faut donc construire le lien voyage-> destination
+use BoVoyageDB
+go 
+insert into Destination (Id,Continent,Pays,Region,[Description]) values (NEWID(), 'Europe','Italie','Emilie-Romagne','Bologne','Description 1')
+insert into Destination (Id,Continent,Pays,Region,[Description]) values (NEWID(), 'Europe','Italie','Emilie-Romagne','Imola','Description 2')
+go
+
+Bologne : BEC53239-E43F-4047-B757-1002992C7069
+Imola : 1AC442E6-ADCF-433F-8EC5-CC40B3201CAE
+On lorgne à Bologne : DD1E74FB-F2E4-4CBD-978D-11A9F484B781
+
+15/06/2021 : 16:40 
+Affichage dossier détaillé avec voyage date destination etc...(voyageurs à rajouter)
