@@ -14,6 +14,27 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+        public ActionResult InformationClient()
+        {
+            try
+            {
+                var ps = metier.DBVoyages();
+                return View(ps);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult Participant()
+        {
+            return View();
+        }
+        public ActionResult Assurance()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
