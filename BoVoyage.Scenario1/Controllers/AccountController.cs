@@ -135,6 +135,7 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        //[AllowAnonymous]
         public ActionResult Register()
         {
             return View();

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoVoyage.Scenario1.Dal
+namespace BoVoyage.Scenario1
 {
     using System;
     using System.Data.Entity;

@@ -7,27 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoVoyage.Scenario1.Dal
+namespace BoVoyage.Scenario1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class Voyage
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
+        public Voyage()
         {
             this.Dossiers = new HashSet<Dossier>();
+            this.Destinations = new HashSet<Destination>();
         }
     
         public System.Guid Id { get; set; }
-        public string Nom { get; set; }
-        public string Mail { get; set; }
-        public string Telephone { get; set; }
-        public string Prenom { get; set; }
-        public string PersonneMorale { get; set; }
+        public System.DateTime DateAller { get; set; }
+        public System.DateTime DateRetour { get; set; }
+        public byte MaxVoyageur { get; set; }
+        public string Fournisseur { get; set; }
+        public decimal PrixAchatTotal { get; set; }
+        public decimal PrixVenteUnitaire { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossier> Dossiers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Destination> Destinations { get; set; }
     }
 }
