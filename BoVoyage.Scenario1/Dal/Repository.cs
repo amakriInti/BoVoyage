@@ -60,8 +60,10 @@ namespace BoVoyage.Scenario1.Dal
             var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
             var liste_comm = Context.Dossiers.Where(l => l.Commercial == employe.Id).ToList();
             var liste_comm_bar = Context.Dossiers.Where(l => l.Commercial != employe.Id).ToList();
-            liste_doss.Add(liste_comm);
-            liste_doss.Add(liste_comm_bar);
+            var sorted_liste_comm = liste_comm.OrderBy(x => x.Etat).ToList();
+            var sorted_liste_comm_bar = liste_comm_bar.OrderBy(x => x.Etat).ToList();//On trie les dossier par état pour mettre les non traités en haut
+            liste_doss.Add(sorted_liste_comm);
+            liste_doss.Add(sorted_liste_comm_bar);
             return liste_doss;
         }
 

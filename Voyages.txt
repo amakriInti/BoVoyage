@@ -133,3 +133,18 @@ On va débuguer et tester l'ajout de commercial
 
 15/06/2021 : 12:05 
 Un commercial peut prendre un dossier "vacant" abandonner un dossier qu'il gère
+
+15/06/2021 : 12:13 
+On rajoute deux dossiers Non affectés pour tester le tri
+use BoVoyageDB
+go 
+insert into Dossier (Id,Voyage,Client,Etat) values (NEWID(), DD1E74FB-F2E4-4CBD-978D-11A9F484B781,C05CC53D-2696-4065-96FD-AECC5E7D6C9D,0)
+insert into Dossier (Id,Voyage,Client,Etat) values (NEWID(), FA9A171D-11AC-4A41-B0D5-C6FB2AE343C2,99BFC4E8-497C-4FA7-9544-D4AEF148120B,0)
+go
+
+15/06/2021 : 12:17
+Le tri fonctionne bien et les dossiers en cours se retrouvent toujours en haut
+On va faire en sorte qu'un dossier accepté ne puisse plus être validé
+
+15/06/2021 : 12:27
+Dossiers bien organisés avec les bonnes options de validation qui dépendent de la personne connectée

@@ -11,14 +11,24 @@
     <ul>
         @{
             //<li>@Model.Count()</li>;
-                <li><strong>Mes dossiers</strong></li>
+            <li><strong>Mes dossiers</strong></li>
             foreach (var v in Model[0])//affiche les dossier de l'employé
             {
                 var etat = (DossierEnum)v.Etat;
+                if (v.Etat == 0)
+                {
                     <li>
-                     <hr />
+                        <hr />
                         @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login  | @Html.ActionLink("Abandonner Dossier", "AbandonnerDossier", new { id = v.Id }) | @Html.ActionLink("Valider Dossier", "ValidDossier", new { id = v.Id }) |  @Html.ActionLink("Refuser Dossier", "RefuseDossier", new { id = v.Id })
-                       </li>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login  | @Html.ActionLink("Abandonner Dossier", "AbandonnerDossier", new { id = v.Id })
+                    </li>
+                }
             }
             <hr />
             <li><strong>Autres dossiers</strong></li>
@@ -29,7 +39,7 @@
                 {
                     <li>
                         <hr />
-                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login 
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login
                     </li>
                 }
                 else
