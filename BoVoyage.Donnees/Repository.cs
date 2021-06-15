@@ -18,7 +18,9 @@ namespace BoVoyage.Donnees
                 .ToList();
         }
 
-        //Ajouter les voyages dans la base de donnée
+        /*----------------------------------
+        //Ajout des voyages dans la DB
+        -----------------------------------*/
         public bool AddVoyage(string[] tab)
         {
             try
@@ -44,21 +46,12 @@ namespace BoVoyage.Donnees
             }
         }
 
+        /*----------------------------------
+        //Liste des voyages
+        -----------------------------------*/
         public object DBVoyages()
         {
             return Context.Voyages.ToList();
         }
     }
-    /*public class ListeVoyageClass
-    {
-        private BoVoyageContext1 Context = new BoVoyageContext1();
-        //Appel des voyages
-        public List<Voyage> DBVoyages
-        {
-            get
-            {
-                return Context.Voyages.ToList();
-            }
-        }
-    }*/
 }
