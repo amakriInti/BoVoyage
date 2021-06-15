@@ -21,7 +21,7 @@ namespace BoVoyage.Scenario1
             //           < add connectionStringName = "BoVoyage" applicationName = "/" name = "DefaultRoleProvider" type = "System.Web.Security.SqlRoleProvider" />
             //                </ providers >
             //              </ roleManager >
-
+            //9:09
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
             if (!Roles.IsUserInRole("loic@hotmail.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("loic@hotmail.fr", StatutEnum.Admin.ToString());
