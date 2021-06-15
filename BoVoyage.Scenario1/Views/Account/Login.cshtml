@@ -11,7 +11,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Utilisez un compte local pour vous connecter.</h4>
+                <h4>Connexion</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -44,10 +44,10 @@
                 <p>
                     @Html.ActionLink("Inscrire comme nouvel utilisateur", "Register")
                 </p>
-                @* Activez ceci une fois que vous avez activé la confirmation du compte pour la fonctionnalité de réinitialisation du mot de passe
-                    <p>
-                        @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword")
-                    </p>*@
+     
+                <p>
+                    @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword")
+                </p>
             }
         </section>
     </div>

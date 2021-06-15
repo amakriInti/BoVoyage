@@ -24,7 +24,12 @@ namespace BoVoyage.Scenario1
 
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("ali@bovoyage.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("ali@bovoyage.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("matthieu@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("matthieu@bovoyage.fr", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("morgane@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("morgane@bovoyage.fr", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("antony@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("antony@bovoyage.fr", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("loic@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("loic@bovoyage.fr", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("florentin@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("florentin@bovoyage.fr", StatutEnum.Admin.ToString());
+
 
             var mails = Repo.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)

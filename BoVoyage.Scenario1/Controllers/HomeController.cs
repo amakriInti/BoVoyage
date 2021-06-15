@@ -1,4 +1,5 @@
-﻿using BoVoyage.Scenario1.Models;
+﻿using BoVoyage.Scenario1.Dal;
+using BoVoyage.Scenario1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,13 @@ namespace BoVoyage.Scenario1.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult UploadCsv()
+        {
+            Repository Repo = new Repository();
+            Repo.ReadCsv();
+            return View("Index");
         }
     }
 }

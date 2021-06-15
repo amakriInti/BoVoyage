@@ -1,0 +1,32 @@
+                   fragment = "<table>";
+                    for (var p in data) {
+                        fragment += "<tr><td>" +
+                            data[p].Name + "</td><td>" +
+                            "</td></tr > ";
+                    }
+                    fragment += "</table>"
+
+
+
+WebClient WebClient1 = new WebClient { Encoding = Encoding.UTF8 };
+            string url; byte[] octets; string s;
+            url = "http://localhost:51092/api/personne";
+            octets = WebClient1.DownloadData(url);
+            s = Encoding.Default.GetString(octets);
+            var liste = JsonConvert.DeserializeObject<List<string>>(s);
+
+            return liste[0] == "value1" && liste[1] == "value2";
+
+1nt1f0rmat10n
+===========================================================================================
+Csv to database dans le projet Batch (Upload Person):
+1.LectureCsv
+2. On déclare le httpClient 
+3. On lui envoie les objet en json
+4. On récupère le résultat 
+
+Objectif : Collecte de voyages 
+
+-Fichiers csv exemple:
+Agence;Libelle;DateAller;DateRetour;Max;PrixVenteTotal;Description
+Go Voyage; Plaisirs d'Asie;07/07/2021;9;4500;Description géniale 1 
