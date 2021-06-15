@@ -18,16 +18,18 @@ namespace BoVoyage.Donnees
                 .ToList();
         }
 
-        /*----------------------------------
-        //Ajout des voyages dans la DB
-        -----------------------------------*/
+        //Ajouter les voyages dans la base de donnée
         public bool AddVoyage(string[] tab)
         {
             try
             {
+                //DefiningQuery et qu'il n'existe dans l'élément <ModificationFunctionMapping>
+                var idDestination = Guid.NewGuid();
+                var idVoyage = Guid.NewGuid();
+
                 Context.Voyages.Add(new Voyage
                 {
-                    Id = Guid.NewGuid(),
+                    Id = idVoyage,
                     DateAller = DateTime.Parse(tab[0]),
                     DateRetour = DateTime.Parse(tab[1]),
                     MaxVoyageur = byte.Parse(tab[2]),
@@ -35,23 +37,77 @@ namespace BoVoyage.Donnees
                     PrixAchatTotal = decimal.Parse(tab[4]),
                     PrixVenteUnitaire = decimal.Parse(tab[5]),
                     Description = tab[6]
+
+                });
+                Context.SaveChanges();
+
+                Context.Destinations.Add(new Destination
+                {
+                    Id = idDestination,
+                    Continent = tab[7],
+                    Pays = tab[8],
+                    Region = tab[9],
+                    Description = tab[10]
+                });
+                Context.SaveChanges();
+
+                Context.DestinationVoyages.Add(new DestinationVoyage
+                {
+                    Voyage=idVoyage,
+                    Destination= idDestination
+                    
                 });
                 Context.SaveChanges();
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
         }
 
-        /*----------------------------------
-        //Liste des voyages
-        -----------------------------------*/
         public object DBVoyages()
         {
-            return Context.Voyages.ToList();
+            var query = from Voyage in Context.Voyages
+                        join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                        join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                        select new VoyageDetail { 
+                            DateAller = Voyage.DateAller,
+                            DateRetour = Voyage.DateRetour,
+                            MaxVoyageur = Voyage.MaxVoyageur,
+                            Fournisseur = Voyage.Fournisseur,
+                            PrixAchatTotal = Voyage.PrixAchatTotal,
+                            PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                            Description = Voyage.Description +" "+ Destination.Description,
+                            Continent = Destination.Continent,
+                            Pays = Destination.Pays,
+                            Region = Destination.Region
+                        };
+
+            return query.ToList();
+        }
+        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        {
+            try
+            {
+                Context.Clients.Add(new Client
+                {
+                    Id = Guid.NewGuid(),
+                    Nom = nom,
+                    Prenom = prenom,
+                    Mail = mail,
+                    Telephone = telephone,
+                    PersonneMorale = personneMorale,
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
         public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
