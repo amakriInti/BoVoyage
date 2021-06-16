@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BoVoyage.Scenario1.Models.TraitementBD
+@{
     ViewBag.Title = "C Shark";
 }
 
@@ -6,7 +7,7 @@
 
 <body>
     <div class="modal-body row">
-        <div class="col-md-6">
+        <div id="col1" class="col-md-6">
             <!-- Your first column here -->
             <!-------------------------------------------------------------------------------------------->
             <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
@@ -14,11 +15,11 @@
                     <img src="~/Dessins/londres.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Londres - Angleterre</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 126 €</p>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Londres - Angleterre</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 126 €</p>
                         </div>
                     </div>
                 </div>
@@ -31,11 +32,11 @@
                     <img src="~/Dessins/valenciennes.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Valenciennes - France</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 12 €</p>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Valenciennes - France</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 12 €</p>
                         </div>
                     </div>
                 </div>
@@ -48,18 +49,18 @@
                     <img src="~/Dessins/tokyo.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Tokyo - Japon</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 1251 €</p>
-                            </div>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Tokyo - Japon</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 1251 €</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-------------------------------------------------------------------------------------------->
         </div>
-        <div class="col-md-6">
+        <div id="col2" class="col-md-6">
             <!-- Your second column here -->
             <!-------------------------------------------------------------------------------------------->
             <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
@@ -67,12 +68,12 @@
                     <img src="~/Dessins/seoul2.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Séoul - Corée du Sud</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 638 €</p>
-                            </div>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Séoul - Corée du Sud</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 638 €</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,12 +85,12 @@
                     <img src="~/Dessins/moscou.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Moscou - Russie</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 1024 €</p>
-                            </div>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Moscou - Russie</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 1024 €</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,16 +102,23 @@
                     <img src="~/Dessins/mulhouse.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
                 </a>
                 <div style="padding:10px">
-                        <div class="content">
-                            <h4 style="color:lightskyblue">Mulhouse - France</h4>
-                            <div style="color:dimgray">
-                                <p>Description</p>
-                                <p style="font-weight:bolder">Prix : 68 €</p>
-                            </div>
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Mulhouse - France</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 68 €</p>
                         </div>
+                    </div>
                 </div>
             </div>
             <!-------------------------------------------------------------------------------------------->
         </div>
     </div>
+    <script>
+        document.getElementById("col1").onload = function () { addCards() };
+
+        function addCards(card) {
+            document.getElementById("col1").innerHTML += '</br><div class="img-rounded" style="box-shadow: 1px 1px 12px #D8D8D8"><a href="#"><img src="https://localhost:44307/Dessins/' + this.card + '.jpg" class="img-rounded" style="width:100%"/></a><div style="padding:10px"><div class="content"><h4 style="color:lightskyblue">' + @Model.Region + ' - ' + @Model.Pays + '</h4><div style="color:dimgray"><p>' + @Model.Description + '</p><p style="font-weight:bolder">Prix : ' + @Model.Prix + ' €</p></div></div></div></div>';
+        }
+    </script>
 </body>

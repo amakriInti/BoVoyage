@@ -80,5 +80,29 @@ namespace BoVoyage.Scenario1.Models
                 return res;
             }
         }
+        public string Pays
+        {
+            get
+            {
+                var res = Context.Destinations.Select(d => d.Pays).FirstOrDefault();
+                return res;
+            }
+        }
+        public string Continent
+        {
+            get
+            {
+                var res = Context.Destinations.Select(d => d.Continent).FirstOrDefault();
+                return res;
+            }
+        }
+        public string Region
+        {
+            get
+            {
+                var res = Context.Destinations.Select(d => d.Region).FirstOrDefault();
+                return res;
+            }
+        }
     }
 }

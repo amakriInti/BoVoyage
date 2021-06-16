@@ -10,9 +10,10 @@ namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
+        TraitementBD tBD = new TraitementBD();
         public ActionResult Index()
         {
-            return View();
+            return View(tBD);
         }
 
         public ActionResult About()
@@ -30,7 +31,7 @@ namespace BoVoyage.Scenario1.Controllers
         }
         public ActionResult VoyageDescription()
         {
-            TraitementBD tBD = new TraitementBD();
+            
             return View(tBD);
         }
     }
