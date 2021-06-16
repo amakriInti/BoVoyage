@@ -30,49 +30,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <style>
-        .collapsible {
-            background-color: white;
-            color: deepskyblue;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 15px;
+        .border2 {
+            width: 95%;
+            float:right;
+            padding: 5px;
+            background: #EFEFEE;
+            color: black;
+/*            border-style: groove;
+            border-color: #EFEFEE;*/
+            box-shadow: 1px 1px 12px #D8D8D8;
         }
 
-            .active, .collapsible:hover {
-                background-color: white;
-            }
+        .border1 {
+            padding: 5px;
+            background: white;
+            color: black;
+/*            border-style: groove;
+            border-color: #EFEFEE;*/
+            text-align: center;
+            width: 5%;
+            float: left;
+            box-shadow: 1px 1px 12px #D8D8D8;
+        }
 
-        .content {
-            padding: 0 18px;
-            display: none;
-            overflow: hidden;
-            background-color: white;
+        .anybutton {
+            left: 74%;
+            width: 200px;
+            height: 40px;
+            position: absolute;
+            background: lightskyblue;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+
+        }
+
+        .textcenter {
+            width: 100%;
+            padding: 10px;
+            background: lightskyblue;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <br />
-    <br />
-    <br />
-
-        <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
-            <a href="#">
-                <img src="~/Dessins/Image1.jpg" class="img-rounded" style="width:25%" /><!--1036*658-->
-            </a>
-            <div style="padding:10px">
-                <div>
-                    <h4 style="color:lightskyblue">Londres - Angleterre</h4>
-                    <div style="color:dimgray">
-                        <p>Description</p>
-                        <p style="font-weight:bolder">Prix : 126 €</p>
+    <h3 class="textcenter">Récapitulatif de votre voyage</h3>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/Image1.jpg" class="img-rounded" style="width:100%" />
+                </a>
+                <div style="padding:10px">
+                    <div>
+                        <h4 style="color:deepskyblue">Londres - Angleterre</h4>
+                        <div style="color:dimgray">
+                            <p>Date de départ : 00/00/0000</p>
+                            <p>Date de retour : 00/00/0000</p>
+                            <p>Durée : 8 jours / 7 nuits</p>
+                            <p>Nombre de personne : 1</p>
+                            <p style="font-weight:bolder">Prix total TTC : 126 €</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="col-sm-9">
+
+            <div class="border1">1</div>
+            <div class="border2"><strong> Répartition des voyageurs</strong></div>
+            <p style="position:relative;top:10px">&nbsp;1 chambre par adulte</p>
+            <br />
+
+            <div class="border1">2</div>
+            <div class="border2"><strong> Catégorie d'hébergement</strong></div>
+            <p style="position:relative;top:10px">&nbsp;CHAMBRE DOUBLE CAT-3</p>
+            <br />
+
+            <div class="border1">3</div>
+            <div class="border2"><strong> Type de pension</strong></div>
+            <p style="position:relative;top:10px">&nbsp;Petit déjeuner inclus</p>
+            <br />
+
+            <div class="border1">4</div>
+            <div class="border2"><strong> Transport</strong></div>
+            <p style="position:relative;top:10px">&nbsp;A pied sale petit flemmard</p>
+            <br />
+
+            <div class="border1">5</div>
+            <div class="border2"><strong> Prestations incluses</strong></div>
+            <p style="position:relative;top:10px">&nbsp;SUZUKI SWIFT SPORT (pour faire des bons drifts sa mère)</p>
+            <br />
+
+            <div class="border1">6</div>
+            <div class="border2"><strong> Assurance</strong></div>
+            <p style="position:relative;top:10px">&nbsp;Pas d'assurance pour ce type de voyage</p>
+            <br />
+        </div>
+    </div>
+    <br />
+    <br />
+    <input type="button" class="anybutton" id="myab" value="Procéder au paiement" />
+    <br />
+    <br />
 </body>
 </html>
 
