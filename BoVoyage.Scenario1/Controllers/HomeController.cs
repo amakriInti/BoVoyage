@@ -16,12 +16,12 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-
-        public ActionResult About()
+        public ActionResult Panier()
         {
-            ViewBag.Message = "Your application description page.";
+            Repository Repo = new Repository();
+            var panier = Repo.GetPanier();
 
-            return View();
+            return View(panier);
         }
 
         public ActionResult Contact()
