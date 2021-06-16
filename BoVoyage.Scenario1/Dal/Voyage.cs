@@ -18,6 +18,7 @@ namespace BoVoyage.Scenario1.Dal
         public Voyage()
         {
             this.Dossiers = new HashSet<Dossier>();
+            this.LignePaniers = new HashSet<LignePanier>();
             this.Destinations = new HashSet<Destination>();
         }
     
@@ -34,6 +35,8 @@ namespace BoVoyage.Scenario1.Dal
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossier> Dossiers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LignePanier> LignePaniers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Destination> Destinations { get; set; }
     }

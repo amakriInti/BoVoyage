@@ -1,45 +1,166 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+﻿    <!DOCTYPE html>
+    <style>
+        .taille {
+            width: 100%;
+        }
 
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BoVoyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 10%;
+        }
+    </style>
+
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - Mon application ASP.NET</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-inverse bg-primary">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("BoVoyage", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Panier", "Panier", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </nav>
+            <img src="~/photo/corse.jpeg" class="taille" />
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Voyagez en toute serénité avec BoVoyage</p>
-        </footer>
-    </div>
+        <nav class="navbar navbar-expand-lg" style="background-color:rgba(140,204,241,1)">
+            <div class="container">
+                <div class="navbar-header">
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+                    <div style="color:white">
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox1" value="option1">
+                        <label class="form-check-label" for="checkbox1">Amerique du Sud</label>
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox2" value="option2">
+                        <label class="form-check-label" for="checkbox2">Afrique</label>
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox3" value="option3">
+                        <label class="form-check-label" for="checkbox3">Europe</label>
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox4" value="option4">
+                        <label class="form-check-label" for="checkbox4">Asie</label>
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox5" value="option5">
+                        <label class="form-check-label" for="checkbox5">Amérique du Nord</label>
+                        <span style="margin-left:80px"></span>
+                        <input type="checkbox" id="checkbox6" value="option6">
+                        <label class="form-check-label" for="checkbox6">Océanie</label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron" style="background-color:white">
+            <p class="lead" style="text-align:center">Des voyages complètement maretaux ! </p>
+            <img src="~/photo/cshark.png" class="center" />
+            <hr class="my-4">
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+            </footer>
+
+            @*Modification*@
+            <div class="jumbotron" style="background-color:lightskyblue">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h4 style="color:white"><strong>1</strong></h4>
+                        <a>Agence pour vous accompagner</a>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 style="color:white"><strong>3</strong></h4>
+                        <a>Séjours, circuits et locations</a>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 style="color:white"><strong>500</strong></h4>
+                        <a>Hôtels dans notre catalogue</a>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 style="color:white"><strong>10</strong></h4>
+                        <a>Compagnies aériennes partenaires</a>
+                    </div>
+                    <div class="col-md-2">
+                        <h4 style="color:white"><strong>5</strong></h4>
+                        <a>superbes employés à votre écoute...</a>
+                    </div>
+                </div>
+                <hr class="my-4" style="border-color:white">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4 class="display-4" style="color:white"><strong>C-SHARK</strong></h4>
+                        <a href="#">Qui sommes nous ?</a><br />
+                        <a href="#">Nos agences</a><br />
+                        <a href="#">FAQ</a><br />
+                        <a href="#">Nous rejoindre</a><br />
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="display-4" style="color:white"><strong>INFOS PRATIQUES</strong></h4>
+                        <a href="#">Conditions de ventes</a><br />
+                        <a href="#">Informations légales</a><br />
+                        <a href="#">Presse</a><br />
+                        <a href="#">Nous contacter</a><br />
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="display-4" style="color:white"><strong>NOS COLLABORATEURS</strong></h4>
+                        <a href="#">Loïc Kammerer</a><br />
+                        <a href="#">Morgane Menendez</a><br />
+                        <a href="#">Florentin Escoda</a><br />
+                        <a href="#">Matthieu Lebeau</a><br />
+                        <a href="#">Antony Bazir</a><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <span style="color:white">Nos moyens de paiements sécurisés:</span>
+                    </div>
+                    <i class="fa fa-cc-visa" style="font-size:24px"></i>
+                    <i class="fa fa-paypal" style="font-size:24px"></i>
+                    <i class="fa fa-cc-mastercard" style="font-size:24px"></i>
+                    <i class="fa fa-cc-amex" style="font-size:24px"></i><br />
+                </div>
+                <br />
+                <span style="font-size:smaller;color:white">
+                    Séjours, circuits, week-ends: Prix TTC, à partir de, sous réserve de disponibilité, base chambre double.
+                    Vols: Prix TTC à partir de, sous réserve de disponibilité, vol Aller/Retour ou Aller simple selon demande.
+                    Ces tarifs n'incluent pas les frais de dossier. Locations : prix par location pour la durée totale du séjour.
+                    Ces tarifs n'incluent pas les frais de dossier. hôtels : Prix TTC à partir de, par nuit, base chambre double. Havas Voyages
+                    - Société par actions simplifiée au capital de 2 Euros - Siège social Cathédrale Notre Dame de Strasbourg - Place de la Cathédrale, 67000 Strasbourg
+                    - 377 533 294 RCS NANTERRE - Immatriculation N° IM075100385 - RCP Generali – 2, Rue Pillet-Will – 75009 PARIS - Garant : APST 15 rue Carnot
+                    75017 PARIS - Code NAF : 7911Z - TVA intracommunautaire n° FR 55 377 533 294 - TVA acquittée sur les débits, régime particulier
+                    - 'C-SHARK : Des voyages complètement marteaux'
+                </span>
+            </div>
+            <p>&copy; @DateTime.Now.Year / C-Shark</p>
+        </div>
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

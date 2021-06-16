@@ -1,25 +1,112 @@
-﻿@{ ViewBag.Title = "BoVoyage"; }
+﻿@{ ViewBag.Title = "C Shark"; }
 
-<div class="jumbotron">
-    <h1>BoVoyage</h1>
-
-</div>
-
-@Html.ActionLink("Mise à jour liste voyages", "UploadCsv", "Home", new { area = "" })
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Bienveue sur BoVoyage ! Ca va être pas mal
-        </p>
+<body>
+    <div class="modal-body row">
+        <div class="col-md-6">
+            <!-- Your first column here -->
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/londres.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Londres - Angleterre</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 126 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+            </br>
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/valenciennes.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Valenciennes - France</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 12 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+            </br>
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/tokyo.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Tokyo - Japon</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 1251 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+        </div>
+        <div class="col-md-6">
+            <!-- Your second column here -->
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/seoul2.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Séoul - Corée du Sud</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 638 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+            </br>
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/moscou.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Moscou - Russie</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 1024 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+            </br>
+            <!-------------------------------------------------------------------------------------------->
+            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
+                <a href="#">
+                    <img src="~/Dessins/mulhouse.jpg" class="img-rounded" style="width:100%" /><!--1036*658-->
+                </a>
+                <div style="padding:10px">
+                    <div class="content">
+                        <h4 style="color:lightskyblue">Mulhouse - France</h4>
+                        <div style="color:dimgray">
+                            <p>Description</p>
+                            <p style="font-weight:bolder">Prix : 68 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------->
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-    </div>
-</div>
+</body>
