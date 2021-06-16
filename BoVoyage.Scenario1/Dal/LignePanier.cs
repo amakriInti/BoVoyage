@@ -20,10 +20,5 @@ namespace BoVoyage.Scenario1.Dal
         public string PanierID { get; set; }
     
         public virtual Voyage Voyage { get; set; }
-
-        public decimal Montant()
-        {
-            return NombreVoyageur * Voyage.PrixVenteUnitaire;
-        }
     }
 }

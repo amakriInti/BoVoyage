@@ -22,6 +22,7 @@ namespace BoVoyage.Scenario1.Dal
                 .ToList();
         }
 
+        
         internal void ReadCsv()
         {
             var Vygs = LectureCsv();
@@ -41,5 +42,18 @@ namespace BoVoyage.Scenario1.Dal
 
             return ps;
         }
+
+        internal List<LignePanier> GetPanier()
+        {
+            List<LignePanier> ps = new List<LignePanier>();
+
+            //foreach (var produit in )
+            //{
+            //    ps.Add(new LignePanier { Id = Guid.NewGuid(), NombreVoyageur =  })
+            //}
+
+            return ps;
+        }
+
     }
 }

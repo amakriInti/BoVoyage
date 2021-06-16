@@ -20,7 +20,7 @@ namespace BoVoyage.Scenario1.Models
         }
 
 
-        //--------------------------------------------AJOUT VOYAGE ---------------------------------------------------
+        //--------------------------------------------AJOUT VOYAGE AU PANIER ---------------------------------------------------
 
         public void Ajouter(Guid Voyage_Id)
         {
@@ -41,6 +41,9 @@ namespace BoVoyage.Scenario1.Models
             _context.SaveChanges();
         }
 
+        //--------------------------------------------SUPPRIMER VOYAGE DU PANIER ---------------------------------------------------
+
+
         public void Supprimer(Guid LigneID)
         {
             LignePanier ligne = _context.LignePaniers.SingleOrDefault(s => s.Id == LigneID);
@@ -52,15 +55,44 @@ namespace BoVoyage.Scenario1.Models
             }
         }
 
-        public decimal Total()
+        //--------------------------------------------EXTRACTION D'UNE LIGNE DU PANIER---------------------------------------------------
+
+        public LignePanier Ligne(Guid LigneID)
         {
-            decimal T = _context.LignePaniers.Where(s => s.PanierID == _panierID).Include(l => l.Voyage).Sum(s => (s.Montant()));
-            return T;
+            return _context.LignePaniers.Include(l => l.Voyage).FirstOrDefault(m => m.Id == LigneID);
+        }
+
+        //--------------------------------------------EXTRACTION DE TOUTES LES LIGNES DU PANIER ---------------------------------------------------
+
+        public IList<LignePanier> Ligne()
+        {
+            IList<LignePanier> ls = _context.LignePaniers.Where(s => s.PanierID == _panierID).Include(l => l.Voyage).ToList();
+            return ls;
+        }
+
+        //--------------------------------------------TOTAL DU PANIER ---------------------------------------------------
+
+        //public decimal Total()
+        //{
+        //    decimal T = _context.LignePaniers.Sum(s => s.Montant());
+        //    return T;
+        //}
+
+        //--------------------------------------------NOMBRE DE LIGNES DU PANIER ---------------------------------------------------
+
+        public int Nombre()
+        {
+            int n = _context.LignePaniers.Where(s => s.PanierID == _panierID).ToList().Count;
+            return n;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (_context != null)
+            {
+                _context.Dispose();
+                _context = null;
+            }
         }
 
     }
