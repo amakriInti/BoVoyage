@@ -1,7 +1,37 @@
-﻿@model List<BoVoyage.Donnees.VoyageDetail>
+﻿
 @{
-    ViewBag.Title = "LectureCsv";
+    ViewBag.Title = "Affichage Voyage";
 }
+
+<script>
+    $(document).ready(function () {
+        $('#listeVoyageTrie').click(function () {
+            var lieu = $('#lieu').val();
+            var txtlieu = $('#txtlieu').val();
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44307/Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
+                datatype: 'application/json',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+                        fragment = "<table>";
+                        for (var i = 0; i < data.length; i++) {
+                            fragment += "<tr><td>" +
+                                "<p>" + data[i].Pays + data[i].Continent + " </p></td>";
+                        }
+                        fragment += "</tr></table>"
+                        $('#div1').html(fragment);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div1').html("Erreur");
+                }
+            });
+        });
+    });
+</script>
+
 
 <h1>Ajout des voyages finis</h1>
 <h1 style="text-align:center">Gallerie Photo</h1>
@@ -14,40 +44,11 @@
         <option value="Region">Region</option>
     </select>
     <input type="text" id="txtlieu"/>
-    <!--<input type="button" id="listeAlbum" value="Go" />-->
     <br /><br />
-    <input type="button" id="listePhotoTrie" value="Go" />
+    <input type="button" id="listeVoyageTrie" value="Go" />
     <br /><br />
 
     <div id="div1"></div>
 </div>
 
-<script>
-    $('#listePhotoTrie').click(function () {
-            var lieu = $('#lieu').val();
-            var txtlieu = $('#txtlieu').val();
-            document.write();
-            $.ajax({
-                type: "GET", 
-                url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
-                datatype: 'application/json',
-                contentType: 'application/json',
-                success: function (data, status) {
-                    if (status == "success") {
-                        alert(1);
-                        fragment = "<table border='2'>";
-                        for (var i = 0; i <= data.length+1; i++) {
-                            fragment += "<td class='dimTd'>" +
-                                data[i].Pays + " " + data[i].Continent + "</td>";
-                        }
-                        fragment += "</table>"
-                        $('#div1').html(fragment);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    $('#div1').html("Erreur");
-                }
-            });
-        })
-</script>
 <hr />

@@ -24,18 +24,17 @@ namespace BoVoyage.Scenario1.Controllers
         /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
-        public ActionResult AffichageVoyage()
+        public ActionResult AffichageVoyage(string lieu, string txtlieu)
         {
             try
             {
-                var ps = metier.DBVoyages();
+                var ps = metier.DBVoyages(lieu, txtlieu);
                 return View(ps);
             }
             catch (Exception)
             {
                 return RedirectToAction("Index");
             }
-
         }
 
         /*-------------------------------------------------
@@ -46,7 +45,6 @@ namespace BoVoyage.Scenario1.Controllers
             try
             {
                 metier.AddVoyageCSV_Metier();
-                var ps = metier.DBVoyages();
                 return RedirectToAction("AffichageVoyage");
             }
             catch (Exception)
