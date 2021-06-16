@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "DetailsVoyage";
+}
+@model List<BoVoyage.Donnees.VoyageDetail>
+
+<h4>Voyage</h4>
+<hr />
+@*@{
+        foreach (var item in Model)
+        {
+            @item.Id;
+            @item.Pays;
+            @item.Continent;
+            @item.Region;
+            @item.DateAller;
+        }
+    }*@
+<div>
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.Pays;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.Continent;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.Description;
+                    </td>
+                </tr>
+
+            }
+        }
+
+    </table>
+</div>
+

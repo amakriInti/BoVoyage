@@ -63,7 +63,7 @@ namespace BoVoyage.Donnees
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -107,6 +107,38 @@ namespace BoVoyage.Donnees
                 return query.ToList();
             else
                 return query;
+        }
+
+        public object DetailsVoyage(string id)
+        {
+            var idparsed = Guid.Parse(id);
+            try
+            {
+                var query = (from Voyage in Context.Voyages
+                             join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                             join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                             where Voyage.Id == idparsed
+                             select new VoyageDetail
+                             {
+                                 Id = Voyage.Id,
+                                 DateAller = Voyage.DateAller,
+                                 DateRetour = Voyage.DateRetour,
+                                 MaxVoyageur = Voyage.MaxVoyageur,
+                                 Fournisseur = Voyage.Fournisseur,
+                                 PrixAchatTotal = Voyage.PrixAchatTotal,
+                                 PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                                 Description = Voyage.Description + " " + Destination.Description,
+                                 Continent = Destination.Continent,
+                                 Pays = Destination.Pays,
+                                 Region = Destination.Region
+                             });
+
+                return query.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
