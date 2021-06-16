@@ -14,7 +14,9 @@ namespace BoVoyage.Scenario1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Repository Repo = new Repository();
+            List<Voyage> Voyages_Accueil = Repo.GetAllVoyages();
+            return View(Voyages_Accueil);
         }
 
 
@@ -52,6 +54,7 @@ namespace BoVoyage.Scenario1.Controllers
             return View(panier_client);
         }
 
+        [Authorize]
         public ActionResult PayerPanier()
         {
             //On crée le dossier 
@@ -62,5 +65,34 @@ namespace BoVoyage.Scenario1.Controllers
             Session["panier"] = new List<Voyage>();
             return RedirectToAction("Index");
         }
+
+        [Authorize]
+        public ActionResult Reserver(Guid? id)//Récupère l'id du voyage choisi
+        {
+            Repository Repo = new Repository();
+            Voyage Vyg = Repo.GetVoyage(id);//permet d'afficher le bon libellé dans le formulaire 
+            return View(Vyg);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Reserver(Guid id_v,int nb_voyageurs)
+        {
+            Repository Repo = new Repository();
+            //Repo.NouveauDossier(User.Identity.GetUserName(), vyg.Id);
+            Repo.NouveauDossier(User.Identity.GetUserName(), id_v);
+            var nombre = nb_voyageurs;
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public ActionResult EntrerVoyageurs(Guid id)//Récupère l'id du voyage choisi
+        {
+            Repository Repo = new Repository();
+            Voyage Vyg = Repo.GetVoyage(id);//permet d'afficher le bon libellé dans le formulaire 
+            return View(Vyg);
+        }
+
+
     }
 }

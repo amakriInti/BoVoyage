@@ -137,6 +137,12 @@ namespace BoVoyage.Scenario1.Dal
             else return null;
         }
 
+        internal List<Voyage> GetAllVoyages()
+        {
+            return Context.Voyages.ToList();
+        }
+
+
         internal bool NouveauDossier(string email,Guid id_voyage)
         {
             if (id_voyage != null)

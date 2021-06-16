@@ -1,0 +1,33 @@
+﻿@model BoVoyage.Scenario1.Dal.Voyage
+@{
+    ViewBag.Title = "Reserver";
+}
+
+<h2>Reservation @Model.Libelle</h2>
+
+    @*<div class="form-group">
+     
+        <div class="col-md-10">
+           
+        </div>
+    </div>*@
+
+<form action="/home/Reserver" method="post">
+    <input type="hidden" name="id_v" value="@Model.Id" />
+    Nombre de voyageurs :
+    <select id="nb_voyageurs" name="nb_voyageurs">
+        @{
+            for (int i = 1; i <= Model.MaxVoyageurs; i++)
+            {
+                <option value="@i">@i</option>
+
+            }
+        }
+    </select>
+
+    <div>
+        <button type="submit">Reserver</button>
+    </div>
+    Assurance :
+
+

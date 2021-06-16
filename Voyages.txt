@@ -181,3 +181,15 @@ On a réussi à faire les différentes pages mais le panier disparait quand on s
 16/06/2021 : 11:59 
 Le panier  ne disparait plus. Par contre on a un souci car le client et le User sont deux entités différentes et que j'ai crée le User mais pas le client
 Idéalement il faudrait revoir la page de connexion et d'inscription et faire en sorte que lorsqu'un ahceteur s'inscrit il soit automatiquement enregistré comme client.
+
+16/06/2021 : 12:31 
+On s'est occupé de la partie où le client peut s'inscrire, se connecter, créer son panier, le valider, le payer et tout ça va apparaitre dans la base de données
+et sera consultable sur l'intranet.
+
+16/06/2021 : 13:55
+On va faire une page de réservation.
+
+16/06/2021 : 15:20
+On liste les voyages sur la page d'accueil.
+On peut ensuite cliquer dessus pour réserver et choisir son nombre de voyageurs
+POur l'instant ça ramène sur la page d'accueil mais on va faire un formulaire où on demande les détails des voyageurs
