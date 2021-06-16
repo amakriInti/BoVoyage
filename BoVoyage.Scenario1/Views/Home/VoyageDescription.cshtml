@@ -3,6 +3,7 @@
 }
 
 <head>
+    <link href="~/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <style>
         * {
             box-sizing: border-box
@@ -106,6 +107,13 @@
             overflow: hidden;
             background-color: white;
         }
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
     </style>
 </head>
 
@@ -174,7 +182,7 @@
                 </div>
                 <hr />
                 <div>
-                    <button type="button" class="collapsible" style="box-shadow: 1px 1px 12px #D8D8D8"><strong>Description</strong></button>
+                    <button type="button" class="collapsible" style="box-shadow: 1px 1px 12px #D8D8D8"><h4>Description<i id="up" class="fas fa-caret-up" style="position:relative;left:85%"></i></h4></button>
                     <div class="content2">
                         <br /><p>J'aime le pâté et le fromage.</p>
                     </div>
@@ -233,15 +241,26 @@
 
             var coll = document.getElementsByClassName("collapsible");
             var i;
-
             for (i = 0; i < coll.length; i++) {
                 coll[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
+                    this.classList.toggle("active");                    
                     var content = this.nextElementSibling;
+                    var arrow = document.getElementById("up");
                     if (content.style.display === "block") {
+                        
                         content.style.display = "none";
+
+                        arrow.style.display = 'none';
+                        arrow.className = 'fas fa-caret-up';
+                        arrow.style.display = 'inline';
+                        
                     } else {
+
                         content.style.display = "block";
+                        
+                        arrow.style.display = 'none';
+                        arrow.className = 'fas fa-caret-down';
+                        arrow.style.display = 'inline';
                     }
                 });
             }
