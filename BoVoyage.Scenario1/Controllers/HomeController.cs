@@ -14,13 +14,14 @@ namespace BoVoyage.Scenario1.Controllers
     {
         public ActionResult Index()
         {
-            Session["panier"] = new List<Voyage>();
             return View();
         }
 
 
         public ActionResult UpdatePanier()
         {
+            if(Session["panier"]==null)//Si le panier existe pas on le crée sinon on le récupère
+            { Session["panier"] = new List<Voyage>(); }
             List<Voyage> panier_courant = (List<Voyage>)Session["panier"];
             Repository Repo = new Repository();
 

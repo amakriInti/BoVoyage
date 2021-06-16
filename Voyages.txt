@@ -177,3 +177,7 @@ On va tenter de rajouter un lien qui mène vers la page de connexion client
 
 16/06/2021 : 11:40 
 On a réussi à faire les différentes pages mais le panier disparait quand on se connecte... Va falloir régler ça.
+
+16/06/2021 : 11:59 
+Le panier  ne disparait plus. Par contre on a un souci car le client et le User sont deux entités différentes et que j'ai crée le User mais pas le client
+Idéalement il faudrait revoir la page de connexion et d'inscription et faire en sorte que lorsqu'un ahceteur s'inscrit il soit automatiquement enregistré comme client.
