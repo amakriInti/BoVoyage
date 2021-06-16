@@ -79,6 +79,16 @@ namespace BoVoyage.Scenario1.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 2)]
+        [Display(Name = "Prenom")]
+        public string Prenom { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 2)]
+        [Display(Name = "Nom")]
+        public string Nom { get; set; }
     }
 
     public class ResetPasswordViewModel

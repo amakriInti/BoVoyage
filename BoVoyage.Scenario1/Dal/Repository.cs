@@ -148,5 +148,16 @@ namespace BoVoyage.Scenario1.Dal
             }
             else return false;
         }
+
+        internal bool NouveauClient(string email, string nom, string prenom)
+        {
+            if (email != null)
+            { 
+                Context.Clients.Add(new Client { Id = Guid.NewGuid(), email = email, Prenom = prenom, Nom =nom });
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
     }
 }

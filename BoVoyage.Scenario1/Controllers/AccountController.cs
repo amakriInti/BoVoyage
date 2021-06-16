@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BoVoyage.Scenario1.Models;
 using System.Web.Security;
+using BoVoyage.Scenario1.Dal;
 
 namespace BoVoyage.Scenario1.Controllers
 {
@@ -150,7 +151,7 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-        //
+        // Faudra penser à changer ça pour bien sécuriser l'intranet
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -164,7 +165,8 @@ namespace BoVoyage.Scenario1.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
+                    Repository Repo = new Repository();// On crée le client en même temps que l'utilisateur 
+                    Repo.NouveauClient(model.Email, model.Nom, model.Prenom);//On ajoute le nouveau client à la base de données
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
