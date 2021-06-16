@@ -73,6 +73,7 @@ namespace BoVoyage.Scenario1.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
 
         }
         public ActionResult DetailsVoyage(string id)
