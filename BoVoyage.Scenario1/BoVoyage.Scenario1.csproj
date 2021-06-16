@@ -219,6 +219,8 @@
     <Content Include="Dessins\0.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\bootstrap-datepicker.fr.js" />
     <Content Include="Voyage.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
