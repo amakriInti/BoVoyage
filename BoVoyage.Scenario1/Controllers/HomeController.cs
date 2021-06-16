@@ -30,8 +30,8 @@ namespace BoVoyage.Scenario1.Controllers
         }
         public ActionResult VoyageDescription()
         {
-
-            return View();
+            TraitementBD tBD = new TraitementBD();
+            return View(tBD);
         }
     }
 }

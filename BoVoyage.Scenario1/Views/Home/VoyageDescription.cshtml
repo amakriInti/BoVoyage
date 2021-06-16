@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BoVoyage.Scenario1.Models.TraitementBD
+@{
     ViewBag.Title = "C Shark";
 }
 
@@ -107,6 +108,7 @@
             overflow: hidden;
             background-color: white;
         }
+
         .hide {
             display: none;
         }
@@ -158,10 +160,10 @@
                 <div style="font-size:20px;color:deepskyblue">Votre voyage :</div><br />
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Date Aller : <span style="font-style:italic">00/00/00</span></p>
+                        <p>Date Aller : <span style="font-style:italic">@Model.DateAller</span></p>
                     </div>
                     <div class="col-md-4">
-                        <p>Date Retour : <span style="font-style:italic">00/00/00</span></p>
+                        <p>Date Retour : <span style="font-style:italic">@Model.DateRetour</span></p>
                     </div>
                 </div>
                 <hr />
@@ -170,13 +172,12 @@
                     <p>
                         Choisir :
                         <select>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>Max DB</option>
-
+                            @{
+                                for (int i = 1; i < Model.MaxVoyageur+1; i++)
+                                {
+                                    <option>@i</option>
+                                }
+                            }
                         </select>
                     </p>
                 </div>
@@ -184,7 +185,7 @@
                 <div>
                     <button type="button" class="collapsible" style="box-shadow: 1px 1px 12px #D8D8D8"><h4>Description<i id="up" class="fas fa-caret-up" style="position:relative;left:85%"></i></h4></button>
                     <div class="content2">
-                        <br /><p>J'aime le pâté et le fromage.</p>
+                        <br /><p>@Model.Description</p>
                     </div>
                 </div>
             </div>
@@ -196,7 +197,7 @@
                 <div>
                     <p>
                         A partir de : <br /><br />
-                        <span style="font-size:20px">500€</span> /personnes
+                        <span style="font-size:20px">@Model.Prix€</span> /personnes
                     </p>
                     <hr />
                 </div>
@@ -243,21 +244,21 @@
             var i;
             for (i = 0; i < coll.length; i++) {
                 coll[i].addEventListener("click", function () {
-                    this.classList.toggle("active");                    
+                    this.classList.toggle("active");
                     var content = this.nextElementSibling;
                     var arrow = document.getElementById("up");
                     if (content.style.display === "block") {
-                        
+
                         content.style.display = "none";
 
                         arrow.style.display = 'none';
                         arrow.className = 'fas fa-caret-up';
                         arrow.style.display = 'inline';
-                        
+
                     } else {
 
                         content.style.display = "block";
-                        
+
                         arrow.style.display = 'none';
                         arrow.className = 'fas fa-caret-down';
                         arrow.style.display = 'inline';
