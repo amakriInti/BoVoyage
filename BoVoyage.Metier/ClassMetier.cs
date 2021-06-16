@@ -97,7 +97,6 @@ namespace BoVoyage.Metier
         //    return true;
         //}
 
-
         /*----------------------------------
         //Ajout des voyages depuis formulaire
         -----------------------------------*/
@@ -119,6 +118,14 @@ namespace BoVoyage.Metier
         public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             return repository.AddClient(nom, mail, telephone, prenom, personneMorale);
+        }
+
+        /*----------------------------------
+        //Liste des voyages
+        -----------------------------------*/
+        public object DBVoyages(string tri, string choix)
+        {
+            return repository.DBVoyages(tri, choix);
         }
 
         /*----------------------------------

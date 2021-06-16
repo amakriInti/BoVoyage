@@ -35,7 +35,6 @@ namespace BoVoyage.Scenario1.Controllers
             {
                 return RedirectToAction("Index");
             }
-
         }
 
         /*-------------------------------------------------

@@ -11,7 +11,9 @@ namespace BoVoyage.Scenario1.Controllers
     public class VoyagesController : ApiController
     {
         private ClassMetier metier = new ClassMetier();
-        // GET api/<controller>
+        /*--------------------------------------
+        //Controleur API
+        ---------------------------------------*/
 
         public object GetVoyage(string lieu, string txtlieu)
         {
