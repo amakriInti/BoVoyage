@@ -204,6 +204,7 @@
     <Compile Include="Dal\Dossier.cs" />
     <Compile Include="Dal\Employe.cs" />
     <Compile Include="Dal\Fournisseur.cs" />
+    <Compile Include="Dal\LignePanier.cs" />
     <Compile Include="Dal\Model1.cs" />
     <Compile Include="Dal\Repository.cs" />
     <Compile Include="Dal\Voyage.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -231,6 +233,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="photo\corse.jpeg" />
+    <Content Include="photo\cshark.png" />
+    <Content Include="photo\vacances.jpeg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -281,6 +286,8 @@
     <Content Include="Views\Com\Index.cshtml" />
     <Content Include="Views\Com\Dossier.cshtml" />
     <Content Include="Views\Com\Details_Dossier.cshtml" />
+    <Content Include="Views\Home\Panier.cshtml" />
+    <Content Include="Views\Home\ValiderPanier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -300,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Voyages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -127,5 +127,26 @@ namespace BoVoyage.Scenario1.Dal
             }
             else return null;
         }
+
+        internal Voyage GetVoyage(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Voyages.Where(d => d.Id == id).FirstOrDefault();
+            }
+            else return null;
+        }
+
+        internal bool NouveauDossier(string email,Guid id_voyage)
+        {
+            if (id_voyage != null)
+            {
+                var client = Context.Clients.Where(c => c.email == email).FirstOrDefault();
+                Context.Dossiers.Add(new Dossier { Id = Guid.NewGuid(), Client = client.Id, Voyage = id_voyage });
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
     }
 }

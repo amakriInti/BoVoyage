@@ -164,3 +164,16 @@ On lorgne à Bologne : DD1E74FB-F2E4-4CBD-978D-11A9F484B781
 
 15/06/2021 : 16:40 
 Affichage dossier détaillé avec voyage date destination etc...(voyageurs à rajouter)
+
+16/06/2021 : 09:54
+On se lance dans la partie Internet car on a atteint le point où on aimerait bien que lorsqu'on clique sur un voyage en page d'accueil le panier se crée/mette à jour et que si on le valide un dossier se crée dans la base de données 
+
+16/06/2021 : 09:54
+La création du panier fonctionne et on y retrouve le voyage qu'on a voulu y mettre. On va faire une version où on peut mettre plusieurs voyages dans le panier.
+
+16/06/2021 : 10:40 
+On a fait un lien sur la page principale qui permet d'ajouter des voyages au panier. ça fonctionne.
+On va tenter de rajouter un lien qui mène vers la page de connexion client 
+
+16/06/2021 : 11:40 
+On a réussi à faire les différentes pages mais le panier disparait quand on se connecte... Va falloir régler ça.

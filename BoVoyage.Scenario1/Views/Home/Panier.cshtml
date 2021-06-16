@@ -1,5 +1,4 @@
-﻿@Page
-@model List<BoVoyage.Scenario1.Dal.LignePanier>
+﻿@model List<BoVoyage.Scenario1.Dal.Voyage>
 
 @{
     ViewBag.Title = "Panier";
@@ -13,7 +12,16 @@
 else
 {
     <h2>Votre panier contient</h2>
-    <table>
+    foreach (var v in Model)
+    {
+        <hr />
+        <p>@v.Libelle</p>
+    }
+    @Html.ActionLink("Continuer Mes achats", "Index")
+
+    @Html.ActionLink("Valider et Payer", "ValiderPanier")
+}
+@*<table>
         <thead>
             <tr>
                 <th>Voyage</th>
@@ -42,5 +50,5 @@ else
                 <td>@Model.</td>
             </tr>
         </tfoot>
-    </table>
+    </table>*@
 }
