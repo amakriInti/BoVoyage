@@ -1,12 +1,53 @@
-﻿@model List<BoVoyage.Donnees.Voyage>
+﻿@model List<BoVoyage.Donnees.VoyageDetail>
 @{
     ViewBag.Title = "LectureCsv";
 }
 
 <h1>Ajout des voyages finis</h1>
-@{
-    foreach (var item in Model)
-    {
-        <p>@item.Description</p>
-    }
-}
+<h1 style="text-align:center">Gallerie Photo</h1>
+<div>
+    Album :
+    <select id="lieu">
+        <option></option>
+        <option value="Continent">Continent</option>
+        <option value="Pays">Pays</option>
+        <option value="Region">Region</option>
+    </select>
+    <input type="text" id="txtlieu"/>
+    <!--<input type="button" id="listeAlbum" value="Go" />-->
+    <br /><br />
+    <input type="button" id="listePhotoTrie" value="Go" />
+    <br /><br />
+
+    <div id="div1"></div>
+</div>
+
+<script>
+    $('#listePhotoTrie').click(function () {
+            var lieu = $('#lieu').val();
+            var txtlieu = $('#txtlieu').val();
+            document.write();
+            $.ajax({
+                type: "GET", 
+                url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
+                datatype: 'application/json',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+                        alert(1);
+                        fragment = "<table border='2'>";
+                        for (var i = 0; i <= data.length+1; i++) {
+                            fragment += "<td class='dimTd'>" +
+                                data[i].Pays + " " + data[i].Continent + "</td>";
+                        }
+                        fragment += "</table>"
+                        $('#div1').html(fragment);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div1').html("Erreur");
+                }
+            });
+        })
+</script>
+<hr />
