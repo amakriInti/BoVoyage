@@ -8,6 +8,7 @@ namespace BoVoyage.Donnees
 {
     public class VoyageDetail
     {
+            public System.Guid Id { get; set; }
             public System.DateTime DateAller { get; set; }
             public System.DateTime DateRetour { get; set; }
             public byte MaxVoyageur { get; set; }
