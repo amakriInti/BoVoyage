@@ -22,5 +22,12 @@ namespace BoVoyage.Test
             Assert.IsTrue(Roles.IsUserInRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString()));
             Assert.IsTrue(Roles.IsUserInRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString()));
         }
+        [TestMethod]
+        public void TestDossiers()
+        {
+            Repository repo = new Repository();
+
+            var l = repo.GetDossiers();
+        }
     }
 }

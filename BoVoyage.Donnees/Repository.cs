@@ -19,6 +19,21 @@ namespace BoVoyage.Donnees
         }
 
         /*------------------------------------------
+        //Ajout de d'employés dans la base de donnée
+        -------------------------------------------*/
+        public Guid AddEmploye(string login, string mdp, StatutEnum statut)
+        {
+            Guid employeId = new Guid();
+            Context.Employes.Add(new Employe {
+                Id = employeId,
+                Login = login,
+                MotDePasse = mdp,
+                Statut = (byte)statut
+            });
+            return employeId;
+        }
+
+        /*------------------------------------------
         //Ajouter les voyages dans la base de donnée
         -------------------------------------------*/
         public bool AddVoyage(string[] tab)
@@ -129,6 +144,76 @@ namespace BoVoyage.Donnees
             {
                 return false;
             }
+        }
+
+        /*------------------------------------------
+        //Opérations sur les dossiers (Commercial ou client)
+        -------------------------------------------*/
+        public Guid CreateAssurance(bool annulation, decimal prix)
+        {
+            Guid assuranceId = new Guid();
+            Assurance ass = new Assurance {
+                Id = assuranceId,
+                Annulation = annulation,
+                Prix = prix
+            };
+            Context.Assurances.Add(ass);
+            Context.SaveChanges();
+            return assuranceId;
+        }
+        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId, Etat etat = Etat.EnAttente)
+        {
+            Guid dossierId = new Guid();
+            Dossier doss = new Dossier {
+                Id = dossierId,
+                Voyage = voyageId,
+                Client = clientId,
+                Etat = (byte)etat,
+                Assurance = assuranceId,
+                Commercial = commercialId
+            };
+            Context.Dossiers.Add(doss);
+            Context.SaveChanges();
+            return dossierId;
+        }
+        public void DeleteDossier(Guid Id)
+        {
+            Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == Id);
+            Assurance ass = Context.Assurances.FirstOrDefault(a => a.Id == doss.Assurance);
+            ICollection<Voyageur> voyageurs = doss.Voyageurs;
+            
+            // Suppression des voyageurs
+            foreach(Voyageur voyageur in voyageurs)
+            {
+                Context.Voyageurs.Remove(voyageur);
+            }
+
+            // Suppression de l'assurance associée
+            Context.Assurances.Remove(ass);
+
+            // Suppression du dossier
+            Context.Dossiers.Remove(doss);
+
+            Context.SaveChanges();
+        }
+        public void ResetDossiers()
+        {
+            foreach(Dossier doss in Context.Dossiers)
+            {
+                DeleteDossier(doss.Id);
+            }
+            Context.SaveChanges();
+        }
+        public IQueryable<DossierDetailCommercial> GetDossiers()
+        {
+            return Context.Dossiers.Select(d => new DossierDetailCommercial {
+                Id = d.Id,
+                DateAller = d.Voyage1.DateAller,
+                DateRetour = d.Voyage1.DateRetour,
+                NbVoyageurs = (byte) d.Voyageurs.Count(),
+                Fournisseur = d.Voyage1.Fournisseur,
+                etat = (Etat) d.Etat
+            });
         }
     }
 

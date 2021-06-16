@@ -61,5 +61,13 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+
+        /*----------------------------------
+        //Panneau de contrôle des dossiers
+        -----------------------------------*/
+        public ActionResult GestionDossiers()
+        {
+            return View();
+        }
     }
 }
