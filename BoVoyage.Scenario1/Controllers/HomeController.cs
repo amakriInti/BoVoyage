@@ -76,21 +76,47 @@ namespace BoVoyage.Scenario1.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Reserver(Guid id_v,int nb_voyageurs)
+        public ActionResult Reserver(Guid id_v,int nb_voyageurs)//Permet de réserver le voyage avec le bon nombre de passagers
         {
             Repository Repo = new Repository();
             //Repo.NouveauDossier(User.Identity.GetUserName(), vyg.Id);
             Repo.NouveauDossier(User.Identity.GetUserName(), id_v);
             var nombre = nb_voyageurs;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("EntrerVoyageurs", "Home",new { id = id_v, nombre_voyageurs = nb_voyageurs });
         }
 
         [Authorize]
-        public ActionResult EntrerVoyageurs(Guid id)//Récupère l'id du voyage choisi
+        public ActionResult EntrerVoyageurs(Guid id, int nombre_voyageurs)//Formulaire
         {
             Repository Repo = new Repository();
-            Voyage Vyg = Repo.GetVoyage(id);//permet d'afficher le bon libellé dans le formulaire 
-            return View(Vyg);
+            List<Voyageur> Vygrs = new List<Voyageur>();//permet d'afficher le bon libellé dans le formulaire 
+            for (int i = 1; i <= nombre_voyageurs; i++)
+            {
+                Vygrs.Add(new Voyageur());
+            }
+            ViewBag.nombre_voyageurs = nombre_voyageurs;
+            ViewBag.id_voyage =id;
+            return View(Vygrs);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EntrerVoyageurs()//Récupère l'id du voyage choisi
+        {
+            Repository Repo = new Repository();
+            int nombre_voyageurs = Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["nb_vg"]);
+            for (int i =  0; i < nombre_voyageurs ; i++)
+            {
+                Voyageur Vygr = new Voyageur {Id = Guid.NewGuid(),
+                    Nom = System.Web.HttpContext.Current.Request.Form["name_" + i],
+                    Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i], 
+                    DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
+                    IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]) };
+                Repo.AddVoyageur(Vygr);
+                    
+            }
+            
+            return RedirectToAction("Index", "Home");
         }
 
 

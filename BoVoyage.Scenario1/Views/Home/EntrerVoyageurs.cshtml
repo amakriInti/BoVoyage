@@ -1,0 +1,53 @@
+﻿@model List<BoVoyage.Scenario1.Dal.Voyageur>
+
+@{
+    ViewBag.Title = "EntrerVoyageurs";
+}
+
+<h2>EntrerVoyageurs</h2>
+
+
+<form action="/home/EntrerVoyageurs" method="post">
+    <div>
+        <input type="hidden" name="nb_vg" value="@ViewBag.nombre_voyageurs" />
+    </div>
+    @{ for (int i = 0; i < ViewBag.nombre_voyageurs; i++)
+        {
+            <p>Voyageur @i</p>
+
+
+            <div>
+                <input type="text" id="name_@i" name="name_@i" value="name_@i"
+                       checked>
+                <label for="name_@i">Nom @i</label>
+            </div>
+
+
+            <div>
+                <input type="text" id="fname_@i" name="fname_@i" value="fname_@i"
+                       checked>
+                <label for="fname_@i">Prenom @i</label>
+            </div>
+
+            <div>
+                <input type="date" id="date_@i" name="date_@i" value="date_@i">
+                <label for="date_@i">Date @i</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="acc_@i" name="acc_@i">
+                <label for="acc_@i">Accompagnant @i</label>
+            </div>
+
+        }
+    }
+
+    <div>
+        <button type="submit">Ajouter</button>
+    </div>
+</form>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

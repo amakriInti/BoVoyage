@@ -193,3 +193,8 @@ On va faire une page de réservation.
 On liste les voyages sur la page d'accueil.
 On peut ensuite cliquer dessus pour réserver et choisir son nombre de voyageurs
 POur l'instant ça ramène sur la page d'accueil mais on va faire un formulaire où on demande les détails des voyageurs
+
+
+16/06/2021 : 18:21
+Page réservation avec détails des voyageurs qui se stockent dans la table voyageurs
+Pour demain gérer les validations et inclure la mise à jour de la table voyage et voyage voyageurs

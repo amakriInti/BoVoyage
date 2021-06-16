@@ -165,5 +165,16 @@ namespace BoVoyage.Scenario1.Dal
             }
             else return false;
         }
+
+        internal bool AddVoyageur(Voyageur vygr)
+        {
+            if (vygr != null)
+            {
+                Context.Voyageurs.Add(vygr);
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
     }
 }
