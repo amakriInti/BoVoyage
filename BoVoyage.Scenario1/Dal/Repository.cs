@@ -87,7 +87,18 @@ namespace BoVoyage.Scenario1.Dal
         {
             if (id_doss != null)
             {
-                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 2;
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 3 ;
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
+
+        internal bool DossierPaye(Guid? id_doss)
+        {
+            if (id_doss != null)
+            {
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 1;
                 Context.SaveChanges();
                 return true;
             }
@@ -98,7 +109,7 @@ namespace BoVoyage.Scenario1.Dal
         {
             if (id_doss != null)
             {
-                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 1;
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 2;
                 Context.SaveChanges();
                 return true;
             }
@@ -142,17 +153,27 @@ namespace BoVoyage.Scenario1.Dal
             return Context.Voyages.ToList();
         }
 
+        internal Dossier GetDossier(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Dossiers.Where(d => d.Id == id).FirstOrDefault();
+            }
+            else return null;
+        }
 
-        internal bool NouveauDossier(string email,Guid id_voyage)
+
+        internal Guid? NouveauDossier(string email,Guid? id_voyage)
         {
             if (id_voyage != null)
             {
+                Guid? Id_dossier = Guid.NewGuid();
                 var client = Context.Clients.Where(c => c.email == email).FirstOrDefault();
-                Context.Dossiers.Add(new Dossier { Id = Guid.NewGuid(), Client = client.Id, Voyage = id_voyage });
+                Context.Dossiers.Add(new Dossier { Id = (Guid)Id_dossier, Client = client.Id, Voyage = (Guid)id_voyage });
                 Context.SaveChanges();
-                return true;
+                return Id_dossier;
             }
-            else return false;
+            else return null;
         }
 
         internal bool NouveauClient(string email, string nom, string prenom)
@@ -176,5 +197,6 @@ namespace BoVoyage.Scenario1.Dal
             }
             else return false;
         }
+
     }
 }

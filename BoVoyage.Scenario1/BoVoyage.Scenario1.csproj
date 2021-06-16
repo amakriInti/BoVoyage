@@ -290,6 +290,7 @@
     <Content Include="Views\Home\ValiderPanier.cshtml" />
     <Content Include="Views\Home\Reserver.cshtml" />
     <Content Include="Views\Home\EntrerVoyageurs.cshtml" />
+    <Content Include="Views\Home\Confirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

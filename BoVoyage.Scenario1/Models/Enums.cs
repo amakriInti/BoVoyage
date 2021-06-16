@@ -12,6 +12,6 @@ namespace BoVoyage.Scenario1.Models
 
     public enum DossierEnum // Enum pour le statut des dossiers
     {
-        EnCours = 0, Refuse = 1, Accepte = 2
+        EnAttente = 0, EnCours = 1, Refuse = 2, Accepte = 3
     }
 }

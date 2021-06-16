@@ -1,0 +1,16 @@
+﻿@model BoVoyage.Scenario1.Dal.Dossier
+@{
+    ViewBag.Title = "Confirmation";
+}
+
+<h2>Confirmation @Model.Voyage1.Libelle</h2>
+
+<p>Reservation de Monsieur @Model.Client1.Nom</p>
+
+<p>Nombre Voyageurs : @Model.Voyageurs.Count()</p>
+
+<p>Prix unitaire : @Model.Voyage1.PrixVenteUnitaire</p>
+
+@Html.ActionLink("Payer", "Payer", new { id = Model.Id })
+
+

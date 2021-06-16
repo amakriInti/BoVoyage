@@ -67,7 +67,7 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
         [Authorize]
-        public ActionResult Reserver(Guid? id)//Récupère l'id du voyage choisi
+        public ActionResult Reserver(Guid id)//Récupère l'id du voyage choisi
         {
             Repository Repo = new Repository();
             Voyage Vyg = Repo.GetVoyage(id);//permet d'afficher le bon libellé dans le formulaire 
@@ -76,17 +76,16 @@ namespace BoVoyage.Scenario1.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Reserver(Guid id_v,int nb_voyageurs)//Permet de réserver le voyage avec le bon nombre de passagers
+        public ActionResult Reserver(Guid? id_voyage,int nb_voyageurs)//Permet de réserver le voyage avec le bon nombre de passagers
         {
             Repository Repo = new Repository();
             //Repo.NouveauDossier(User.Identity.GetUserName(), vyg.Id);
-            Repo.NouveauDossier(User.Identity.GetUserName(), id_v);
-            var nombre = nb_voyageurs;
-            return RedirectToAction("EntrerVoyageurs", "Home",new { id = id_v, nombre_voyageurs = nb_voyageurs });
+            Guid? id_dossier = Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
+            return RedirectToAction("EntrerVoyageurs", "Home",new { id_doss = id_dossier, nombre_voyageurs = nb_voyageurs });
         }
 
         [Authorize]
-        public ActionResult EntrerVoyageurs(Guid id, int nombre_voyageurs)//Formulaire
+        public ActionResult EntrerVoyageurs(Guid? id_doss, int nombre_voyageurs)//Formulaire
         {
             Repository Repo = new Repository();
             List<Voyageur> Vygrs = new List<Voyageur>();//permet d'afficher le bon libellé dans le formulaire 
@@ -95,7 +94,7 @@ namespace BoVoyage.Scenario1.Controllers
                 Vygrs.Add(new Voyageur());
             }
             ViewBag.nombre_voyageurs = nombre_voyageurs;
-            ViewBag.id_voyage =id;
+            ViewBag.id_dossier =id_doss;
             return View(Vygrs);
         }
 
@@ -104,18 +103,37 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult EntrerVoyageurs()//Récupère l'id du voyage choisi
         {
             Repository Repo = new Repository();
+            Guid? id_doss = Guid.Parse(System.Web.HttpContext.Current.Request.Form["id_dossier"]);
             int nombre_voyageurs = Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["nb_vg"]);
             for (int i =  0; i < nombre_voyageurs ; i++)
             {
-                Voyageur Vygr = new Voyageur {Id = Guid.NewGuid(),
+                Guid Id_nouveau_voyageur = Guid.NewGuid();
+                Voyageur Vygr = new Voyageur { Id = Id_nouveau_voyageur,
                     Nom = System.Web.HttpContext.Current.Request.Form["name_" + i],
-                    Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i], 
+                    Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i],
                     DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
-                    IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]) };
+                    IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]),
+                };
+                Vygr.Dossiers.Add(Repo.GetDossier(Guid.Parse(System.Web.HttpContext.Current.Request.Form["id_dossier"])));
                 Repo.AddVoyageur(Vygr);
+                
                     
             }
             
+            return RedirectToAction("Confirmation", "Home",new {id_dossier = id_doss });
+        }
+
+        public ActionResult Confirmation(Guid? id_dossier)
+        {
+            Repository Repo = new Repository();
+            Dossier Doss = Repo.GetDossier(id_dossier);
+            return View(Doss);
+        }
+
+        public ActionResult Payer(Guid? id_dossier)
+        {
+            Repository Repo = new Repository();
+            Repo.DossierPaye(id_dossier);
             return RedirectToAction("Index", "Home");
         }
 

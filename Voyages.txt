@@ -198,3 +198,9 @@ POur l'instant ça ramène sur la page d'accueil mais on va faire un formulaire 
 16/06/2021 : 18:21
 Page réservation avec détails des voyageurs qui se stockent dans la table voyageurs
 Pour demain gérer les validations et inclure la mise à jour de la table voyage et voyage voyageurs
+
+17/06/2021 :00:14
+On peut faire toutes les étapes de réservation jusqu'au "paiement"
+2 soucis pour l'instant :
+- J'ai oublié de passer par le panier (ça devrait vite se régler)
+- L'état des dossiers ne se met pas à jour quand on paye

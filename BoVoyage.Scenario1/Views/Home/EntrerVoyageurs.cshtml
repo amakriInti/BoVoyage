@@ -4,39 +4,47 @@
     ViewBag.Title = "EntrerVoyageurs";
 }
 
-<h2>EntrerVoyageurs</h2>
+<h2>Entrer Voyageurs</h2>
 
 
 <form action="/home/EntrerVoyageurs" method="post">
     <div>
         <input type="hidden" name="nb_vg" value="@ViewBag.nombre_voyageurs" />
     </div>
+
+    <div>
+        <input type="hidden" name="id_dossier" value="@ViewBag.id_dossier" />
+    </div>
+
     @{ for (int i = 0; i < ViewBag.nombre_voyageurs; i++)
         {
             <p>Voyageur @i</p>
 
 
             <div>
-                <input type="text" id="name_@i" name="name_@i" value="name_@i"
+                <input type="text" required id="name_@i" name="name_@i" value="name_@i"
                        checked>
-                <label for="name_@i">Nom @i</label>
+                <label for="name_@i">Nom </label>
             </div>
 
 
             <div>
-                <input type="text" id="fname_@i" name="fname_@i" value="fname_@i"
+                <input type="text" required id="fname_@i" name="fname_@i" value="fname_@i"
                        checked>
-                <label for="fname_@i">Prenom @i</label>
+                <label for="fname_@i">Prenom </label>
             </div>
 
             <div>
-                <input type="date" id="date_@i" name="date_@i" value="date_@i">
-                <label for="date_@i">Date @i</label>
+                <input type="date" required id="date_@i" name="date_@i" value="date_@i">
+                <label for="date_@i">Date Naissance</label>
             </div>
 
             <div>
-                <input type="checkbox" id="acc_@i" name="acc_@i">
-                <label for="acc_@i">Accompagnant @i</label>
+                <select name="acc_@i" id="acc_@i">
+                <option value="false">Non</option>
+                <option value="true">Oui</option>
+                </select>
+                <label for="acc_@i">Accompagnant</label>
             </div>
 
         }
