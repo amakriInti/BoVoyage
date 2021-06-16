@@ -74,6 +74,14 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Ajout des voyageurs
+        -----------------------------------*/
+        public bool AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        {
+            return repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
+        }
+
+        /*----------------------------------
         //Liste des voyages
         -----------------------------------*/
         public object DBVoyages(string tri, string choix)

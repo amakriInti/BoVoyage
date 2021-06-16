@@ -26,9 +26,10 @@ namespace BoVoyage.Scenario1.Controllers
             metier.AddClient(nom, mail, telephone, prenom, personneMorale);
             return View();
         }
-        public ActionResult Assurance()
+        public ActionResult Assurance(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
         {
-            return View();
+            metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
+            return RedirectToAction("Participant");
         }
 
         public ActionResult About()

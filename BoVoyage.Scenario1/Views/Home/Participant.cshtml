@@ -1,21 +1,72 @@
 ﻿<script>
-    function GoToAssurance() {
-        window.location = "https://localhost:44307/Home/Assurance";
+
+    function MultiPost() {
+        $(document).ready(function () {
+            var element = $(".suite div");
+            var nombre = element.length + 1;
+            var i = 1;
+            for (i; i <= nombre; i++) {
+                GoToAssurance();
+            }
+        })
     }
+
+    function GoToAssurance() {
+
+        var Nom = document.getElementById("nom").value;
+        var Prenom = document.getElementById("prenom").value;
+        var Mail = document.getElementById("mail").value;
+        var IsAccompagnant;
+        var moisId = document.getElementById("mois");
+        if (document.getElementById("accompagnant").checked == true) { IsAccompagnant = true }
+        else { IsAccompagnant = false };
+        var Annee = document.getElementById("annee").value;
+        var Mois = moisId.value;
+        var Jour = document.getElementById("jour").value;
+        var Naissance = new Date(Annee, Mois, Jour);
+        var NaissanceC = Naissance.toJSON();
+        alert(Nom)
+
+        var div2 = document.getElementById("formulaire2").innerHTML;
+        var Nom2 = div2.getElementById("nom").innerHTML;
+        alert(div2)
+        
+
+        //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
+
+    }
+
     function MultipliParticipant() {
         var x = document.getElementById("selection").value;
-        var i = 0;
-        
+        $(document).ready(function () {
+            var element = $(".suite div");
+            var nombre = element.length;
+            if (nombre < x) {
+                for (nombre; nombre < x; nombre++) {
+                    document.getElementById("nb").innerHTML = nombre + 1
+                    AjoutParticipant(nombre + 1);
+                }
+            }
+            if (nombre >= x) {
+                for (nombre; nombre > x; nombre--) {
+                    SupprParticipant();
+                }
+            }
+            document.getElementById("nb").innerHTML = 1
+        });
     }
-    function AjoutParticipant() {
+
+    function AjoutParticipant(t) {
         var para = document.createElement("div");
-        var d = document.getElementById("formulaire").innerHTML;
+        var d = document.getElementById("formulaire1").innerHTML;
         para.innerHTML = d;
+        para.setAttribute("id", "formulaire" + t)
         document.getElementById("suite").appendChild(para);
     }
+
     function SupprParticipant() {
-        var suite = document.getElementById("suite")
-        suite.removeChild(suite.firstChild);
+        var suite = document.getElementById("suite");
+        suite.removeChild(suite.lastChild);
     }
 </script>
 
@@ -42,128 +93,128 @@
 <button type="button" onclick="AjoutParticipant()"> Ajout d'un participant </button>
 <button type="button" onclick="SupprParticipant()"> Supression d'un participant </button>
 <br />
-<div id="formulaire">
-    <h3>Participant numero : X</h3>
-    <table>
-        <tr>
-            <th> Nom : </th>
-            <th><input type="text" size="25" /></th>
-        </tr>
-        <tr>
-            <th> Prenom : </th>
-            <th><input type="text" size="25" /></th>
-        </tr>
-        <tr>
-            <th> Date de naissance : </th>
-            <th>
-                <form>
-                    jour
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                        <option>23</option>
-                        <option>24</option>
-                        <option>25</option>
-                        <option>26</option>
-                        <option>27</option>
-                        <option>28</option>
-                        <option>29</option>
-                        <option>30</option>
-                        <option>31</option>
-                    </select>
-                    mois
-                    <select>
-                        <option>Janvier</option>
-                        <option>Fevrier</option>
-                        <option>Mars</option>
-                        <option>Avril</option>
-                        <option>Mai</option>
-                        <option>Juin</option>
-                        <option>Juillet</option>
-                        <option>Aout</option>
-                        <option>Septembre</option>
-                        <option>Octobre</option>
-                        <option>Novembre</option>
-                        <option>Decembre</option>
-                    </select>
-                    année
-                    <select>
-                        <option>1980</option>
-                        <option>1981</option>
-                        <option>1982</option>
-                        <option>1983</option>
-                        <option>1984</option>
-                        <option>1985</option>
-                        <option>1986</option>
-                        <option>1987</option>
-                        <option>1988</option>
-                        <option>1989</option>
-                        <option>1990</option>
-                        <option>1991</option>
-                        <option>1992</option>
-                        <option>1993</option>
-                        <option>1994</option>
-                        <option>1995</option>
-                        <option>1996</option>
-                        <option>1997</option>
-                        <option>1998</option>
-                        <option>1999</option>
-                        <option>2000</option>
-                        <option>2001</option>
-                        <option>2002</option>
-                        <option>2003</option>
-                        <option>2004</option>
-                        <option>2005</option>
-                        <option>2006</option>
-                        <option>2007</option>
-                        <option>2008</option>
-                        <option>2009</option>
-                        <option>2010</option>
-                        <option>2011</option>
-                        <option>2012</option>
-                        <option>2013</option>
-                        <option>2014</option>
-                        <option>2015</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                        <option>2019</option>
-                        <option>2020</option>
-                        <option>2021</option>
-                    </select>
-                </form>
-            </th>
-        </tr>
-        <tr>
-            <th>Adresse Mail : </th>
-            <th><input type="text" size="25" /></th>
-        </tr>
-    </table><br />
-    <form>
-        <input type="checkbox" /> Je suis un accompagnant d'un groupe scolaire <br />
-    </form> <br/><br/>
+<div id="suite" class="suite">
+    <div id="formulaire1">
+        <h3>Participant numero : <span id="nb">1</span></h3>
+        <table>
+            <tr>
+                <th> Nom : </th>
+                <th><input type="text" size="25" id="nom"/></th>
+            </tr>
+            <tr>
+                <th> Prenom : </th>
+                <th><input type="text" size="25" id="prenom"/></th>
+            </tr>
+            <tr>
+                <th> Date de naissance : </th>
+                <th>
+                    <form>
+                        jour
+                        <select id="jour">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                            <option>25</option>
+                            <option>26</option>
+                            <option>27</option>
+                            <option>28</option>
+                            <option>29</option>
+                            <option>30</option>
+                            <option>31</option>
+                        </select>
+                        mois
+                        <select id="mois">
+                            <option value="0">Janvier</option>
+                            <option value="1">Fevrier</option>
+                            <option value="2">Mars</option>
+                            <option value="3">Avril</option>
+                            <option value="4">Mai</option>
+                            <option value="5">Juin</option>
+                            <option value="6">Juillet</option>
+                            <option value="7">Aout</option>
+                            <option value="8">Septembre</option>
+                            <option value="9">Octobre</option>
+                            <option value="10">Novembre</option>
+                            <option value="11">Decembre</option>
+                        </select>
+                        année
+                        <select id="annee">
+                            <option>1980</option>
+                            <option>1981</option>
+                            <option>1982</option>
+                            <option>1983</option>
+                            <option>1984</option>
+                            <option>1985</option>
+                            <option>1986</option>
+                            <option>1987</option>
+                            <option>1988</option>
+                            <option>1989</option>
+                            <option>1990</option>
+                            <option>1991</option>
+                            <option>1992</option>
+                            <option>1993</option>
+                            <option>1994</option>
+                            <option>1995</option>
+                            <option>1996</option>
+                            <option>1997</option>
+                            <option>1998</option>
+                            <option>1999</option>
+                            <option>2000</option>
+                            <option>2001</option>
+                            <option>2002</option>
+                            <option>2003</option>
+                            <option>2004</option>
+                            <option>2005</option>
+                            <option>2006</option>
+                            <option>2007</option>
+                            <option>2008</option>
+                            <option>2009</option>
+                            <option>2010</option>
+                            <option>2011</option>
+                            <option>2012</option>
+                            <option>2013</option>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                            <option>2017</option>
+                            <option>2018</option>
+                            <option>2019</option>
+                            <option>2020</option>
+                            <option>2021</option>
+                        </select>
+                    </form>
+                </th>
+            </tr>
+            <tr>
+                <th>Adresse Mail : </th>
+                <th><input type="text" size="25" id="mail"/></th>
+            </tr>
+        </table><br />
+        <form>
+            <input type="checkbox" id="accompagnant"/> Je suis un accompagnant d'un groupe scolaire <br />
+        </form> <br /><br />
+    </div>
 </div>
-<div id="suite">
 
-</div>
 <button type="button" onclick="GoToAssurance()"> Valider </button>

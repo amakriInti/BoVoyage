@@ -130,6 +130,28 @@ namespace BoVoyage.Donnees
                 return false;
             }
         }
+        public bool AddVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        {
+            try
+            {
+                Context.Voyageurs.Add(new Voyageur
+                {
+                    Id = Guid.NewGuid(),
+                    Nom = nom,
+                    Prenom = prenom,
+                    DateNaissance = naissance,
+                    IsAccompagnant = isAccompagnant,
+                    Mail = mail,
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 
 }
