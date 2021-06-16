@@ -18,6 +18,7 @@ namespace BoVoyage.Donnees
                 .ToList();
         }
 
+
         //Ajouter les voyages dans la base de donnée
         public bool AddVoyage(string[] tab)
         {
@@ -67,9 +68,9 @@ namespace BoVoyage.Donnees
             }
         }
 
-        public object DBVoyages()
+        public object DBVoyages(string tri, string choix)
         {
-            var query = from Voyage in Context.Voyages
+            var query = (from Voyage in Context.Voyages
                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
                         select new VoyageDetail { 
@@ -83,9 +84,28 @@ namespace BoVoyage.Donnees
                             Continent = Destination.Continent,
                             Pays = Destination.Pays,
                             Region = Destination.Region
-                        };
-
-            return query.ToList();
+                        });
+            //return query.ToList();
+            if (tri == "DateAller")
+                return query.Where(c => c.DateAller == DateTime.Parse(choix)).ToList();
+            else if (tri == "DateRetour")
+                return query.Where(c => c.DateRetour == DateTime.Parse(choix)).ToList();
+            else if (tri == "MaxVoyageur")
+                return query.Where(c => c.MaxVoyageur >= byte.Parse(choix)).ToList();
+            else if (tri == "Fournisseur")
+                return query.Where(c => c.Fournisseur == choix).ToList();
+            else if (tri == "PrixVenteUnitaire")
+                return query.Where(c => c.PrixVenteUnitaire == decimal.Parse(choix)).ToList();
+            else if (tri == "Continent")
+                return query.Where(c => c.Continent == choix).ToList();
+            else if (tri == "Pays")
+                return query.Where(c => c.Pays == choix).ToList();
+            else if (tri == "Region")
+                return query.Where(c => c.Region == choix).ToList();
+            else if (tri == null)
+                return query.ToList();
+            else
+                return query;
         }
     }
 

@@ -14,18 +14,18 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
-        public ActionResult InformationClient()
-        {
-            try
-            {
-                var ps = metier.DBVoyages();
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
-        }
+        //public ActionResult InformationClient()
+        //{
+        //    try
+        //    {
+        //        var ps = metier.DBVoyages();
+        //        return View(ps);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
         public ActionResult Participant()
         {
@@ -58,8 +58,8 @@ namespace BoVoyage.Scenario1.Controllers
             try
             {
                 metier.AddVoyage();
-                var ps = metier.DBVoyages();
-                return View(ps);
+                //var ps = metier.DBVoyages(choix);
+                return View();
             }
             catch (Exception)
             {
@@ -71,11 +71,11 @@ namespace BoVoyage.Scenario1.Controllers
         /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
-        public ActionResult AffichageVoyage()
+        public ActionResult AffichageVoyage(string lieu, string txtlieu)
         {
             try
             {
-                var ps = metier.DBVoyages();
+                var ps = metier.DBVoyages(lieu, txtlieu);
                 return View(ps);
             }
             catch (Exception)
