@@ -3,9 +3,19 @@
         window.location = "https://localhost:44307/Home/Assurance";
     }
     function MultipliParticipant() {
-        var newDiv = document.createElement("div");
-        var newContent = document.createTextNode('Hi there');
-        newDiv.appendChild(newContent);
+        var x = document.getElementById("selection").value;
+        var i = 0;
+        
+    }
+    function AjoutParticipant() {
+        var para = document.createElement("div");
+        var d = document.getElementById("formulaire").innerHTML;
+        para.innerHTML = d;
+        document.getElementById("suite").appendChild(para);
+    }
+    function SupprParticipant() {
+        var suite = document.getElementById("suite")
+        suite.removeChild(suite.firstChild);
     }
 </script>
 
@@ -16,7 +26,7 @@
 <br />
 <form>
     Vous souhaitez inscrire :
-    <select onchange="MultipliParticipant()">
+    <select onchange="MultipliParticipant()" id="selection">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -29,7 +39,8 @@
     </select>
     Participants
 </form>
-<button type="button" onclick="MultipliParticipant()"> Test </button>
+<button type="button" onclick="AjoutParticipant()"> Ajout d'un participant </button>
+<button type="button" onclick="SupprParticipant()"> Supression d'un participant </button>
 <br />
 <div id="formulaire">
     <h3>Participant numero : X</h3>
@@ -150,6 +161,9 @@
     </table><br />
     <form>
         <input type="checkbox" /> Je suis un accompagnant d'un groupe scolaire <br />
-    </form>
+    </form> <br/><br/>
+</div>
+<div id="suite">
+
 </div>
 <button type="button" onclick="GoToAssurance()"> Valider </button>
