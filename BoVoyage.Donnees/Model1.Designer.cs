@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'D:\formation .net\Module C#\DemoASP\test_voyage\BoVoyage.Donnees\Model1.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'D:\Utilisateurs\LEFEVRE Quentin\Documents\Cour\Cour_INTI\Projet Fin Formation\Application\BoVoyage.Donnees\Model1.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

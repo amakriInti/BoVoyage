@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Ajout d'un voyage depuis un formulaire";
+}
+
+<h2>Ajouter un nouveau voyage</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Formulaire</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!--Fournisseur-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Fournisseur :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Date de départ-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Date de départ :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Date de retour-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Date de retour :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Nombre de place disponible-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Nombre de place disponible :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Prix d'achat-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Prix d'achat :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Prix de vente-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Prix de vente :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <!--Description-->
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Description :</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+</div>
+}

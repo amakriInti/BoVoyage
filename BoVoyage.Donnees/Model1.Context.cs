@@ -13,10 +13,10 @@ namespace BoVoyage.Donnees
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BoVoyageContext1 : DbContext
+    public partial class BoVoyageContext : DbContext
     {
-        public BoVoyageContext1()
-            : base("name=BoVoyageContext1")
+        public BoVoyageContext()
+            : base("name=BoVoyageContext")
         {
         }
     

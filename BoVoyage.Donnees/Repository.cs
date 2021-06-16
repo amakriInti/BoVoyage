@@ -8,7 +8,7 @@ namespace BoVoyage.Donnees
 {
     public class Repository
     {
-        private BoVoyageContext1 Context = new BoVoyageContext1();
+        private BoVoyageContext Context = new BoVoyageContext();
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();
@@ -18,8 +18,9 @@ namespace BoVoyage.Donnees
                 .ToList();
         }
 
-
+        /*------------------------------------------
         //Ajouter les voyages dans la base de donnée
+        -------------------------------------------*/
         public bool AddVoyage(string[] tab)
         {
             try
@@ -62,7 +63,7 @@ namespace BoVoyage.Donnees
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -106,6 +107,28 @@ namespace BoVoyage.Donnees
                 return query.ToList();
             else
                 return query;
+        }
+        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        {
+            try
+            {
+                Context.Clients.Add(new Client
+                {
+                    Id = Guid.NewGuid(),
+                    Nom = nom,
+                    Prenom = prenom,
+                    Mail = mail,
+                    Telephone = telephone,
+                    PersonneMorale = personneMorale,
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 
