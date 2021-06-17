@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f210aecf14f74740bf90e74d63b1be88" Name="Diagram1">
+      <Diagram DiagramId="16d292588f224085a20890e878b6128b" Name="Diagram1">
         <EntityTypeShape EntityType="BoVoyageModel.Assurance" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.Client" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.Destination" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.DestinationVoyage" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.Dossier" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.Employe" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoVoyageModel.Voyage" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoVoyageModel.Voyage" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BoVoyageModel.Voyageur" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="BoVoyageModel.FK_Dossier_Assurance" ManuallyRouted="false" />
         <AssociationConnector Association="BoVoyageModel.FK_Dossier_Client" ManuallyRouted="false" />

@@ -36,11 +36,11 @@
         </EntityType>
         <EntityType Name="DestinationVoyage">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Destination" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyage" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Dossier">
           <Key>
@@ -82,6 +82,7 @@
           <Property Name="PrixAchatTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Voyageur">
           <Key>
@@ -272,11 +273,11 @@
         </EntityType>
         <EntityType Name="DestinationVoyage">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Destination" Type="Guid" Nullable="false" />
           <Property Name="Voyage" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Destination1" Relationship="Self.FK_DestinationVoyage_Destination" FromRole="DestinationVoyage" ToRole="Destination" />
           <NavigationProperty Name="Voyage1" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="DestinationVoyage" ToRole="Voyage" />
         </EntityType>
@@ -328,6 +329,7 @@
           <Property Name="PrixAchatTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="PrixVenteUnitaire" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DestinationVoyages" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="Voyage" ToRole="DestinationVoyage" />
           <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Voyage" FromRole="Voyage" ToRole="Dossier" />
         </EntityType>
@@ -523,9 +525,9 @@
           <EntitySetMapping Name="DestinationVoyages">
             <EntityTypeMapping TypeName="BoVoyageModel.DestinationVoyage">
               <MappingFragment StoreEntitySet="DestinationVoyage">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="Voyage" ColumnName="Voyage" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -571,6 +573,7 @@
                 <ScalarProperty Name="PrixAchatTotal" ColumnName="PrixAchatTotal" />
                 <ScalarProperty Name="PrixVenteUnitaire" ColumnName="PrixVenteUnitaire" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

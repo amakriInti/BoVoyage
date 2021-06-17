@@ -89,22 +89,23 @@ namespace BoVoyage.Donnees
         public object DBVoyages(string tri, string choix)
         {
             var query = (from Voyage in Context.Voyages
-                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
-                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
-                         select new VoyageDetail
-                         {
-                             Id = Voyage.Id,
-                             DateAller = Voyage.DateAller,
-                             DateRetour = Voyage.DateRetour,
-                             MaxVoyageur = Voyage.MaxVoyageur,
-                             Fournisseur = Voyage.Fournisseur,
-                             PrixAchatTotal = Voyage.PrixAchatTotal,
-                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                             Description = Voyage.Description + " " + Destination.Description,
-                             Continent = Destination.Continent,
-                             Pays = Destination.Pays,
-                             Region = Destination.Region
-                         });
+                        join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                        join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                        select new VoyageDetail {
+                            Id = Voyage.Id,
+                            DateAller = Voyage.DateAller,
+                            DateRetour = Voyage.DateRetour,
+                            MaxVoyageur = Voyage.MaxVoyageur,
+                            Fournisseur = Voyage.Fournisseur,
+                            PrixAchatTotal = Voyage.PrixAchatTotal,
+                            PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                            DescriptionVoyage = Voyage.Description,
+                            DescriptionDestination = Destination.Description,
+                            Continent = Destination.Continent,
+                            Pays = Destination.Pays,
+                            Region = Destination.Region,
+                            Image = Voyage.Image
+                        });
             //return query.ToList();
             if (tri == "DateAller")
                 return query.Where(c => c.DateAller == DateTime.Parse(choix)).ToList();
@@ -150,10 +151,12 @@ namespace BoVoyage.Donnees
                                  Fournisseur = Voyage.Fournisseur,
                                  PrixAchatTotal = Voyage.PrixAchatTotal,
                                  PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                                 Description = Voyage.Description + " " + Destination.Description,
+                                 DescriptionVoyage = Voyage.Description,
+                                 DescriptionDestination = Destination.Description,
                                  Continent = Destination.Continent,
                                  Pays = Destination.Pays,
-                                 Region = Destination.Region
+                                 Region = Destination.Region,
+                                 Image = Voyage.Image
                              });
 
                 return query.ToList();

@@ -29,6 +29,7 @@ namespace BoVoyage.Donnees
         public decimal PrixAchatTotal { get; set; }
         public decimal PrixVenteUnitaire { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DestinationVoyage> DestinationVoyages { get; set; }
