@@ -252,3 +252,18 @@ EntrerVoyageurs => le site ne plante pas mais on arrive sur une page avec un for
 Reserver => le site plante carrément à cause d'un paramètre null
 
 Note : Il faudra toujours s'assurer que qqun qui se connecte en tant  que client est enregistré comme client 
+
+
+------------------------------------------------------------------------------------------
+Pour la suite :
+-S'assurer que le sujet doit être né... 
+-S'assurer que l'accompagnant est majeur
+-S'assurer qu'il n'y en aura qu'un seul (radiobox ou drop down en formulaire 1+ un peu de  c#)
+-Pratiquer un prix réduit s'il y a un enfant de -12 ans 
+-Rajouter numéro de téléphone ou email dans le formulaire
+
+
+
+17/06/2021 : 16:00
+On a réglé les points de problèmes sur les différents controleurs et le site redirige globalement sur l'accueil dès 
+qu'un comportement imprévu se produit => on va régler la question des utilisateurs non client en essayant de réserver un voyage avec Ali 

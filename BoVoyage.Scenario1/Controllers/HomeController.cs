@@ -20,20 +20,6 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
 
-        public ActionResult UpdatePanier()
-        {
-            if(Session["panier"]==null)//Si le panier existe pas on le crée sinon on le récupère
-            { Session["panier"] = new List<Voyage>(); }
-            List<Voyage> panier_courant = (List<Voyage>)Session["panier"];
-            Repository Repo = new Repository();
-
-            panier_courant.Add(Repo.GetVoyage(Guid.Parse("dd1e74fb-f2e4-4cbd-978d-11a9f484b781")));
-            Session["panier"] = panier_courant;
-            //Session["panier"] = Repo.GetVoyage(Guid.Parse("dd1e74fb-f2e4-4cbd-978d-11a9f484b781"));//On a mis l'id en dur pour le moment
-            return View("Index");
-        }
-        //Session["personne"] = id; Ligne qui crée le panier 
-
         public ActionResult Panier()
         {
             var panier = Session["panier"];
@@ -50,39 +36,44 @@ namespace BoVoyage.Scenario1.Controllers
         [Authorize]
         public ActionResult ValiderPanier()
         {
-            var panier_client = (List<ItemPanier>)Session["panier"];
-            return View(panier_client);
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                var panier_client = (List<ItemPanier>)Session["panier"];
+                return View(panier_client);
+            }
+            else return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
 
         public ActionResult Confirmation()// On va simplement faire afficher dans 
         {
-            /*Repository Repo = new Repository();
-            Dossier Doss = Repo.GetDossier(id_dossier);//je pourrais créer le dossier ici
-            return View(Doss);*/
-            List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
-            ViewBag.NomClient = User.Identity.GetUserName();// On mettra le login pour l'instant
-            return View(panier_courant);
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                ViewBag.NomClient = User.Identity.GetUserName();// On mettra le login pour l'instant
+                return View(panier_courant);
+            }
+            else return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult Payer()
         {
-            Repository Repo = new Repository();
-            List<ItemPanier>panier_courant = (List<ItemPanier>)Session["panier"];
-            foreach (var item in panier_courant)
+
+            if(Session["panier"]!=null)
             {
-                Repo.DossierPaye(item.id_dossier);
+                Repository Repo = new Repository();
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                foreach (var item in panier_courant)
+                {
+                    Repo.DossierPaye(item.id_dossier);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            else return RedirectToAction("Index","Home")
+
         }
-
-        /*public ActionResult ValiderPanier()
-        {
-            var panier_client = (List<Voyage>)Session["panier"];
-            return View(panier_client);
-        }*/
-
 
     }
 }

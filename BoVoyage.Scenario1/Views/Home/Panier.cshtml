@@ -7,6 +7,8 @@
 @if (Model == null)
 {
     <h3>Le panier est vide</h3>
+
+    @Html.ActionLink("Retour Accueil", "Index")
 }
 
 else
@@ -15,10 +17,10 @@ else
     foreach (var v in Model)
     {
         <hr />
-        <p>Voyage : @v.voyage.Libelle | Nombre voyageurs : @v.nombre_voyageurs</p> 
+        <p>Voyage : @v.voyage.Libelle | Nombre voyageurs : @v.nombre_voyageurs</p>
     }
-    @Html.ActionLink("Continuer Mes achats", "Index") 
-    <br/>
+    @Html.ActionLink("Continuer Mes achats", "Index")
+    <br />
     @Html.ActionLink("Valider et Payer", "ValiderPanier")
 }
 @*<table>
