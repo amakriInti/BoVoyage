@@ -4,165 +4,321 @@
 
 <h2>Ajouter un nouveau voyage</h2>
 
-<div class="form-horizontal">
-    <h4>Formulaire</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<form class="needs-validation" novalidate>
+@using (Html.BeginForm("AddVoyageFormulaire", "Commercial", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate="novalidate" }))
+{
     @Html.AntiForgeryToken()
-    <!--Fournisseur-->
-    <div>
-        <!--Liste déroulante-->
-        <div class="input-group mb-3">
-            <div style="width:20%;" class="input-group-prepend ">
-                <label class="input-group-text " for="Fournisseur">Fournisseur :</label>
-            </div>
-            <select style="width:50%;" class="form-select" id="Fournisseur" onchange="TextboxAutre()" required>
-                <option selected disabled value="">Choix du fournisseur</option>
-                <option value=1>One</option>
-                <option value=2>Two</option>
-                <option value="Autre">Autre</option>
-            </select>
-            <div class="invalid-feedback">
-                Veuillez sélectionner un champs.
-            </div>
-        </div>
 
-        <!--Nouveau fournisseur ajout automatique via JS-->
-        <!--<div class="input-group mb-3">
-            <div style="width:20%;" class="input-group-prepend ">
-                <label class="input-group-text " for="inputGroupSelect05">Nom du nouveau fournisseur :</label>
+    <div class="form-horizontal">
+        <h4>Formulaire</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <fieldset>
+                <legend>Information voyage</legend>
+
+                <!--Fournisseur-->
+                <div>
+                    <!--Liste déroulante-->
+                    <div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="Fournisseur">Fournisseur :</label>
+                        </div>
+                        <select style="width:50%;" class="form-select" id="Fournisseur" onchange="TextboxAutreFournisseur()" required>
+                            <option selected disabled value="">Choix du fournisseur</option>
+                            <option value=1>One</option>
+                            <option value=2>Two</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Veuillez sélectionner un champs.
+                        </div>
+                    </div>
+
+                    <!--Nouveau fournisseur ajout automatique via JS-->
+                    <!--<div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="NewFournisseur">Nom du nouveau fournisseur :</label>
+                        </div>
+                        <input type="text" id=NewFournisseur class="form-control" required>
+                        <div class="invalid-feedback">
+                            Veuillez remplir le champ ou sélectionner un fournisseur.
+                        </div>
+                    </div>-->
+                    <div id="div_NewFournisseur"></div>
+                </div>
+
+                <!--Calendrier-->
+                <div class="input-group input-daterange">
+                    <!--Date de départ-->
+                    <div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="start">Date de départ :</label>
+                        </div>
+                        <input type="text" class="form-control" id="start" placeholder="JJ/MM/AAAA" data-date-format="dd/mm/yyyy" required>
+                        <div class="input-group-text">
+                            <label><i class="fa fa-calendar"></i></label>
+                        </div>
+                        <div class="invalid-feedback">
+                            Veuillez renseigner une date de départ.
+                        </div>
+                    </div>
+
+                    <!--Date de retour-->
+                    <div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="end">Date de retour :</label>
+                        </div>
+                        <input type="text" class="form-control" id="end" placeholder="JJ/MM/AAAA" required>
+                        <div class="input-group-text">
+                            <label><i class="fa fa-calendar"></i></label>
+                        </div>
+                        <div class="invalid-feedback">
+                            Veuillez renseigner une date de retour.
+                        </div>
+                    </div>
+                </div>
+
+                <!--Nombre de place disponible-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="NbPlace">Nombre de place disponible :</label>
+                    </div>
+                    <select style="width:50%;" class="form-select" id="NbPlace" required>
+                        <option selected disabled value="">Nombre de participant</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                        <option value=11>11</option>
+                        <option value=12>12</option>
+                        <option value=13>13</option>
+                        <option value=14>14</option>
+                        <option value=15>15</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Veuillez sélectionner un champs.
+                    </div>
+                </div>
+
+                <!--Prix d'achat-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="PrixAchat">Prix d'achat :</label>
+                    </div>
+                    <input type="number" class="form-control, DecimalField" id="PrixAchat" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="0" step='0.01' required>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Format: 0,00€</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        Veuillez vérifier le format 0,00.
+                    </div>
+                </div>
+
+                <!--Prix de vente-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="PrixVente">Prix de vente :</label>
+                    </div>
+                    <input type="number" class="form-control, DecimalField" id="PrixVente" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="0" step='0.01' required>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Format: 0,00€</span>
+                    </div>
+                    <div class="invalid-feedback">
+                        Veuillez vérifier le format 0,00.
+                    </div>
+                </div>
+
+                <!--Description du voyage-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="DescriptionVoyage">Description du voyage:</label>
+                    </div>
+                    <textarea class="form-control" id="DescriptionVoyage" aria-label="With textarea" required></textarea>
+                    <div class="invalid-feedback">
+                        Veuillez remplir ce champs.
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Information destination</legend>
+
+                <!--Continent-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="Continent">Continent :</label>
+                    </div>
+                    <select style="width:50%;" class="form-select" id="Continent" required>
+                        <option selected disabled value="">Choix du continent</option>
+                        <option value="Afrique">Afrique</option>
+                        <option value="Amérique du Nord">Amérique du Nord</option>
+                        <option value="Amérique Central">Amérique Central</option>
+                        <option value="Amérique du Sud">Amérique du Sud</option>
+                        <option value="Antarctique">Antarctique</option>
+                        <option value="Arctique">Arctique</option>
+                        <option value="Asie">Asie</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Moyen-Orient">Moyen-Orient</option>
+                        <option value="Océanie">Océanie</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Veuillez sélectionner un continent.
+                    </div>
+                </div>
+
+                <!--Pays-->
+                <div>
+                    <!--Liste déroulante-->
+                    <div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="Pays">Pays :</label>
+                        </div>
+                        <select style="width:50%;" class="form-select" id="Pays" onchange="TextboxAutrePays()" required>
+                            <option selected disabled value="">Choix du pays</option>
+                            <option value=1>One</option>
+                            <option value=2>Two</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Veuillez sélectionner un champs.
+                        </div>
+                    </div>
+
+                    <!--Nouveau fournisseur ajout automatique via JS-->
+                    <!--<div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="NewPays">Nom du nouveau pays :</label>
+                        </div>
+                        <input type="text" class="form-control" id="NewPays" required>
+                        <div class="invalid-feedback">
+                            Veuillez remplir le champ ou sélectionner un pays.
+                        </div>
+                    </div>-->
+                    <div id="div_NewPays"></div>
+                </div>
+
+                <!--Region-->
+                <div>
+                    <!--Liste déroulante-->
+                    <div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="Région">Région :</label>
+                        </div>
+                        <select style="width:50%;" class="form-select" id="Region" onchange="TextboxAutreRegion()">
+                            <option selected disabled value="">Choix de la région</option>
+                            <option value=1>One</option>
+                            <option value=2>Two</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Veuillez sélectionner un champs.
+                        </div>
+                    </div>
+
+                    <!--Nouveau fournisseur ajout automatique via JS-->
+                    <!--<div class="input-group mb-3">
+                        <div style="width:20%;" class="input-group-prepend ">
+                            <label class="input-group-text " for="NewRegion">Nom de la région :</label>
+                        </div>
+                        <input type="text" class="form-control" id="NewRegion required>
+                        <div class="invalid-feedback">
+                            Veuillez remplir le champ ou sélectionner une région.
+                        </div>
+                    </div>-->
+                    <div id="div_NewRegion"></div>
+                </div>
+
+                <!--Description de la destination-->
+                <div class="input-group mb-3">
+                    <div style="width:20%;" class="input-group-prepend ">
+                        <label class="input-group-text " for="DescriptionDestination">Description de la destination:</label>
+                    </div>
+                    <textarea class="form-control" id="DescriptionDestination" aria-label="With textarea" required></textarea>
+                    <div class="invalid-feedback">
+                        Veuillez remplir ce champs.
+                    </div>
+                </div>
+            </fieldset>
+            <br />
+
+            <!--Bouton validation-->
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Ajouter ce voyage</button>
             </div>
-            <input type="text" class="form-control" required>
-            <div class="invalid-feedback">
-                Veuillez remplir le champ ou sélectionner un fournisseur.
-            </div>
-        </div>-->
-        <div id="div_NewFournisseur"></div>
     </div>
-
-    <!--Calendrier-->
-    <div class="input-group input-daterange">
-        <!--Date de départ-->
-        <div class="input-group mb-3">
-            <div style="width:20%;" class="input-group-prepend ">
-                <label class="input-group-text " for="inputGroupSelect02">Date de départ :</label>
-            </div>
-            <input type="text" class="form-control" id="start" placeholder="JJ/MM/AAAA" data-date-format="dd/mm/yyyy" required>
-            <div class="input-group-text">
-                <label><i class="fa fa-calendar"></i></label>
-            </div>
-            <div class="invalid-feedback">
-                Veuillez renseigner une date de départ.
-            </div>
-        </div>
-
-        <!--Date de retour-->
-        <div class="input-group mb-3">
-            <div style="width:20%;" class="input-group-prepend ">
-                <label class="input-group-text " for="inputGroupSelect03">Date de retour :</label>
-            </div>
-            <input type="text" class="form-control" id="end" placeholder="JJ/MM/AAAA" required>
-            <div class="input-group-text">
-                <label><i class="fa fa-calendar"></i></label>
-            </div>
-            <div class="invalid-feedback">
-                Veuillez renseigner une date de retour.
-            </div>
-        </div>
-    </div>
-
-    <!--Nombre de place disponible-->
-    <div class="input-group mb-3">
-        <div style="width:20%;" class="input-group-prepend ">
-            <label class="input-group-text " for="inputGroupSelect04">Nombre de place disponible :</label>
-        </div>
-        <select style="width:50%;" class="form-select" id="inputGroupSelect01" required>
-            <option selected disabled value="">Nombre de participant</option>
-            <option value=1>1</option>
-            <option value=2>2</option>
-            <option value=3>3</option>
-            <option value=4>4</option>
-            <option value=5>5</option>
-            <option value=6>6</option>
-            <option value=7>7</option>
-            <option value=8>8</option>
-            <option value=9>9</option>
-            <option value=10>10</option>
-            <option value=11>11</option>
-            <option value=12>12</option>
-            <option value=13>13</option>
-            <option value=14>14</option>
-            <option value=15>15</option>
-        </select>
-        <div class="invalid-feedback">
-            Veuillez sélectionner un champs.
-        </div>
-    </div>
-
-    <!--Prix d'achat-->
-    <div class="input-group mb-3">
-        <div style="width:20%;" class="input-group-prepend ">
-            <label class="input-group-text " for="inputGroupSelect05">Prix d'achat :</label>
-        </div>
-        <input type="number" class="form-control" id="DecimalField" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="0" step='0.01' required>
-        <div class="input-group-append">
-            <span class="input-group-text">Format: 0,00€</span>
-        </div>
-        <div class="invalid-feedback">
-            Veuillez vérifier le format 0,00.
-        </div>
-    </div>
-
-    <!--Prix de vente-->
-    <div class="input-group mb-3">
-        <div style="width:20%;" class="input-group-prepend ">
-            <label class="input-group-text " for="inputGroupSelect06">Prix de vente :</label>
-        </div>
-        <input type="number" class="form-control" id="DecimalField" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="0" step='0.01' required>
-        <div class="input-group-append">
-            <span class="input-group-text">Format: 0,00€</span>
-        </div>
-        <div class="invalid-feedback">
-            Veuillez vérifier le format 0,00.
-        </div>
-    </div>
-
-    <!--Description-->
-    <div class="input-group mb-3">
-        <div style="width:20%;" class="input-group-prepend ">
-            <label class="input-group-text " for="inputGroupSelect07">Description :</label>
-        </div>
-        <textarea class="form-control" aria-label="With textarea" required></textarea>
-        <div class="invalid-feedback">
-            Veuillez remplir ce champs.
-        </div>
-    </div>
-    <div class="col-12">
-        <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-</form>
-</div>
-
+}
 
 @section DatePicker{
     <script>
         /*--------------------------------------
         //Ajout textbox si nouveau fournisseur
         --------------------------------------*/
-        function TextboxAutre() {
+        function TextboxAutreFournisseur() {
             let value = document.getElementById("Fournisseur").value;
-            if (value = "Autre") {
+            if (value == "Autre") {
                 codeHTML = "<div class='input-group mb-3'>" +
-                                "<div style = 'width:20%;' class='input-group-prepend'>" +
-                                    "<label class='input-group-text' for='newFournisseur'>Nom du nouveau fournisseur :</label>" +
-                                "</div>" +
-                                "<input type='text' class='form-control' required>" +
-                                "<div class='invalid-feedback'>" +
-                                    "Veuillez remplir le champ ou sélectionner un fournisseur." +
-                                "</div>" +
-                            "</div>";
+                    "<div style = 'width:20%;' class='input-group-prepend'>" +
+                    "<label class='input-group-text' for='NewFournisseur'>Nom du nouveau fournisseur :</label>" +
+                    "</div>" +
+                    "<input type='text' class='form-control' id='NewFournisseur' required>" +
+                    "<div class='invalid-feedback'>" +
+                    "Veuillez remplir le champ ou sélectionner un fournisseur." +
+                    "</div>" +
+                    "</div>";
                 $("#div_NewFournisseur").html(codeHTML);
+            }
+            else {
+                $("#div_NewFournisseur").html("");
+            }
+        }
+
+        /*--------------------------------------
+        //Ajout textbox si nouveau pays
+        --------------------------------------*/
+        function TextboxAutrePays() {
+            let value = document.getElementById("Pays").value;
+            if (value == "Autre") {
+                codeHTML = "<div class='input-group mb-3'>" +
+                    "<div style = 'width:20%;' class='input-group-prepend'>" +
+                    "<label class='input-group-text' for='NewPays'>Nom du nouveau pays :</label>" +
+                    "</div>" +
+                    "<input type='text' class='form-control' id='NewPays' required>" +
+                    "<div class='invalid-feedback'>" +
+                    "Veuillez remplir le champ ou sélectionner un pays." +
+                    "</div>" +
+                    "</div>";
+                $("#div_NewPays").html(codeHTML);
+            }
+            else {
+                $("#div_NewPays").html("");
+            }
+        }
+
+        /*--------------------------------------
+        //Ajout textbox si nouvelle région
+        --------------------------------------*/
+        function TextboxAutreRegion() {
+            let value = document.getElementById("Region").value;
+            if (value == "Autre") {
+                codeHTML = "<div class='input-group mb-3'>" +
+                    "<div style = 'width:20%;' class='input-group-prepend'>" +
+                    "<label class='input-group-text' for='NewRegion'>Nom de la nouvelle région :</label>" +
+                    "</div>" +
+                    "<input type='text' class='form-control' id='NewRegion' required>" +
+                    "<div class='invalid-feedback'>" +
+                    "Veuillez remplir le champ ou sélectionner une région." +
+                    "</div>" +
+                    "</div>";
+                $("#div_NewRegion").html(codeHTML);
+            }
+            else {
+                $("#div_NewRegion").html("");
             }
         }
 
@@ -216,7 +372,7 @@
         /*--------------------------------------
         //Format decimal
         --------------------------------------*/
-        $("#DecimalField").blur(function () {
+        $(".DecimalField").blur(function () {
             this.value = parseFloat(this.value).toFixed(2);
         });
     </script>
