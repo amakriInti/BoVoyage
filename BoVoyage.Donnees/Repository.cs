@@ -95,20 +95,58 @@ namespace BoVoyage.Donnees
             else if (tri == "MaxVoyageur")
                 return query.Where(c => c.MaxVoyageur >= byte.Parse(choix)).ToList();
             else if (tri == "Fournisseur")
-                return query.Where(c => c.Fournisseur == choix).ToList();
+                if (choix == "null" || choix == null) return query.Select(c => c.Fournisseur).ToList().Distinct();
+                else return query.Where(c => c.Fournisseur == choix).ToList();
             else if (tri == "PrixVenteUnitaire")
                 return query.Where(c => c.PrixVenteUnitaire == decimal.Parse(choix)).ToList();
             else if (tri == "Continent")
-                return query.Where(c => c.Continent == choix).ToList();
+                if (choix == "null" || choix == null) return query.Select(c => c.Continent).ToList().Distinct();
+                else return query.Where(c => c.Continent == choix).ToList();
             else if (tri == "Pays")
-                return query.Where(c => c.Pays == choix).ToList();
+                if (choix == "null" || choix == null) return query.Select(c => c.Pays).ToList().Distinct();
+                else return query.Where(c => c.Pays == choix).ToList();
             else if (tri == "Region")
-                return query.Where(c => c.Region == choix).ToList();
+                if (choix == "null" || choix == null) return query.Select(c => c.Region).ToList().Distinct();
+                else return query.Where(c => c.Region == choix).ToList();
             else if (tri == null)
                 return query.ToList();
             else
                 return query;
         }
+        //public IQueryable<VoyageDetail> DBVoyageScroll(string tri, string choix)
+        //{
+        //    var query = (from Voyage in Context.Voyages
+        //                 join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+        //                 join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+        //                 select new VoyageDetail
+        //                 {
+        //                     Id = Voyage.Id,
+        //                     DateAller = Voyage.DateAller,
+        //                     DateRetour = Voyage.DateRetour,
+        //                     MaxVoyageur = Voyage.MaxVoyageur,
+        //                     Fournisseur = Voyage.Fournisseur,
+        //                     PrixAchatTotal = Voyage.PrixAchatTotal,
+        //                     PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+        //                     Description = Voyage.Description + " " + Destination.Description,
+        //                     Continent = Destination.Continent,
+        //                     Pays = Destination.Pays,
+        //                     Region = Destination.Region
+        //                 });
+        //    //return query.ToList();
+        //    if (tri == "Continent")
+        //        if (choix == null) return query.GroupBy(c => c.Continent).ToList();
+        //        else return query.Where(c => c.Continent == choix).ToList();
+        //    else if (tri == "Pays")
+        //        if (choix == null) return query.GroupBy(c => c.Pays).ToList();
+        //        else return query.Where(c => c.Pays == choix).ToList();
+        //    else if (tri == "Region")
+        //        if (choix == null) return query.GroupBy(c => c.Region).ToList();
+        //        else return query.Where(c => c.Region == choix).ToList();
+        //    else if (tri == null)
+        //        return query.ToList();
+        //    else
+        //        return query;
+        //}
 
         public object DetailsVoyage(string id)
         {

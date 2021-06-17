@@ -34,19 +34,25 @@
         <option value="Continent"> Continent</option>
         <option value="Pays"> Pays</option>
         <option value="Region"> Region</option>
+        <option value="Fournisseur"> Fournisseur</option>
     </select>
-    <input type="text" id="txtlieu" />
-    <!-- <input type="button" id="listeAlbum" value="Go" / >-->
-    <br /> <br />
-    <input type="button" id="listeVoyageTrie" value="Go" />
-    <br /> <br />
+    <select id='truc'>
+        
+    </select>
+        <br />
+        <br />
+        <input type="button" id="listeVoyageTrie" value="Go" />
+        <br />
+        <br />
 
-    <div id="div1"><p> on va marqué ici</p> </div>
+        <div id="div1"><p> on va marqué ici</p> </div>
 </div>
 
 <script>
-    $('#dededede').click(function () {
+    $('#lieu').change(function () {
         var lieu = $('#lieu').val();
+        var txtlieu = $('#txtlieu').val();
+
         $.ajax({
             type: "GET",
             url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
@@ -54,21 +60,24 @@
             contentType: 'application/json',
             success: function (data, status) {
                 if (status == "success") {
-                    fragment = "<select id='lieu'>" +
-                        "<option> </option>";
-                    for (var i = 0; i < data.count + 1; i++)
-                    {
-                        fragment+= "<option value="+data[i]+">"+data[i]+"</option>" 
+                    fragment = "<option> </option>";
+                    for (var i = 0; i < data.length; i++) {
+                        fragment += "<option value='" + data[i] + "'>" + data[i]+ "</option>";
                     }
                     fragment += "</select >";
-
-
-
+                    $('#truc').html(fragment);
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#truc').html("Erreur");
+            }
+        });
+    })
 
 
     $('#listeVoyageTrie').click(function () {
         var lieu = $('#lieu').val();
-        var txtlieu = $('#txtlieu').val();
+        var txtlieu = $('#truc').val();
         $.ajax({
             type: "GET",
             url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,

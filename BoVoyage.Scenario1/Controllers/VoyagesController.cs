@@ -17,14 +17,14 @@ namespace BoVoyage.Scenario1.Controllers
         {
             try
             {
+                if (txtlieu == "undefined") txtlieu = null;
                 var ps = metier.DBVoyages(lieu, txtlieu);
                 return ps;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return ("Non trouvé");
             }
-
         }
     }
 }

@@ -53,6 +53,11 @@ namespace BoVoyage.Metier
             return repository.DBVoyages(tri, choix);
         }
 
+        //public string[] DBVoyages(string tri, string choix)
+        //{
+        //    return repository.DBVoyages(tri, choix);
+        //}
+
         public object DetailsVoyage(string id)
         {
             return repository.DetailsVoyage(id);
