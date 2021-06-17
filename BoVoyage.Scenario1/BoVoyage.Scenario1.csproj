@@ -306,7 +306,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Com\Index.cshtml" />
-    <Content Include="Views\Home\LectureCsv.cshtml" />
     <Content Include="Views\Home\Assurance.cshtml" />
     <Content Include="Views\Home\InformationClient.cshtml" />
     <Content Include="Views\Home\Participant.cshtml" />
