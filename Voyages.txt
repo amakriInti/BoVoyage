@@ -212,3 +212,14 @@ On va régler la question du panier et décaler la déclaration du dossier pour 
 17/06/2021: 10:30
 Les réservations s'ajoutent désormais au panier du client qui s'affiche en entier après chaque nouvelle réservation
 Maintenant il faut régler la question du dossier.
+
+17/06/2021 : 10:40
+On veut que quand on valide le panier ou qu'on choisisse direct on ait création du dossier + affectation des voyageurs
+Pour ça on va créer le dossier au moment où on récupère les infos des voyageurs 
+
+17/06/2021 : 11:04
+Gros changement. On va créer un réservation controleur pour toutes les pages où s'occupe d'une réservation particulière
+
+17/06/2021 : 12:33
+On a modifié la structure du code pour faire un appel à un ReservationController pour plus de simplicité
+ça évite d'avoir à passer les paramètres en cascade 

@@ -8,9 +8,10 @@
         foreach (var v in Model)
         {
             <hr />
-            @Html.ActionLink("Reserver" + v.Libelle , "Reserver", new { id = v.Id })
+            @Html.ActionLink("Reserver" + v.Libelle, "Reserver", "Reservation", new { id = v.Id },null)
         }
     }
+
     <div class="modal-body row">
         <div class="col-md-6">
             <!-- Your first column here -->

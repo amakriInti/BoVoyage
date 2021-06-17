@@ -5,17 +5,17 @@
 
 <h2>Reservation @Model.Libelle</h2>
 
-    @*<div class="form-group">
-     
+@*<div class="form-group">
+
         <div class="col-md-10">
-           
+
         </div>
     </div>*@
 
-<form action="/home/Reserver" method="post">
+<form action="/Reservation/Reserver" method="post">
     <input type="hidden" name="id_voyage" value="@Model.Id" />
     Nombre de voyageurs :
-    <select id="nb_voyageurs" name="nb_voyageurs">
+    <select id="nombre_voyageurs" name="nombre_voyageurs">
         @{
             for (int i = 1; i <= Model.MaxVoyageurs; i++)
             {
@@ -29,5 +29,3 @@
         <button type="submit">Reserver</button>
     </div>
     Assurance :
-
-

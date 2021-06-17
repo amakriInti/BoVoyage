@@ -7,7 +7,7 @@
 <h2>Entrer Voyageurs</h2>
 
 
-<form action="/home/EntrerVoyageurs" method="post">
+<form action="/Reservation/EntrerVoyageurs" method="post">
     <div>
         <input type="hidden" name="nb_vg" value="@ViewBag.nombre_voyageurs" />
     </div>
@@ -41,8 +41,8 @@
 
             <div>
                 <select name="acc_@i" id="acc_@i">
-                <option value="false">Non</option>
-                <option value="true">Oui</option>
+                    <option value="false">Non</option>
+                    <option value="true">Oui</option>
                 </select>
                 <label for="acc_@i">Accompagnant</label>
             </div>
@@ -59,3 +59,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
