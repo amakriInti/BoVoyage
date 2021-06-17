@@ -11,6 +11,6 @@ namespace BoVoyage.Scenario1.Dal
 
         public int nombre_voyageurs { get; set; }
 
-        //public Guid id_dossier { get; set; }
+        public Guid id_dossier { get; set; }
     }
 }

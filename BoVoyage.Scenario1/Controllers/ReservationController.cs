@@ -52,12 +52,12 @@ namespace BoVoyage.Scenario1.Controllers
             if (Session["panier"] == null)//Si le panier existe pas on le crée sinon on le récupère
             { Session["panier"] = new List<ItemPanier>(); }
             List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];//récupère le panier
-            panier_courant.Add(new ItemPanier { voyage = Repo.GetVoyage(id_voyage), nombre_voyageurs = nb_voyageurs });
+            Guid id_dossier = (Guid)Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
+            panier_courant.Add(new ItemPanier { voyage = Repo.GetVoyage(id_voyage), nombre_voyageurs = nb_voyageurs,id_dossier = id_dossier});
             Session["panier"] = panier_courant;
             //--------------Update Panier-----------------------------------------------------------
 
             //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
-            Guid id_dossier = (Guid)Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
             for (int i = 0; i < nb_voyageurs; i++)
             {
                 Guid Id_nouveau_voyageur = Guid.NewGuid();

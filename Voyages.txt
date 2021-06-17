@@ -224,5 +224,9 @@ Gros changement. On va créer un réservation controleur pour toutes les pages o
 On a modifié la structure du code pour faire un appel à un ReservationController pour plus de simplicité
 ça évite d'avoir à passer les paramètres en cascade 
 
-17/06/2021 :
-Le reservation controller fonctionne 
+17/06/2021 :14:00
+Le reservation controller fonctionne
+On va tenter de rajouter un une champ id_dossier à l'item panier
+
+17/06/2021 : 14:58
+Le problème des etat est resolu et le reservation controller fonctionne 

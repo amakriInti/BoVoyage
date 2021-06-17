@@ -55,17 +55,6 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
         [Authorize]
-        public ActionResult PayerPanier()
-        {
-            //On crée le dossier 
-            Repository Repo = new Repository();
-            var Vygs = (List<ItemPanier>)Session["panier"];
-            var Vyg = Vygs.First();
-            Repo.NouveauDossier(User.Identity.GetUserName(), Vyg.voyage.Id);
-            Session["panier"] = new List<Voyage>();
-            return RedirectToAction("Index");
-        }
-
 
         public ActionResult Confirmation()// On va simplement faire afficher dans 
         {
@@ -80,7 +69,11 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult Payer()
         {
             Repository Repo = new Repository();
-            Repo.DossierPaye(id_dossier);
+            List<ItemPanier>panier_courant = (List<ItemPanier>)Session["panier"];
+            foreach (var item in panier_courant)
+            {
+                Repo.DossierPaye(item.id_dossier);
+            }
             return RedirectToAction("Index", "Home");
         }
 

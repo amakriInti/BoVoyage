@@ -99,7 +99,7 @@ namespace BoVoyage.Scenario1.Dal
             if (id_doss != null)
             {
                 Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 1;
-                Context.SaveChanges();
+                Context.SaveChanges();//ça marche
                 return true;
             }
             else return false;
