@@ -25,7 +25,19 @@
         }
     </select>
 
+    Assurance:
+    <select id="Assurance" name="Assurance">
+        @{
+            <option value="null">Aucune</option>
+            foreach (var a in ViewBag.Assurances)
+            {
+                <option value="@a.Id">@a.Annulation</option>
+
+            }
+        }
+    </select>
+
     <div>
         <button type="submit">Reserver</button>
     </div>
-    Assurance :
+

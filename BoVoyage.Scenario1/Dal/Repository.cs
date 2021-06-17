@@ -153,6 +153,21 @@ namespace BoVoyage.Scenario1.Dal
             return Context.Voyages.ToList();
         }
 
+
+        internal List<Assurance> GetAllAssurances()
+        {
+            return Context.Assurances.ToList();
+        }
+
+        internal Assurance GetAssurance(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Assurances.Where(d => d.Id == id).FirstOrDefault();
+            }
+            else return null;
+        }
+
         internal Dossier GetDossier(Guid? id)
         {
             if (id != null)
@@ -163,12 +178,18 @@ namespace BoVoyage.Scenario1.Dal
         }
 
 
+
+
         internal Guid? NouveauDossier(string email,Guid? id_voyage)
         {
             if (id_voyage != null)
             {
                 Guid? Id_dossier = Guid.NewGuid();
                 var client = Context.Clients.Where(c => c.email == email).FirstOrDefault();
+                if (client==null)
+                {
+                    return null;
+                }
                 Context.Dossiers.Add(new Dossier { Id = (Guid)Id_dossier, Client = client.Id, Voyage = (Guid)id_voyage });
                 Context.SaveChanges();
                 return Id_dossier;
@@ -187,6 +208,10 @@ namespace BoVoyage.Scenario1.Dal
             else return false;
         }
 
+        internal Client GetClientByEmail(string email)
+        {
+            return Context.Clients.Where(c => c.email == email).FirstOrDefault();
+        }
         internal bool AddVoyageur(Voyageur vygr)
         {
             if (vygr != null)

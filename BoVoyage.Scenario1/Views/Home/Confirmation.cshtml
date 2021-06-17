@@ -12,12 +12,16 @@
         <p>Nombre Voyageurs : @v.nombre_voyageurs</p>
 
         <p>Prix unitaire : @v.voyage.PrixVenteUnitaire</p>
+
+        if(v.assurance!=null)
+        { 
+            <p>Prix assurance : @v.assurance.Prix</p>
+        }
     }
 }
 
 @Html.ActionLink("Valider et Payer", "ValiderPanier")
-
-
+<br />
 @Html.ActionLink("Reserver un autre voyage", "Index")
 
 

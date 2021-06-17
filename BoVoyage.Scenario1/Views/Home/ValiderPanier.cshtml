@@ -5,19 +5,25 @@
 
 <h2>ValiderPanier</h2>
 @{
-    decimal PrixTot= 0;
+    decimal PrixTot = 0;
     <h3>Votre commande</h3>
     foreach (var v in Model)
     {
-       decimal PrixSousTot = (decimal)v.voyage.PrixVenteUnitaire*v.nombre_voyageurs;
-       PrixTot = PrixTot + PrixSousTot;
+        decimal PrixSousTot = (decimal)v.voyage.PrixVenteUnitaire * v.nombre_voyageurs;
+        PrixTot = PrixTot + PrixSousTot;
+        if (v.assurance != null)
+        {
+            PrixTot = PrixTot + (decimal)v.assurance.Prix;
+        }
         <hr />
 
-        <p>Voyage : @v.voyage.Libelle | Prix : </p>
+        <p>Voyage : @v.voyage.Libelle  </p>
     }
 
     <p><strong>Prix Total : @PrixTot</strong></p>
 }
 
 @Html.ActionLink("Payer", "Payer")
+<br />
+@Html.ActionLink("Payer par Carte(huhu)", "PayerCarte")
 

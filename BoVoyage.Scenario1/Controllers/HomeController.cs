@@ -61,7 +61,7 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult Payer()
         {
 
-            if(Session["panier"]!=null)
+            if (Session["panier"] != null)
             {
                 Repository Repo = new Repository();
                 List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
@@ -71,9 +71,8 @@ namespace BoVoyage.Scenario1.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            else return RedirectToAction("Index","Home")
+            else return RedirectToAction("Index", "Home");
 
         }
-
     }
 }

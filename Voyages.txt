@@ -261,9 +261,33 @@ Pour la suite :
 -S'assurer qu'il n'y en aura qu'un seul (radiobox ou drop down en formulaire 1+ un peu de  c#)
 -Pratiquer un prix réduit s'il y a un enfant de -12 ans 
 -Rajouter numéro de téléphone ou email dans le formulaire
+-Rajouter la possibilité de souscrire une assurance 
+-Rajouter la possibilité de supprimer les dossiers 
+-Rajouter la possibilité de lister les voyageurs pour les opérations de mailing 
+-Une commande acceptée (ou non) peut être annulé donc faut que le client ait accès à ses commandes
+
 
 
 
 17/06/2021 : 16:00
 On a réglé les points de problèmes sur les différents controleurs et le site redirige globalement sur l'accueil dès 
-qu'un comportement imprévu se produit => on va régler la question des utilisateurs non client en essayant de réserver un voyage avec Ali 
+qu'un comportement imprévu se produit => on va régler la question des utilisateurs non client en essayant de réserver un voyage avec Ali
+
+17/06/2021: 20:00
+La question de la réservation avec un administrateur est réglé s'il n'est pas enregistré en tant que client , le code s'en charge.
+On va rajouter deux assurances dans la base de données 
+
+use BoVoyageDB
+go 
+insert into Assurance (Id,Annulation,Prix) values (NEWID(), 'Annulation','100')
+insert into Assurance (Id,Annulation,Prix) values (NEWID(), 'Imprevu','200')
+go
+
+17/06/2021 : 21:20
+On a rajouté la possibilité de souscrire une assurance pour chaque voyage qui s'ajoute au sous-total à payer à la fin.
+Et ça fonctionne qu'on en prenne une ou pas
+
+17/06/2021 : 21:36
+On va tenter de créer la page qui utilise webapi pour simuler un service de paiement bancaire 
+Au départ on lui mettra simplement une suite de chiffre donnée qu'il devra refuser de temps en temps ce qui fera passer 
+l'état de la commande à refuser

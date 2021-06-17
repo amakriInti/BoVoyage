@@ -293,6 +293,7 @@
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Reservation\Reserver.cshtml" />
     <Content Include="Views\Reservation\EntrerVoyageurs.cshtml" />
+    <Content Include="Views\Reservation\Login2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
