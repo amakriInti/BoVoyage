@@ -53,11 +53,12 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des voyages depuis formulaire
         -----------------------------------*/
-        public bool AddVoyageFormulaire_Metier()
+        //public bool AddVoyageFormulaire_Metier(string fournisseur, DateTime dateDepart, DateTime dateRetour, byte nbPlace, decimal prixAchat, decimal prixVente, string descriptionVoyage, string continent, string pays, string region, string DescriptionDestination)
+        public bool AddVoyageFormulaire_Metier(string[] NewVoyage)
         {
             try
             {
-                return true;
+                return repository.AddVoyage(NewVoyage);
             }
             catch (Exception)
             {
@@ -81,6 +82,13 @@ namespace BoVoyage.Metier
             return repository.DBVoyages(tri, choix);
         }
 
+        /*----------------------------------
+        //Détail des voyages
+        -----------------------------------*/
+        public object DetailsVoyage(string id)
+        {
+            return repository.DetailsVoyage(id);
+        }
         /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/

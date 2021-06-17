@@ -57,7 +57,6 @@ namespace BoVoyage.Scenario1.Controllers
             }
         }
 
-        }
         public ActionResult DetailsVoyage(string id)
         {
             if (id == null) return RedirectToAction("Index");

@@ -45,26 +45,6 @@
 </div>
 
 <script>
-    $('#dededede').click(function () {
-        var lieu = $('#lieu').val();
-        $.ajax({
-            type: "GET",
-            url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
-            datatype: 'application/json',
-            contentType: 'application/json',
-            success: function (data, status) {
-                if (status == "success") {
-                    fragment = "<select id='lieu'>" +
-                        "<option> </option>";
-                    for (var i = 0; i < data.count + 1; i++)
-                    {
-                        fragment+= "<option value="+data[i]+">"+data[i]+"</option>" 
-                    }
-                    fragment += "</select >";
-
-
-
-
 
     $('#listeVoyageTrie').click(function () {
         var lieu = $('#lieu').val();
