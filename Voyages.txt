@@ -204,3 +204,11 @@ On peut faire toutes les étapes de réservation jusqu'au "paiement"
 2 soucis pour l'instant :
 - J'ai oublié de passer par le panier (ça devrait vite se régler)
 - L'état des dossiers ne se met pas à jour quand on paye
+
+17/06/2021 : 9:30
+On va régler la question du panier et décaler la déclaration du dossier pour faire en sorte que le dossier ne se crée que quand on valide le panier
+(problème je ne veux pas qu'on puisse confirmer sans avoir renseigné les détails des voyageurs, on verra...) 
+
+17/06/2021: 10:30
+Les réservations s'ajoutent désormais au panier du client qui s'affiche en entier après chaque nouvelle réservation
+Maintenant il faut régler la question du dossier.

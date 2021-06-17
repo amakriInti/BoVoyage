@@ -204,6 +204,7 @@
     <Compile Include="Dal\Dossier.cs" />
     <Compile Include="Dal\Employe.cs" />
     <Compile Include="Dal\Fournisseur.cs" />
+    <Compile Include="Dal\ItemPanier.cs" />
     <Compile Include="Dal\LignePanier.cs" />
     <Compile Include="Dal\Model1.cs" />
     <Compile Include="Dal\Repository.cs" />

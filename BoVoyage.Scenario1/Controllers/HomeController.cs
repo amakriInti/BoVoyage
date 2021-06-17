@@ -76,16 +76,22 @@ namespace BoVoyage.Scenario1.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Reserver(Guid? id_voyage,int nb_voyageurs)//Permet de réserver le voyage avec le bon nombre de passagers
+        public ActionResult Reserver(int nb_voyageurs)//Permet de réserver le voyage avec le bon nombre de passagers
         {
             Repository Repo = new Repository();
+            Guid id_voyage = Guid.Parse(System.Web.HttpContext.Current.Request.Form["id_voyage"]);//On récupère l'id du voyage
             //Repo.NouveauDossier(User.Identity.GetUserName(), vyg.Id);
-            Guid? id_dossier = Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
-            return RedirectToAction("EntrerVoyageurs", "Home",new { id_doss = id_dossier, nombre_voyageurs = nb_voyageurs });
+            //Guid? id_dossier = Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
+            if (Session["panier"] == null)//Si le panier existe pas on le crée sinon on le récupère
+            { Session["panier"] = new List<ItemPanier>(); }
+            List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];//récupère le panier
+            panier_courant.Add(new ItemPanier { voyage = Repo.GetVoyage(id_voyage), nombre_voyageurs = nb_voyageurs });
+            Session["panier"] = panier_courant;
+            return RedirectToAction("EntrerVoyageurs", "Home",new { nombre_voyageurs = nb_voyageurs });
         }
 
         [Authorize]
-        public ActionResult EntrerVoyageurs(Guid? id_doss, int nombre_voyageurs)//Formulaire
+        public ActionResult EntrerVoyageurs(int nombre_voyageurs)//Formulaire
         {
             Repository Repo = new Repository();
             List<Voyageur> Vygrs = new List<Voyageur>();//permet d'afficher le bon libellé dans le formulaire 
@@ -94,7 +100,7 @@ namespace BoVoyage.Scenario1.Controllers
                 Vygrs.Add(new Voyageur());
             }
             ViewBag.nombre_voyageurs = nombre_voyageurs;
-            ViewBag.id_dossier =id_doss;
+            //ViewBag.id_dossier =id_doss;
             return View(Vygrs);
         }
 
@@ -103,7 +109,6 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult EntrerVoyageurs()//Récupère l'id du voyage choisi
         {
             Repository Repo = new Repository();
-            Guid? id_doss = Guid.Parse(System.Web.HttpContext.Current.Request.Form["id_dossier"]);
             int nombre_voyageurs = Convert.ToInt32(System.Web.HttpContext.Current.Request.Form["nb_vg"]);
             for (int i =  0; i < nombre_voyageurs ; i++)
             {
@@ -114,26 +119,32 @@ namespace BoVoyage.Scenario1.Controllers
                     DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
                     IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]),
                 };
-                Vygr.Dossiers.Add(Repo.GetDossier(Guid.Parse(System.Web.HttpContext.Current.Request.Form["id_dossier"])));
+
                 Repo.AddVoyageur(Vygr);
                 
-                    
+                //Une fois les voyageurs ajoutés On met le voyage au panier
+
+
+
             }
             
-            return RedirectToAction("Confirmation", "Home",new {id_dossier = id_doss });
+            return RedirectToAction("Confirmation", "Home");// va à confirmation... on ne crée pas de dossier pour l'instant
         }
 
-        public ActionResult Confirmation(Guid? id_dossier)
+        public ActionResult Confirmation()// On va simplement faire afficher dans 
         {
-            Repository Repo = new Repository();
-            Dossier Doss = Repo.GetDossier(id_dossier);
-            return View(Doss);
+            /*Repository Repo = new Repository();
+            Dossier Doss = Repo.GetDossier(id_dossier);//je pourrais créer le dossier ici
+            return View(Doss);*/
+            List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+            ViewBag.NomClient = User.Identity.GetUserName();// On mettra le login pour l'instant
+            return View(panier_courant);
         }
 
-        public ActionResult Payer(Guid? id_dossier)
+        public ActionResult Payer()
         {
             Repository Repo = new Repository();
-            Repo.DossierPaye(id_dossier);
+            //Repo.DossierPaye(id_dossier);
             return RedirectToAction("Index", "Home");
         }
 
