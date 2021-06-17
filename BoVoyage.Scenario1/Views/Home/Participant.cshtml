@@ -1,74 +1,4 @@
-﻿<script>
-
-    function MultiPost() {
-        $(document).ready(function () {
-            var element = $(".suite div");
-            var nombre = element.length + 1;
-            var i = 1;
-            for (i; i <= nombre; i++) {
-                GoToAssurance();
-            }
-        })
-    }
-
-    function GoToAssurance() {
-
-        var Nom = document.getElementById("nom").value;
-        var Prenom = document.getElementById("prenom").value;
-        var Mail = document.getElementById("mail").value;
-        var IsAccompagnant;
-        var moisId = document.getElementById("mois");
-        if (document.getElementById("accompagnant").checked == true) { IsAccompagnant = true }
-        else { IsAccompagnant = false };
-        var Annee = document.getElementById("annee").value;
-        var Mois = moisId.value;
-        var Jour = document.getElementById("jour").value;
-        var Naissance = new Date(Annee, Mois, Jour);
-        var NaissanceC = Naissance.toJSON();
-        alert(Nom)
-
-        var div2 = document.getElementById("formulaire2").innerHTML;
-        var Nom2 = div2.getElementById("nom").innerHTML;
-        alert(div2)
-        
-
-        //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
-
-    }
-
-    function MultipliParticipant() {
-        var x = document.getElementById("selection").value;
-        $(document).ready(function () {
-            var element = $(".suite div");
-            var nombre = element.length;
-            if (nombre < x) {
-                for (nombre; nombre < x; nombre++) {
-                    document.getElementById("nb").innerHTML = nombre + 1
-                    AjoutParticipant(nombre + 1);
-                }
-            }
-            if (nombre >= x) {
-                for (nombre; nombre > x; nombre--) {
-                    SupprParticipant();
-                }
-            }
-            document.getElementById("nb").innerHTML = 1
-        });
-    }
-
-    function AjoutParticipant(t) {
-        var para = document.createElement("div");
-        var d = document.getElementById("formulaire1").innerHTML;
-        para.innerHTML = d;
-        para.setAttribute("id", "formulaire" + t)
-        document.getElementById("suite").appendChild(para);
-    }
-
-    function SupprParticipant() {
-        var suite = document.getElementById("suite");
-        suite.removeChild(suite.lastChild);
-    }
-</script>
+﻿
 
 
 <br />
@@ -160,6 +90,66 @@
                         </select>
                         année
                         <select id="annee">
+                            <option>1920</option>
+                            <option>1921</option>
+                            <option>1922</option>
+                            <option>1923</option>
+                            <option>1924</option>
+                            <option>1925</option>
+                            <option>1926</option>
+                            <option>1927</option>
+                            <option>1928</option>
+                            <option>1929</option>
+                            <option>1930</option>
+                            <option>1931</option>
+                            <option>1932</option>
+                            <option>1933</option>
+                            <option>1934</option>
+                            <option>1935</option>
+                            <option>1936</option>
+                            <option>1937</option>
+                            <option>1938</option>
+                            <option>1939</option>
+                            <option>1940</option>
+                            <option>1941</option>
+                            <option>1942</option>
+                            <option>1943</option>
+                            <option>1944</option>
+                            <option>1945</option>
+                            <option>1946</option>
+                            <option>1947</option>
+                            <option>1948</option>
+                            <option>1949</option>
+                            <option>1950</option>
+                            <option>1951</option>
+                            <option>1952</option>
+                            <option>1953</option>
+                            <option>1954</option>
+                            <option>1955</option>
+                            <option>1956</option>
+                            <option>1957</option>
+                            <option>1958</option>
+                            <option>1959</option>
+                            <option>1960</option>
+                            <option>1961</option>
+                            <option>1962</option>
+                            <option>1963</option>
+                            <option>1964</option>
+                            <option>1965</option>
+                            <option>1966</option>
+                            <option>1967</option>
+                            <option>1968</option>
+                            <option>1969</option>
+                            <option>1970</option>
+                            <option>1971</option>
+                            <option>1972</option>
+                            <option>1973</option>
+                            <option>1974</option>
+                            <option>1975</option>
+                            <option>1976</option>
+                            <option>1977</option>
+                            <option>1978</option>
+                            <option>1979</option>
                             <option>1980</option>
                             <option>1981</option>
                             <option>1982</option>
@@ -217,4 +207,99 @@
     </div>
 </div>
 
-<button type="button" onclick="GoToAssurance()"> Valider </button>
+<button type="button" onclick="MultiPost()"> Valider </button>
+
+<script>
+
+    function MultiPost() {
+        var list = [];
+        var element = $(".suite div");
+        var nombre = element.length;
+        var i = 1;
+        for (i; i < nombre + 1; i++) {
+            var Participant = new Object();
+            Participant = GoToAssurance(i);
+            //var Contenue = GoToAssurance(i);
+            //alert("Contenue=" + Contenue);
+            //list.push(Contenue);
+            //alert("list=" + list);
+            //alert(list[0].nom)
+            $.ajax({                type: "POST",                url: "https://localhost:44307/api/APIVoyage",                dataType: 'json',                //datatype: 'application/json',                //contentType: 'application/json',                data: Participant,                success: function (data, status, xhr) { },
+                error: function (xhr, status, error) {
+                    alert('Erreur de communication');
+                }
+            });
+    
+        }
+        
+    }
+    
+    function GoToAssurance(t) {
+        //var Nom = document.getElementById("nom").value;
+        //var Prenom = document.getElementById("prenom").value;
+        //var Mail = document.getElementById("mail").value;
+    
+        //var IsAccompagnant;
+        //var moisId = document.getElementById("mois");
+        //if (document.getElementById("accompagnant").checked == true) { IsAccompagnant = true }
+        //else { IsAccompagnant = false };
+        //var Annee = document.getElementById("annee").value;
+        //var Mois = moisId.value;
+        //var Jour = document.getElementById("jour").value;
+        //var Naissance = new Date(Annee, Mois, Jour);
+        //var NaissanceC = Naissance.toJSON();
+    
+    
+        var Nom = $('#formulaire' + t + ' #nom').val();
+    
+        var Prenom = $('#formulaire' + t + ' #prenom').val();
+        var Mail = $('#formulaire' + t + ' #mail').val();
+    
+        var IsAccompagnant = false;
+        if ($('#formulaire' + t + ' #accompagnant').prop("checked") == true) { IsAccompagnant = true; }
+    
+        var Annee = $('#formulaire' + t + ' #annee').val();
+        var Mois = $('#formulaire' + t + ' #mois').val();
+        var Jour = $('#formulaire' + t + ' #jour').val();
+        var NaissanceC = new Date(Annee, Mois, Jour);
+        var Naissance = NaissanceC.toJSON();
+    
+        var Participant = { "nom": Nom, "prenom": Prenom, "mail": Mail, "isAccompagnant": IsAccompagnant, "naissance": Naissance };
+        return Participant;
+    
+        //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
+        
+    
+    }
+
+    function MultipliParticipant() {
+        var x = document.getElementById("selection").value;
+        var element = $(".suite div");
+        var nombre = element.length;
+        if (nombre < x) {
+            for (nombre; nombre < x; nombre++) {
+                document.getElementById("nb").innerHTML = nombre + 1;
+                AjoutParticipant(nombre + 1);
+            }
+        }
+        if (nombre >= x) {
+            for (nombre; nombre > x; nombre--) {
+                SupprParticipant();
+            }
+        }
+        document.getElementById("nb").innerHTML = 1;
+    }
+
+    function AjoutParticipant(t) {
+        var para = document.createElement("div");
+        var d = document.getElementById("formulaire1").innerHTML;
+        para.innerHTML = d;
+        para.setAttribute("id", "formulaire" + t)
+        document.getElementById("suite").appendChild(para);
+    }
+
+    function SupprParticipant() {
+        var suite = document.getElementById("suite");
+        suite.removeChild(suite.lastChild);
+    }
+</script>
