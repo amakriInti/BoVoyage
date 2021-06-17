@@ -12,13 +12,13 @@ namespace BoVoyage.Donnees
     using System;
     using System.Collections.Generic;
     
-    public partial class DestinationVoyage
+    public partial class DossierVoyageur
     {
-        public long Id { get; set; }
-        public System.Guid Destination { get; set; }
-        public System.Guid Voyage { get; set; }
+        public long id { get; set; }
+        public System.Guid Voyageur { get; set; }
+        public System.Guid Dossier { get; set; }
     
-        public virtual Destination Destination1 { get; set; }
-        public virtual Voyage Voyage1 { get; set; }
+        public virtual Dossier Dossier1 { get; set; }
+        public virtual Voyageur Voyageur1 { get; set; }
     }
 }

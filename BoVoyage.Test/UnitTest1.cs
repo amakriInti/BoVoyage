@@ -11,6 +11,14 @@ namespace BoVoyage.Test
     public class UnitTest1
     {
         [TestMethod]
+        public void TestRepo()
+        {
+            // Attention à vérifier la connexion string dans le App.config du projet BoVoyage.Test
+            Repository repository = new Repository();
+            repository.LoadDroits();
+        }
+
+        //[TestMethod]
         public void TestLoadDroits()
         {
             // Attention à vérifier la connexion string dans le App.config du projet BoVoyage.Test
@@ -22,6 +30,7 @@ namespace BoVoyage.Test
             Assert.IsTrue(Roles.IsUserInRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString()));
             Assert.IsTrue(Roles.IsUserInRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString()));
         }
+        /*
         [TestMethod]
         public void TestDossiers()
         {
@@ -29,5 +38,6 @@ namespace BoVoyage.Test
 
             var l = repo.GetDossiers();
         }
+        */
     }
 }

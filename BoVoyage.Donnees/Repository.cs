@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace BoVoyage.Donnees
 {
     public class Repository
     {
         private BoVoyageContext Context = new BoVoyageContext();
+        private Droits droits = new Droits();
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();
@@ -50,7 +52,7 @@ namespace BoVoyage.Donnees
                     DateAller = DateTime.Parse(tab[0]),
                     DateRetour = DateTime.Parse(tab[1]),
                     MaxVoyageur = byte.Parse(tab[2]),
-                    Fournisseur = tab[3],
+                    Fournisseur = tab[3], 
                     PrixAchatTotal = decimal.Parse(tab[4]),
                     PrixVenteUnitaire = decimal.Parse(tab[5]),
                     Description = tab[6]
@@ -176,11 +178,11 @@ namespace BoVoyage.Donnees
             Context.SaveChanges();
             return dossierId;
         }
-        public void DeleteDossier(Guid Id)
+        public void DeleteDossier(Guid dossierId)
         {
-            Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == Id);
+            Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == dossierId);
             Assurance ass = Context.Assurances.FirstOrDefault(a => a.Id == doss.Assurance);
-            ICollection<Voyageur> voyageurs = doss.Voyageurs;
+            IQueryable<Voyageur> voyageurs = Context.DossierVoyageurs.Where(dv => dv.Dossier == dossierId).Select(dv => Context.Voyageurs.FirstOrDefault(v => v.Id == dv.Voyageur));
             
             // Suppression des voyageurs
             foreach(Voyageur voyageur in voyageurs)
@@ -210,10 +212,35 @@ namespace BoVoyage.Donnees
                 Id = d.Id,
                 DateAller = d.Voyage1.DateAller,
                 DateRetour = d.Voyage1.DateRetour,
-                NbVoyageurs = (byte) d.Voyageurs.Count(),
-                Fournisseur = d.Voyage1.Fournisseur,
+                NbVoyageurs = (byte)Context.DossierVoyageurs.Where(dv => dv.Dossier == d.Id).Count(),
+                Fournisseur = d.Voyage1.Fournisseur.ToString(),
                 etat = (Etat) d.Etat
             });
+        }
+
+        public void LoadDroits()
+        {
+            Dictionary<string, StatutEnum> etats = droits.Load();
+            foreach (KeyValuePair<string, StatutEnum> kvp in etats)
+            {
+                if (!Roles.IsUserInRole(kvp.Key, kvp.Value.ToString())) Roles.AddUserToRole(kvp.Key, kvp.Value.ToString());
+
+                if (Context.Employes.FirstOrDefault(e => e.Login == kvp.Key) is null)
+                {
+                    Context.Employes.Add(new Employe
+                    {
+                        Id = Guid.NewGuid(),
+                        Login = kvp.Key,
+                        MotDePasse = "Non traité", // Pas de stockage de mots de passe hors bdd locale
+                        Statut = (byte)kvp.Value
+                    });
+                }
+                else
+                {
+                    Context.Employes.FirstOrDefault(e => e.Login == kvp.Key).Statut = (byte)kvp.Value;
+                }
+            }
+            Context.SaveChanges();
         }
     }
 

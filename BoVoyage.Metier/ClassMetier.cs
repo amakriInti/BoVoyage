@@ -11,7 +11,6 @@ namespace BoVoyage.Metier
     public class ClassMetier
     {
         private Repository repository = new Repository();
-        private Droits droits = new Droits();
 
         /*----------------------------------
         //Ajout des voyages depuis fichier CSV
@@ -86,7 +85,7 @@ namespace BoVoyage.Metier
         -----------------------------------*/
         public void Load()
         {
-            droits.Load();
+            repository.LoadDroits();
         }
     }
 }
