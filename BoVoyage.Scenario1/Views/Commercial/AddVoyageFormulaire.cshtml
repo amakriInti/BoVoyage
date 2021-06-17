@@ -23,7 +23,7 @@
                         <div style="width:20%;" class="input-group-prepend ">
                             <label class="input-group-text " for="Fournisseur">Fournisseur :</label>
                         </div>
-                        <select style="width:50%;" class="form-select" id="Fournisseur" onchange="TextboxAutreFournisseur()" required>
+                        <select style="width:50%;" class="form-select" id="Fournisseur" onclick="ListeFournisseur()" onchange="TextboxAutreFournisseur()" required>
                             <option selected disabled value="">Choix du fournisseur</option>
                             <option value=1>One</option>
                             <option value=2>Two</option>
@@ -256,6 +256,42 @@
 
 @section DatePicker{
     <script>
+
+        /*--------------------------------------
+        //Remplissage combobox fournisseur
+        --------------------------------------*/
+        /*function ListeFournisseur() {
+            var lieu = $('#lieu').val();
+            var txtlieu = $('#txtlieu').val();
+            $.ajax({
+                type: 'GET',
+                url: window.location.origin + "/api/Voyages/?lieu=fournisseur&txtlieu="+,
+                datatype: 'application/json',
+                contentType: 'application/json',
+                success: function (data, status) {
+                    if (status == "success") {
+                        var reponse = "<table class='table'><tr><th><strong>Domicile</strong></th><th><strong>Visiteur</strong></th><th><strong>Score Domicile</strong></th><th><strong>Score Visiteur</strong></th><th></th></tr>";
+                        for (var match in data) {
+                            reponse += "<tr><td>" +
+                                data[match].Equipe1 + "</td><td>" +
+                                data[match].Equipe2 + "</td><td>" +
+                                data[match].Score1 + "</td><td>" +
+                                data[match].Score2 + "</td><td>" +
+                                "<a href='/home/edit/" + data[match].Id + "'>Editer</a> | " +
+                                "<a href='/home/delete/" + data[match].Id + "'>Supprimer</a></td></tr>";
+                        }
+                        reponse += "</table>";
+                        $("#div_ListeMatche").html(reponse);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("error");
+                    //$("#divListePersonne").html("Erreur");
+                }
+            });
+        }*/
+
+
         /*--------------------------------------
         //Ajout textbox si nouveau fournisseur
         --------------------------------------*/
