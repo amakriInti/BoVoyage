@@ -13,16 +13,13 @@ namespace BoVoyage.Scenario1.Controllers
         private ClassMetier metier = new ClassMetier();
         public bool PostParticipant(Participant obj)
         {
-            var test = obj;
             string nom = obj.nom;
             string prenom = obj.prenom;
             string mail = obj.mail;
             DateTime naissance = obj.naissance;
             bool isAccompagnant = obj.isAccompagnant;
-            //metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
+            metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
             return true;
-
-            //List<Participant> list
         }
         
     }

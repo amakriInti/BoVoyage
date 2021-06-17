@@ -207,51 +207,38 @@
     </div>
 </div>
 
-<button type="button" onclick="MultiPost()"> Valider </button>
+<button type="button" onclick="MultiPost()" id="btInscrire"> Inscrire les participants </button>
+<button type="button" onclick="Assurance()"> Etape suivante </button>
 
 <script>
+    function Assurance() {
+        window.location = "https://localhost:44307/Home/Assurance"
+    }
 
     function MultiPost() {
-        var list = [];
+
         var element = $(".suite div");
         var nombre = element.length;
         var i = 1;
+
         for (i; i < nombre + 1; i++) {
+
             var Participant = new Object();
             Participant = GoToAssurance(i);
-            //var Contenue = GoToAssurance(i);
-            //alert("Contenue=" + Contenue);
-            //list.push(Contenue);
-            //alert("list=" + list);
-            //alert(list[0].nom)
-            $.ajax({                type: "POST",                url: "https://localhost:44307/api/APIVoyage",                dataType: 'json',                //datatype: 'application/json',                //contentType: 'application/json',                data: Participant,                success: function (data, status, xhr) { },
+
+            $.ajax({                type: "POST",                url: "https://localhost:44307/api/APIVoyage",                dataType: 'json',                data: Participant,                success: function (data, status, xhr) { },
                 error: function (xhr, status, error) {
                     alert('Erreur de communication');
                 }
             });
-    
         }
-        
+        alert("Participants correctement inscrit")
+        $('#btInscrire').prop('disabled', true);
     }
     
     function GoToAssurance(t) {
-        //var Nom = document.getElementById("nom").value;
-        //var Prenom = document.getElementById("prenom").value;
-        //var Mail = document.getElementById("mail").value;
-    
-        //var IsAccompagnant;
-        //var moisId = document.getElementById("mois");
-        //if (document.getElementById("accompagnant").checked == true) { IsAccompagnant = true }
-        //else { IsAccompagnant = false };
-        //var Annee = document.getElementById("annee").value;
-        //var Mois = moisId.value;
-        //var Jour = document.getElementById("jour").value;
-        //var Naissance = new Date(Annee, Mois, Jour);
-        //var NaissanceC = Naissance.toJSON();
-    
     
         var Nom = $('#formulaire' + t + ' #nom').val();
-    
         var Prenom = $('#formulaire' + t + ' #prenom').val();
         var Mail = $('#formulaire' + t + ' #mail').val();
     
