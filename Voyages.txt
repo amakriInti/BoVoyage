@@ -229,4 +229,26 @@ Le reservation controller fonctionne
 On va tenter de rajouter un une champ id_dossier à l'item panier
 
 17/06/2021 : 14:58
-Le problème des etat est resolu et le reservation controller fonctionne 
+Le problème des etat est resolu et le reservation controller fonctionne
+
+-----------------------------------------------------------------------------
+On s'arrête et on voit si les fonctions implémentés fonctionnent toujours bien
+
+
+Premier Test : Essayer d'aller sur toutes les pages directement sans passer par le site 
+Panier => envoie sur un panier vide
+Confirmation => Renvoie à la page d'authentification
+ValiderPanier => "
+De manière générale les pages sont en Authorize donc on doit forcément se connecter.
+
+Deuxième test : On se connecte en tant que client et on  refait la même
+Home Controller 
+Panier => le panier est vide
+ValiderPanier => Le site plante : x
+Confirmation => la page plante car le panier est vide
+
+Reservation Controller 
+EntrerVoyageurs => le site ne plante pas mais on arrive sur une page avec un formulaire vide... Et si on clique, ça plante.
+Reserver => le site plante carrément à cause d'un paramètre null
+
+Note : Il faudra toujours s'assurer que qqun qui se connecte en tant  que client est enregistré comme client 
