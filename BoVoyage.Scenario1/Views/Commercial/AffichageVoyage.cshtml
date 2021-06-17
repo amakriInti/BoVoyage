@@ -36,34 +36,14 @@
         <option value="Region"> Region</option>
     </select>
     <input type="text" id="txtlieu" />
-    <!-- <input type="button" id="listeAlbum" value="Go" / >-->
     <br /> <br />
     <input type="button" id="listeVoyageTrie" value="Go" />
     <br /> <br />
 
-    <div id="div1"><p> on va marqué ici</p> </div>
+    <div id="div1"><p> résultat ici </p> </div>
 </div>
 
 <script>
-    $('#dededede').click(function () {
-        var lieu = $('#lieu').val();
-        $.ajax({
-            type: "GET",
-            url: "https://localhost:44307//Api/Voyages/?lieu=" + lieu + "&txtlieu=" + txtlieu,
-            datatype: 'application/json',
-            contentType: 'application/json',
-            success: function (data, status) {
-                if (status == "success") {
-                    fragment = "<select id='lieu'>" +
-                        "<option> </option>";
-                    for (var i = 0; i < data.count + 1; i++)
-                    {
-                        fragment+= "<option value="+data[i]+">"+data[i]+"</option>" 
-                    }
-                    fragment += "</select >";
-
-
-
 
 
     $('#listeVoyageTrie').click(function () {
@@ -80,31 +60,25 @@
                     for (var i = 0; i < data.length; i+=3) {
                         if (i < data.length) {
                             fragment += "<tr><td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
-                                "<img src='/Photo/bresil1.jpg' style='width : 100%' />" +
+                                "<img src='/Photo/" + data[i].Image + "' style='width: 100 % ' />" +
                                 " <div class='card-body'> <h3 class='card-title'>" + data[i].Pays + "</h3> <p class='card-text'>" +
-                                "Pourquoi aller au Brésil ? Tout simplement pour son exubérance, sa nature, son histoire, la culture de ses tribus amazoniennes." +
-                                "Il y a quelque chose d’irrationnel au Brésil, qui stimule la joie de vivre. Naturellement chaleureux et accueillants," +
-                                "les Brésiliens n’ont que peu d’efforts à faire pour enchanter le visiteur.Mais ce qui rend un voyage au Brésil à nul autre pareil, c’est que cette atmosphère unique s’ajoute à l’impressionnant panel de richesses du géant sud - américain." +
-                                "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i].Id + "' class='btn btn-primary'>A partir de " + data[i].PrixVenteUnitaire + "€</a></div></td>";
+                                data[i].DescriptionDestination +
+                                "</p > <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i].Id + "' class='btn btn-primary'>A partir de " + data[i].PrixVenteUnitaire + "€</a></div ></td > ";
                         }
 
                         if (i + 1 < data.length) {
                             fragment += "<td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
-                                "<img src='/Photo/cuba1.jpg' style='width : 100%' />" +
+                                "<img src='/Photo/" + data[i + 1].Image + "' style='width : 100%' />" +
                                 " <div class='card-body'> <h3 class='card-title'>" + data[i + 1].Pays + "</h3> <p class='card-text'>" +
-                                "Un classique entre ville et mer! Ce voyage vous promet modernité, élégance et confort, situé au cœur du quartier des affaires de La Havane, en face du Miramar Trade Center et à proximité du front de mer." +
-                                "Cet hôtel propose une connexion Wi - Fi gratuite et est entièrement non - fumeurs, conformément aux tendances actuelles de l'industrie hôtelière." +
-                                "Recommandé pour les voyages d’affaires, les voyages d'incitation, les mariages et les lunes de miel." +
+                                data[i+1].DescriptionDestination +
                                 "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i + 1].Id + "' class='btn btn-primary'>A partir de " + data[i + 1].PrixVenteUnitaire + "€</a></div></td>";
                         }
 
                         if (i + 2 < data.length) {
                             fragment += "<td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
-                                "<img src='/Photo/kenya2.jpg' style='width : 100%' />" +
+                                "<img src='/Photo/" + data[i + 2].Image + "' style='width : 100%' />" +
                                 " <div class='card-body'> <h3 class='card-title'>" + data[i + 2].Pays + "</h3> <p class='card-text'>" +
-                                "Un voyage au Kenya, destination des safaris par excellence, est l’occasion de découvrir une nature puissante et omniprésente et de rencontrer le peuple masaï, gardien de ce paradis aux traditions ancestrales. Nos spécialistes de l'Afrique" +
-                                "ont concocté pour vous les meilleures offres de circuits accompagnés et de safaris au Kenya…" +
-                                "À vous de choisir l’itinéraire de vos rêves, sur les pistes de Karen Blixen et d’Hemingway…" +
+                                data[i+2].DescriptionDestination +
                                 "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i + 2].Id + "' class='btn btn-primary'>A partir de " + data[i + 2].PrixVenteUnitaire + "€</a></div></td></tr>";
                         }
                         }

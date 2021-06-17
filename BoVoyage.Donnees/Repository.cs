@@ -82,10 +82,12 @@ namespace BoVoyage.Donnees
                             Fournisseur = Voyage.Fournisseur,
                             PrixAchatTotal = Voyage.PrixAchatTotal,
                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                            Description = Voyage.Description +" "+ Destination.Description,
+                            DescriptionVoyage = Voyage.Description,
+                            DescriptionDestination = Destination.Description,
                             Continent = Destination.Continent,
                             Pays = Destination.Pays,
-                            Region = Destination.Region
+                            Region = Destination.Region,
+                            Image = Voyage.Image
                         });
             //return query.ToList();
             if (tri == "DateAller")
@@ -128,10 +130,12 @@ namespace BoVoyage.Donnees
                                  Fournisseur = Voyage.Fournisseur,
                                  PrixAchatTotal = Voyage.PrixAchatTotal,
                                  PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                                 Description = Voyage.Description + " " + Destination.Description,
+                                 DescriptionVoyage = Voyage.Description,
+                                 DescriptionDestination = Destination.Description,
                                  Continent = Destination.Continent,
                                  Pays = Destination.Pays,
-                                 Region = Destination.Region
+                                 Region = Destination.Region,
+                                 Image = Voyage.Image
                              });
 
                 return query.ToList();

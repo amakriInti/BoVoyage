@@ -42,24 +42,6 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
         /*----------------------------------
-        //Ajout des voyages depuis fichier CSV
-        -----------------------------------*/
-        public ActionResult LectureCsv()
-        {
-            try
-            {
-                metier.AddVoyage();
-                //var ps = metier.DBVoyages(choix);
-                return View();
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
-
-        }
-
-        /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
         public ActionResult AffichageVoyage(string lieu, string txtlieu)
@@ -75,7 +57,6 @@ namespace BoVoyage.Scenario1.Controllers
             }
         }
 
-        }
         public ActionResult DetailsVoyage(string id)
         {
             if (id == null) return RedirectToAction("Index");
