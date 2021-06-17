@@ -20,31 +20,44 @@
         @{
             foreach (var item in Model)
             {
+
                 <tr>
                     <td>
-                        @item.Id;
+                        @{ string image = "/Photo/" + @item.Image;}
+                        <img src="@image" style="width:50%" />;
+
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        @item.Pays;
+                        <h1> Pays : @item.Pays</h1>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        @item.Continent;
+                        <h2> Continent : @item.Continent </h2>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        @item.DescriptionVoyage;
+                        <h3> Date et Horaires de Départ :  @item.DateAller </h3>
+
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        @item.DescriptionDestination;
+                        <h3> Date et Horaires de Retour : @item.DateRetour </h3>
+
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <a href="#" class="btn btn-primary">Réservation</a>
+
+                    </td>
+                </tr>
+
 
             }
         }
