@@ -74,7 +74,8 @@ namespace BoVoyage.Donnees
             var query = (from Voyage in Context.Voyages
                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
-                        select new VoyageDetail { 
+                        select new VoyageDetail {
+                            Id = Voyage.Id,
                             DateAller = Voyage.DateAller,
                             DateRetour = Voyage.DateRetour,
                             MaxVoyageur = Voyage.MaxVoyageur,
