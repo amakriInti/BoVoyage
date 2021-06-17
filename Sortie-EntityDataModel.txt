@@ -1,0 +1,6 @@
+﻿Un élément avec la même clé a déjà été ajouté.
+Impossible d'analyser le fichier de configuration. Le message d'erreur est : 'Un élément avec la même clé a déjà été ajouté.'. Essayez de modifier le fichier manuellement, puis de l'enregistrer.
+Le modèle a été généré avec des avertissements ou des erreurs.Model1.edmxConsultez la Liste d'erreurs pour plus d'informations. Ces problèmes doivent être résolus avant l'exécution de votre application.
+Le chargement des métadonnées à partir de la base de données a pris 00:00:01.2212232.
+La génération du modèle a pris 00:00:02.0540656.
+Impossible de mettre à jour le fichier App.Config en raison de l'exception suivante : 'Un élément avec la même clé a déjà été ajouté.'

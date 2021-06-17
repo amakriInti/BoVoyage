@@ -15,11 +15,12 @@ namespace BoVoyage.Donnees
             public string Fournisseur { get; set; }
             public decimal PrixAchatTotal { get; set; }
             public decimal PrixVenteUnitaire { get; set; }
-            public string Description { get; set; }
+            public string DescriptionVoyage { get; set; }
+            public string DescriptionDestination { get; set; }
             public string Continent { get; set; }
             public string Pays { get; set; }
             public string Region { get; set; }
-
+            public string Image { get; set; }
         
     }
 }
