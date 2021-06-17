@@ -223,3 +223,6 @@ Gros changement. On va créer un réservation controleur pour toutes les pages o
 17/06/2021 : 12:33
 On a modifié la structure du code pour faire un appel à un ReservationController pour plus de simplicité
 ça évite d'avoir à passer les paramètres en cascade 
+
+17/06/2021 :
+Le reservation controller fonctionne 

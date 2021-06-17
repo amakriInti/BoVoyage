@@ -10,5 +10,7 @@ namespace BoVoyage.Scenario1.Dal
         public Voyage voyage { get; set; }
 
         public int nombre_voyageurs { get; set; }
+
+        //public Guid id_dossier { get; set; }
     }
 }

@@ -57,7 +57,7 @@ namespace BoVoyage.Scenario1.Controllers
             //--------------Update Panier-----------------------------------------------------------
 
             //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
-            Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
+            Guid id_dossier = (Guid)Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
             for (int i = 0; i < nb_voyageurs; i++)
             {
                 Guid Id_nouveau_voyageur = Guid.NewGuid();
@@ -69,12 +69,10 @@ namespace BoVoyage.Scenario1.Controllers
                     DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
                     IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]),
                 };
-
+                Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));
                 Repo.AddVoyageur(Vygr);
                 //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
                 //Une fois les voyageurs ajoutés On met le voyage au panier
-
-
 
             }
 
