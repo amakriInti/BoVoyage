@@ -226,6 +226,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TraitementBD.cs" />
+    <Compile Include="Models\VoyagesDestinations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Voyage.cs">
@@ -246,7 +247,7 @@
     <Content Include="Dessins\londres.jpg" />
     <Content Include="Dessins\moscou.jpg" />
     <Content Include="Dessins\mulhouse.jpg" />
-    <Content Include="Dessins\seoul2.jpg" />
+    <Content Include="Dessins\Seoul.jpg" />
     <Content Include="Dessins\tokyo.jpg" />
     <Content Include="Dessins\triangle_bas.png" />
     <Content Include="Dessins\triangle_haut.png" />

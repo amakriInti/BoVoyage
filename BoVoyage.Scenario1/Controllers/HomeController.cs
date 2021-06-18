@@ -13,7 +13,9 @@ namespace BoVoyage.Scenario1.Controllers
         TraitementBD tBD = new TraitementBD();
         public ActionResult Index()
         {
-            return View(tBD);
+            List<Voyage> vD = tBD.GetVoyages();
+            
+            return View(vD);
         }
 
         public ActionResult About()

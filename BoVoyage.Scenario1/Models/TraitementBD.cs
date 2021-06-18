@@ -10,11 +10,27 @@ namespace BoVoyage.Scenario1.Models
     {
         private BoVoyageContext Context = new BoVoyageContext();
 
+        public Guid Id
+        {
+            get
+            {
+                return Context.Voyages.Select(v => v.Id).FirstOrDefault();
+            }
+        }
+
+        internal List<Voyage> GetVoyages()
+        {
+            return Context.Voyages.ToList();
+            
+        }
+
         public int MaxVoyageur
         {
             get
             {
-                var res = Context.Voyages.Select(v => v.MaxVoyageur).FirstOrDefault();
+                var res = Context.Voyages
+                    .Select(v => v.MaxVoyageur)
+                    .FirstOrDefault();
                 return res;
             }
         }
@@ -103,6 +119,14 @@ namespace BoVoyage.Scenario1.Models
                 var res = Context.Destinations.Select(d => d.Region).FirstOrDefault();
                 return res;
             }
+        }
+        public List<Voyage> GetAllVoyages()
+        {
+            return Context.Voyages.ToList();
+        }
+        public List<Destination> GetAllDestinations()
+        {
+            return Context.Destinations.ToList();
         }
     }
 }
