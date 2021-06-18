@@ -86,6 +86,11 @@ namespace BoVoyage.Donnees
             }
         }
 
+        public IQueryable<Employe> GetCommerciaux()
+        {
+            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+        }
+
         public object DBVoyages(string tri, string choix)
         {
             var query = (from Voyage in Context.Voyages
