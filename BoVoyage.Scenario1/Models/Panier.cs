@@ -20,7 +20,7 @@ namespace BoVoyage.Scenario1.Models
         }
 
 
-        //--------------------------------------------AJOUT VOYAGE AU PANIER ---------------------------------------------------
+        //--------------------------------------------AJOUT VOYAGE ---------------------------------------------------
 
         public void Ajouter(Guid Voyage_Id)
         {
@@ -41,9 +41,6 @@ namespace BoVoyage.Scenario1.Models
             _context.SaveChanges();
         }
 
-        //--------------------------------------------SUPPRIMER VOYAGE DU PANIER ---------------------------------------------------
-
-
         public void Supprimer(Guid LigneID)
         {
             LignePanier ligne = _context.LignePaniers.SingleOrDefault(s => s.Id == LigneID);
@@ -55,44 +52,15 @@ namespace BoVoyage.Scenario1.Models
             }
         }
 
-        //--------------------------------------------EXTRACTION D'UNE LIGNE DU PANIER---------------------------------------------------
-
-        public LignePanier Ligne(Guid LigneID)
+        public decimal Total()
         {
-            return _context.LignePaniers.Include(l => l.Voyage).FirstOrDefault(m => m.Id == LigneID);
-        }
-
-        //--------------------------------------------EXTRACTION DE TOUTES LES LIGNES DU PANIER ---------------------------------------------------
-
-        public IList<LignePanier> Ligne()
-        {
-            IList<LignePanier> ls = _context.LignePaniers.Where(s => s.PanierID == _panierID).Include(l => l.Voyage).ToList();
-            return ls;
-        }
-
-        //--------------------------------------------TOTAL DU PANIER ---------------------------------------------------
-
-        //public decimal Total()
-        //{
-        //    decimal T = _context.LignePaniers.Sum(s => s.Montant());
-        //    return T;
-        //}
-
-        //--------------------------------------------NOMBRE DE LIGNES DU PANIER ---------------------------------------------------
-
-        public int Nombre()
-        {
-            int n = _context.LignePaniers.Where(s => s.PanierID == _panierID).ToList().Count;
-            return n;
+            decimal T = _context.LignePaniers.Where(s => s.PanierID == _panierID).Include(l => l.Voyage).Sum(s => (s.Montant()));
+            return T;
         }
 
         public void Dispose()
         {
-            if (_context != null)
-            {
-                _context.Dispose();
-                _context = null;
-            }
+            throw new NotImplementedException();
         }
 
     }

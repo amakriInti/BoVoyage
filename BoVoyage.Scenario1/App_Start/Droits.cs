@@ -13,23 +13,12 @@ namespace BoVoyage.Scenario1
         private static Repository Repo = new Repository();
         internal static void Load()
         {
-            // aspnet_regsql.exe -S .\SQLEXPRESS -E -A all -d BoVoyage
-
-            // Mettre dans web.config dans sytem.web :     
-            //< roleManager enabled = "true" cacheRolesInCookie = "true" cookieName = ".ASPROLES" defaultProvider = "DefaultRoleProvider" >
-            //         < providers >
-            //           < add connectionStringName = "BoVoyage" applicationName = "/" name = "DefaultRoleProvider" type = "System.Web.Security.SqlRoleProvider" />
-            //                </ providers >
-            //              </ roleManager >
+            
 
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("matthieu@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("matthieu@bovoyage.fr", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("morgane@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("morgane@bovoyage.fr", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("antony@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("antony@bovoyage.fr", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("loic@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("loic@bovoyage.fr", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("florentin@bovoyage.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("florentin@bovoyage.fr", StatutEnum.Admin.ToString());
-
+            if (!Roles.IsUserInRole("ali@bovoyage.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("ali@bovoyage.com", StatutEnum.Admin.ToString());
+            if (!Roles.IsUserInRole("andre@bovoyage.com", StatutEnum.Commercial.ToString())) Roles.AddUserToRole("andre@bovoyage.com", StatutEnum.Commercial.ToString());
 
             var mails = Repo.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)

@@ -1,6 +1,15 @@
-﻿@{ ViewBag.Title = "C Shark"; }
+﻿@model List<BoVoyage.Scenario1.Dal.Voyage>
+@{ ViewBag.Title = "C Shark"; }
 
 <body>
+    @{
+        foreach (var v in Model)
+        {
+            <hr />
+            @Html.ActionLink("Reserver" + v.Libelle, "Reserver", "Reservation", new { id = v.Id },null)
+        }
+    }
+
     <div class="modal-body row">
         <div class="col-md-6">
             <!-- Your first column here -->

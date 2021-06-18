@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BoVoyage.Scenario1.Models;
+using System.Web.Security;
+using BoVoyage.Scenario1.Dal;
 
 namespace BoVoyage.Scenario1.Controllers
 {
@@ -79,7 +81,16 @@ namespace BoVoyage.Scenario1.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                        var name = model.Email;
+                        if (Roles.IsUserInRole(name, StatutEnum.Admin.ToString())|| Roles.IsUserInRole(name, StatutEnum.Commercial.ToString()))
+                        {
+                            return RedirectToAction("Index", "Com");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -91,9 +102,10 @@ namespace BoVoyage.Scenario1.Controllers
             }
         }
 
-        //
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
+
+            //
+            // GET: /Account/VerifyCode
+            [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Nécessiter que l'utilisateur soit déjà connecté via un nom d'utilisateur/mot de passe ou une connexte externe
@@ -140,7 +152,7 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-        //
+        // Faudra penser à changer ça pour bien sécuriser l'intranet
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -154,7 +166,8 @@ namespace BoVoyage.Scenario1.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
+                    Repository Repo = new Repository();// On crée le client en même temps que l'utilisateur 
+                    Repo.NouveauClient(model.Email, model.Nom, model.Prenom);//On ajoute le nouveau client à la base de données
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

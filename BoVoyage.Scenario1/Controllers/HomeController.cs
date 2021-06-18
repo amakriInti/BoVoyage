@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using System.Web.Security;
 
 namespace BoVoyage.Scenario1.Controllers
@@ -13,23 +14,76 @@ namespace BoVoyage.Scenario1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            Repository Repo = new Repository();
+            List<Voyage> Voyages_Accueil = Repo.GetAllVoyages();
+            return View(Voyages_Accueil);
         }
+
 
         public ActionResult Panier()
         {
-            Repository Repo = new Repository();
-            var panier = Repo.GetPanier();
-
+            var panier = Session["panier"];
             return View(panier);
         }
 
-
-        public ActionResult UploadCsv()
+        public ActionResult Contact()
         {
-            Repository Repo = new Repository();
-            Repo.ReadCsv();
-            return View("Index");
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult ValiderPanier()
+        {
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                var panier_client = (List<ItemPanier>)Session["panier"];
+                return View(panier_client);
+            }
+            else return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+
+        public ActionResult Confirmation()// On va simplement faire afficher dans 
+        {
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                ViewBag.NomClient = User.Identity.GetUserName();// On mettra le login pour l'instant
+                return View(panier_courant);
+            }
+            else return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public ActionResult Payer()
+        {
+
+            if (Session["panier"] != null)
+            {
+                Repository Repo = new Repository();
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                foreach (var item in panier_courant)
+                {
+                    Repo.DossierPaye(item.id_dossier);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            else return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult PayerCarte()
+        {
+            ViewBag.montant = 600;
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                return View(panier_courant);
+            }
+            else return RedirectToAction("Index", "Home");
         }
     }
 }

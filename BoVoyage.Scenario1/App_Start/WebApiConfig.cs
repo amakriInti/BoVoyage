@@ -19,6 +19,12 @@ namespace BoVoyage.Scenario1
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "RoutePaiement",
+                routeTemplate: "api/Paiement/{id}",//Controleur Photo du WebApi. Donc pas une page web mais juste un appel à une ressource
+            defaults: new { controller = "Paiement", id = RouteParameter.Optional }
+            );
         }
     }
 }
