@@ -194,7 +194,7 @@ namespace BoVoyage.Donnees
         -------------------------------------------*/
         public Guid CreateAssurance(bool annulation, decimal prix)
         {
-            Guid assuranceId = new Guid();
+            Guid assuranceId = Guid.NewGuid();
             Assurance ass = new Assurance {
                 Id = assuranceId,
                 Annulation = annulation,
@@ -206,7 +206,7 @@ namespace BoVoyage.Donnees
         }
         public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId, Etat etat = Etat.EnAttente)
         {
-            Guid dossierId = new Guid();
+            Guid dossierId = Guid.NewGuid();
             Dossier doss = new Dossier {
                 Id = dossierId,
                 Voyage = voyageId,
