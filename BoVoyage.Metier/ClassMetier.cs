@@ -20,6 +20,10 @@ namespace BoVoyage.Metier
         {
             //Lecture du fichier csv -> ps
             //Récupère tous les fichier .csv du répertoire et le met dans un tableau de string
+            //Diego
+            //string[] files = Directory.GetFiles(@"C:\Users\user\source\repos\BoVoyage\BoVoyage.Scenario1\Voyage_csv\", "*.csv");
+
+            //Quentin
             string[] files = Directory.GetFiles(@"D:\Utilisateurs\LEFEVRE Quentin\Documents\Cour\Cour_INTI\Projet Fin Formation\Application\BoVoyage.Scenario1\Voyage_csv\", "*.csv");
 
             //boucle sur les éléments du tableau de fichier
@@ -53,11 +57,12 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des voyages depuis formulaire
         -----------------------------------*/
-        public bool AddVoyageFormulaire_Metier()
+        //public bool AddVoyageFormulaire_Metier(string fournisseur, DateTime dateDepart, DateTime dateRetour, byte nbPlace, decimal prixAchat, decimal prixVente, string descriptionVoyage, string continent, string pays, string region, string DescriptionDestination)
+        public bool AddVoyageFormulaire_Metier(string[] NewVoyage)
         {
             try
             {
-                return true;
+                return repository.AddVoyage(NewVoyage);
             }
             catch (Exception)
             {
@@ -98,11 +103,33 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Détail des voyages
+        -----------------------------------*/
+        public object DetailsVoyage(string id)
+        {
+            return repository.DetailsVoyage(id);
+        }
+        /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/
         public void Load()
         {
-            droits.Load();
+            repository.LoadDroits();
+        }
+        /*----------------------------------
+        //Liste des commerciaux
+        -----------------------------------*/
+        public List<string> GetLoginCommerciaux()
+        {
+            return repository.GetCommerciaux().Select(c => c.Login).ToList();
+        }
+
+        /*----------------------------------
+        //Liste des dossiers
+        -----------------------------------*/
+        public object GetDossiers()
+        {
+            return repository.GetDossiers();
         }
     }
 }

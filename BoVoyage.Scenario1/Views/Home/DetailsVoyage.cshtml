@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "DetailsVoyage";
+}
+@model List<BoVoyage.Donnees.VoyageDetail>
+
+<h4>Voyage</h4>
+<hr />
+@*@{
+        foreach (var item in Model)
+        {
+            @item.Id;
+            @item.Pays;
+            @item.Continent;
+            @item.Region;
+            @item.DateAller;
+        }
+    }*@
+<div>
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @{ string image = "/Photo/" + @item.Image;}
+                        <img src="@image" style="width:50%" />;
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h1> Pays : @item.Pays</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2> Continent : @item.Continent </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3> Date et Horaires de Départ :  @item.DateAller </h3>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3> Date et Horaires de Retour : @item.DateRetour </h3>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4> Description : @item.DescriptionDestination </h4>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" class="btn btn-primary">Réservation</a>
+
+                    </td>
+                </tr>
+
+
+            }
+        }
+
+    </table>
+</div>
+

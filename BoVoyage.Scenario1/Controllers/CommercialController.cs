@@ -1,6 +1,7 @@
 ﻿using BoVoyage.Metier;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,11 +25,11 @@ namespace BoVoyage.Scenario1.Controllers
         /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
-        public ActionResult AffichageVoyage(string lieu, string txtlieu)
+        public ActionResult AffichageVoyage(string tri, string choix)
         {
             try
             {
-                var ps = metier.DBVoyages(lieu, txtlieu);
+                var ps = metier.DBVoyages(tri, choix);
                 return View(ps);
             }
             catch (Exception)
@@ -49,7 +50,7 @@ namespace BoVoyage.Scenario1.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("AffichageVoyage");
             }
 
         }
@@ -60,6 +61,48 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult AddVoyageFormulaire()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddVoyageFormulaire(string id)
+        {
+            string fournisseur = Request.Form["Fournisseur"];
+            if (fournisseur == "Autre")
+            {
+                fournisseur = Request.Form["NewFournisseur"];
+            }
+            string dateDepart = Request.Form["DateDepart"];
+            string dateRetour = Request.Form["DateRetour"];
+            string nbPlace = Request.Form["NbPlace"];
+            string prixAchat = Request.Form["PrixAchat"].Replace('.', ',');
+            string prixVente = Request.Form["PrixVente"].Replace('.', ',');
+            string descriptionVoyage = Request.Form["DescriptionVoyage"];
+            string continent = Request.Form["Continent"];
+            string pays = Request.Form["Pays"];
+            if (pays == "Autre")
+            {
+                pays = Request.Form["NewPays"];
+            }
+            string region = Request.Form["Region"];
+            if (region == "Autre")
+            {
+                region = Request.Form["NewRegion"];
+            }
+            string DescriptionDestination = Request.Form["DescriptionDestination"];
+            string[] NewVoyage = { dateDepart, dateRetour, nbPlace, fournisseur, prixAchat, prixVente, descriptionVoyage, continent, pays, region, DescriptionDestination };
+
+            var RetourAjout = metier.AddVoyageFormulaire_Metier(NewVoyage);
+
+            return RedirectToAction("AffichageVoyage");
+        }
+
+        /*----------------------------------
+        //Panneau de contrôle des dossiers
+        -----------------------------------*/
+        public ActionResult GestionDossiers()
+        {
+            List<string> loginCommerciaux = metier.GetLoginCommerciaux();
+            return View(loginCommerciaux);
         }
     }
 }

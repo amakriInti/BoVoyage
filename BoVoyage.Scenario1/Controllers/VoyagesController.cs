@@ -14,11 +14,15 @@ namespace BoVoyage.Scenario1.Controllers
         /*--------------------------------------
         //Controleur API
         ---------------------------------------*/
-
+        //lieu = colonne de la table et txtlieu si on veux un élément en particulier
         public object GetVoyage(string lieu, string txtlieu)
         {
             try
             {
+                if (txtlieu == "undefined")
+                {
+                    txtlieu = null;
+                }
                 var ps = metier.DBVoyages(lieu, txtlieu);
                 return ps;
             }
