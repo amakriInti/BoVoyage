@@ -1,0 +1,63 @@
+﻿@*model List<BoVoyage.Scenario1.Dal.Dossier>*@
+@model List<List<BoVoyage.Scenario1.Dal.Dossier>>
+@using BoVoyage.Scenario1.Models;
+@{
+    ViewBag.Title = "Dossier";
+}
+
+<h2>Dossier</h2>
+
+<body>
+    <ul>
+        @{
+            //<li>@Model.Count()</li>;
+            <li><strong>Mes dossiers</strong></li>
+            foreach (var v in Model[0])//affiche les dossier de l'employé
+            {
+                var etat = (DossierEnum)v.Etat;
+                if (v.Etat == 0||v.Etat==1)
+                {
+    <li>
+        <hr />
+        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login  | @Html.ActionLink("Abandonner Dossier", "AbandonnerDossier", new { id = v.Id }) | @Html.ActionLink("Valider Dossier", "ValidDossier", new { id = v.Id }) |  @Html.ActionLink("Refuser Dossier", "RefuseDossier", new { id = v.Id })
+        <br /> @Html.ActionLink("Détails", "Details_Dossier", new { id = v.Id })
+    </li>
+                }
+                else
+                {
+    <li>
+        <hr />
+        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login  | @Html.ActionLink("Abandonner Dossier", "AbandonnerDossier", new { id = v.Id })
+        <br /> @Html.ActionLink("Détails", "Details_Dossier", new { id = v.Id })
+    </li>
+                }
+            }
+            <hr />
+            <li><strong>Autres dossiers</strong></li>
+            foreach (var v in Model[1])//affiche les autres dossiers de l'employé
+            {
+                var etat = (DossierEnum)v.Etat;
+                if (v.Commercial != null)
+                {
+                    <li>
+                        <hr />
+                        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  |  @v.Employe.Login
+                    <br /> @Html.ActionLink("Détails", "Details_Dossier", new { id = v.Id })
+                     </li>
+                }
+                else
+                {
+    <li>
+        <hr />
+        @v.Client1.Nom | @v.Voyage1.Libelle | @etat  | @Html.ActionLink("Prendre Dossier", "AffecterCommercial", new { id = v.Id })
+        <br /> @Html.ActionLink("Détails", "Details_Dossier", new { id = v.Id })
+    </li>
+                }
+            }
+        }
+    </ul>
+    <br />
+    <p>
+        @Html.ActionLink("Back to Menu", "Index")
+    </p>
+</body>

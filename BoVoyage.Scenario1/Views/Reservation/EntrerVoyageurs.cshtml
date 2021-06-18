@@ -1,0 +1,62 @@
+﻿@model List<BoVoyage.Scenario1.Dal.Voyageur>
+
+@{
+    ViewBag.Title = "EntrerVoyageurs";
+}
+
+<h2>Entrer Voyageurs</h2>
+
+
+<form action="/Reservation/EntrerVoyageurs" method="post">
+    <div>
+        <input type="hidden" name="nb_vg" value="@ViewBag.nombre_voyageurs" />
+    </div>
+
+    <div>
+        <input type="hidden" name="id_dossier" value="@ViewBag.id_dossier" />
+    </div>
+
+    @{ for (int i = 0; i < ViewBag.nombre_voyageurs; i++)
+        {
+            <p>Voyageur @i</p>
+
+
+            <div>
+                <input type="text" required id="name_@i" name="name_@i" value="name_@i"
+                       checked>
+                <label for="name_@i">Nom </label>
+            </div>
+
+
+            <div>
+                <input type="text" required id="fname_@i" name="fname_@i" value="fname_@i"
+                       checked>
+                <label for="fname_@i">Prenom </label>
+            </div>
+
+            <div>
+                <input type="date" required id="date_@i" name="date_@i" value="date_@i">
+                <label for="date_@i">Date Naissance</label>
+            </div>
+
+            <div>
+                <select name="acc_@i" id="acc_@i">
+                    <option value="false">Non</option>
+                    <option value="true">Oui</option>
+                </select>
+                <label for="acc_@i">Accompagnant</label>
+            </div>
+
+        }
+    }
+
+    <div>
+        <button type="submit">Ajouter au panier</button>
+    </div>
+</form>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

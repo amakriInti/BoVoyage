@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Paiement";
+}
+
+<h2>Paiement 7</h2>
+    Prix Total: <div id="div0">@ViewBag.montant</div>
+    
+                    <input type="text" required id="numero_carte" name="numero_carte" value="numero_carte"
+                           checked>
+                    <label for="numero_carte">Numéro Carte</label>
+                    <br/>
+                    <input type="button" value="Valider" id="btn_carte">
+
+
+<div id="div1"></div>
+
+<!-- on pourrait faire une api post pour récupérer le prix -->
+@section scripts{
+    Ici
+    <script>
+        $('#btn_carte').click(function () {
+            var num_carte = $('#numero_carte').val();
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44307/api/Paiement", // 'appelle l'action qui me donne le prix
+                datatype: 'application/json',
+                contentType: 'application/json',
+
+                //Cette fois dans data je veux le prix
+                success: function (data, status) {
+                    if (status == "success") {
+                        $('#div1').html("Pas payé")
+                        if (num_carte == data) {
+                            $('#div1').html("Paiement réussi");
+                            $('#div1').html("<a href='/Home/Payer'>Payer</a>");
+                             }
+                        else
+                        {
+                             $('#div1').html("Paiement refusé");
+                        }
+    //on envoie les données à div0
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $('#div0').html("Erreur");
+                    }
+            });
+
+
+})
+
+    </script>
+}
+
+
+@Html.ActionLink("Back to Menu", "Index2")

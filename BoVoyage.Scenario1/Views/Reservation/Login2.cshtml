@@ -1,0 +1,31 @@
+﻿@model object
+@{
+    ViewBag.Title = "Login2";
+}
+
+<h2>Login For registered User</h2>
+
+<form action="/Reservation/Login2" method="post">
+
+
+    <div>
+        <input type="hidden" name="LoginClient" value="@Model.ToString()" />
+    </div>
+
+    <div>
+        <input type="text" required id="name" name="name" value="name"
+               checked>
+        <label for="name">Nom </label>
+    </div>
+
+
+    <div>
+        <input type="text" required id="fname" name="fname" value="fname"
+               checked>
+        <label for="fname">Prenom </label>
+    </div>
+
+    <div>
+        <button type="submit">Ajouter au panier</button>
+    </div>
+</form>
