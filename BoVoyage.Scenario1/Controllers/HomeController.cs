@@ -31,10 +31,16 @@ namespace BoVoyage.Scenario1.Controllers
 
             return View();
         }
-        public ActionResult VoyageDescription()
+        public ActionResult VoyageDescription(Guid id)
         {
-            
-            return View(tBD);
+            List<Voyage> vD = tBD.GetVoyages();
+
+            var voyageSelectionne = vD
+                .Where(v=>v.Id==id)
+                .FirstOrDefault();
+
+
+            return View(voyageSelectionne);
         }
     }
 }

@@ -6,30 +6,17 @@
 
 <body>
     <div class="modal-body row">
-        <div id="col1" class="col-md-6">
-
-            @foreach (var item in Model)
-            {
-                <div class="img-rounded" style="box-shadow: 1px 1px 12px #D8D8D8"><a href="#"><img src="https://localhost:44307/Dessins/@{@item.Destinations.Select(d => d.Region.ToString()).FirstOrDefault();}.jpg" class="img-rounded" style="width:100%" /></a><div style="padding:10px"><div class="content"><h4 style="color:lightskyblue">@item.Destinations.Select(d => d.Region.ToString()).FirstOrDefault() - @item.Destinations.Select(d => d.Pays.ToString()).FirstOrDefault()</h4><div style="color:dimgray"><p>@item.Description</p><p style="font-weight:bolder">Prix : @item.PrixVenteUnitaire €</p></div></div></div></div>
-                <br/>
-                
-            }
-
-            <!-- Your first column here -->
-
-        </div>
-        <div id="col2" class="col-md-6">
-            <!-- Your second column here -->
 
 
-        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="img-rounded" style="box-shadow: 1px 1px 12px #D8D8D8"><a href="https://localhost:44307/Home/VoyageDescription/?id=@{@item.Id;}"><img src="https://localhost:44307/Dessins/@{@item.Destinations.Select(d => d.Region.ToString()).FirstOrDefault();}.jpg" class="img-rounded" style="width:100%" /></a><div style="padding:10px"><div class="content"><h4 style="color:lightskyblue">@item.Destinations.Select(d => d.Region.ToString()).FirstOrDefault() - @item.Destinations.Select(d => d.Pays.ToString()).FirstOrDefault()</h4><div style="color:dimgray"><p>@item.Description</p><p style="font-weight:bolder">Prix : @item.PrixVenteUnitaire €</p></div></div></div></div>
+                <br />
+            </div>
+        }
+
+
     </div>
-    <script>
-        var card = 'seoul2';
-        @*function addCards() {
 
-                document.getElementById("col1").innerHTML += '</br><div class="img-rounded" style="box-shadow: 1px 1px 12px #D8D8D8"><a href="#"><img src="https://localhost:44307/Dessins/'+card+'.jpg" class="img-rounded" style="width:100%"/></a><div style="padding:10px"><div class="content"><h4 style="color:lightskyblue">@Model.Destinations.Region - @Model.Destinations.Pays</h4><div style="color:dimgray"><p>@Model.Voyages.Description</p><p style="font-weight:bolder">Prix : @Model.Voyages.PrixVenteUnitaire €</p></div></div></div></div>';
-
-        }*@
-    </script>
 </body>
