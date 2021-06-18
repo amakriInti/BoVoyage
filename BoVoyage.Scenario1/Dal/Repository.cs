@@ -244,5 +244,14 @@ namespace BoVoyage.Scenario1.Dal
             else return false;
         }
 
+        internal Voyageur GetVoyageur(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Voyageurs.Where(d => d.Id == id).FirstOrDefault();
+            }
+            else return null;
+        }
+
     }
 }

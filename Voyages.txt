@@ -301,3 +301,23 @@ Pour l'instant si le paiement est refusé on ne refuse pas le dossier ça laisse
 
 18/06/2021 : 11:18
 On va permettre au client de consulter l'ensemble de ses commandes d'en supprimer une, et au commercial de faire de même
+
+On reprend la liste des choses à faire :
+-S'assurer que le sujet doit être né... : x
+-S'assurer que l'accompagnant est majeur : x
+-S'assurer qu'il n'y en aura qu'un seul (radiobox ou drop down en formulaire 1+ un peu de  c#) :x 
+-Pratiquer un prix réduit s'il y a un enfant de -12 ans  : x
+-Rajouter numéro de téléphone ou email dans le formulaire : x
+-Rajouter la possibilité de souscrire une assurance : o
+-Rajouter la possibilité de supprimer les dossiers : o 
+-Rajouter la possibilité de lister les voyageurs pour les opérations de mailing : x
+-Une commande acceptée (ou non) peut être annulé donc faut que le client ait accès à ses commandes : o
+
+18/06/2021 : 11:29
+On va s'assurer maintenant de bien remplir/vider les tables intermédiaires à chaque fois qu'on crée supprimer un dossier
+1) Quand je réserve un dossier il faut que je rajoute la voyageurs dans la table dossier voyageurs : Fait 
+et quand je le supprime je dois aussi supprimer les voyageurs
+On va tester en créant un voyage à 4 passagers puis en le supprimant
+Id du voyage à 4 personnes   : 24F00238-F426-4476-8BDF-5816146DA16F
+on l'a trouvé donc on va essayer  de le supprimer
+Quand on supprime un dossier les voyageurs n'y sont plus associés donc ça marche

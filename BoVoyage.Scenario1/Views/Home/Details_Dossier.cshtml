@@ -1,0 +1,106 @@
+﻿@model BoVoyage.Scenario1.Dal.Dossier
+@using BoVoyage.Scenario1.Models;
+
+@{
+    ViewBag.Title = "Details_Dossier";
+}
+
+<h2>Details_Dossier</h2>
+
+<div>
+    <h4>Dossier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assurance1.Annulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assurance1.Annulation)
+        </dd>
+
+        <dt>
+            Nom Client
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client1.Nom) @Html.DisplayFor(model => model.Client1.Prenom)
+        </dd>
+
+        <dt>
+            Commercial
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employe.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voyage1.Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voyage1.Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voyage1.Destinations)
+        </dt>
+
+        <dd>
+            @* @Html.DisplayFor(model => model.Voyage1.Destinations)*@
+            <ul>
+                @{
+                    foreach (var m in Model.Voyage1.Destinations.ToList())
+                    {
+                        <li>@m.Description</li>
+                    }
+                }
+            </ul>
+        </dd>
+        <dt>
+            Dates :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voyage1.DateAller) | @Html.DisplayFor(model => model.Voyage1.DateRetour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voyage1.Fournisseur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voyage1.Fournisseur)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voyage1.PrixVenteUnitaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voyage1.PrixVenteUnitaire)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

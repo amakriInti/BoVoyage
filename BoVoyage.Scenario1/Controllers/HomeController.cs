@@ -110,10 +110,27 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if (id != null)
             {
+                
                 Repository Repo = new Repository();
+                Dossier Doss = Repo.GetDossier(id);//ON récupère le dossier et pour chaque voyageur inscrit on supprime le dossiers
+                foreach(var v in Doss.Voyageurs)
+                {
+                    Voyageur vygr = Repo.GetVoyageur(v.Id);
+                    vygr.Dossiers.Remove(Doss);
+                }
                 Repo.SupprimerDossier(id);
+                
             }
             return RedirectToAction("Commandes", "Home");
         }
+
+        public ActionResult Details_Dossier(Guid? id)
+        {
+            Repository Repo = new Repository();
+            //var Doss = Repo.GetAllDossiers();
+            var Doss = Repo.GetDetailsDossier(id);
+            return View(Doss);
+        }
+
     }
 }

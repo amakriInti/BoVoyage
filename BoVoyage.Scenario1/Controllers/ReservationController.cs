@@ -95,7 +95,7 @@ namespace BoVoyage.Scenario1.Controllers
                             DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
                             IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]),
                         };
-                        Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));
+                        Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
                         Repo.AddVoyageur(Vygr);
                         //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
                         //Une fois les voyageurs ajoutés On met le voyage au panier
