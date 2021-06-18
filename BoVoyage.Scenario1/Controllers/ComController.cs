@@ -13,6 +13,8 @@ namespace BoVoyage.Scenario1.Controllers
     public class ComController : Controller
     {
 
+        public static Repository Repo = new Repository();
+
         public ActionResult Index()
         {
             return View();
@@ -20,15 +22,12 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult UploadCsv()
         {
-            Repository Repo = new Repository();
             Repo.ReadCsv();
             return View("Index");
         }
 
         public ActionResult Dossier()
         {
-            Repository Repo = new Repository();
-            //var Doss = Repo.GetAllDossiers();
             var Doss2 = Repo.GetAllDossiersEmp(User.Identity.GetUserName());
             ViewBag.DossEnum = new DossierEnum();
             return View(Doss2);
@@ -36,14 +35,12 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult AffecterCommercial(Guid? id)
         {
-            Repository Repo = new Repository();
             bool valid = Repo.ChangeCommercial(id, User.Identity.GetUserName());
             return RedirectToAction("Dossier");
         }
 
         public ActionResult ValidDossier(Guid? id)
         {
-            Repository Repo = new Repository();
             bool valid = Repo.ValiderDossier(id);
             //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
@@ -51,14 +48,12 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult RefuseDossier(Guid? id)
         {
-            Repository Repo = new Repository();
             bool valid = Repo.RefuserDossier(id);
             //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
         }
         public ActionResult AbandonnerDossier(Guid? id)
-        {
-            Repository Repo = new Repository();
+        { 
             bool valid = Repo.AbandonnerDossier(id);
             //ViewBag.Id_current = Context.Employes.Where(e => e.Login == User.Identity.GetUserName())
             return RedirectToAction("Dossier");
@@ -66,7 +61,6 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult Details_Dossier(Guid? id)
         {
-            Repository Repo = new Repository();
             //var Doss = Repo.GetAllDossiers();
             var Doss = Repo.GetDetailsDossier(id);
             return View(Doss);
@@ -76,9 +70,7 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if (id != null)
             {
-
-                Repository Repo = new Repository();
-                Dossier Doss = Repo.GetDossier(id);//ON récupère le dossier et pour chaque voyageur inscrit on supprime le dossiers
+                Dossier Doss = Repo.GetDossier(id);//On récupère le dossier et pour chaque voyageur inscrit on supprime le dossiers
                 foreach (var v in Doss.Voyageurs)
                 {
                     Voyageur vygr = Repo.GetVoyageur(v.Id);

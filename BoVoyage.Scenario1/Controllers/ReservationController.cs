@@ -13,13 +13,13 @@ namespace BoVoyage.Scenario1.Controllers
         public static Guid id_voyage; //Comme ça l'id du voyage persiste jusqu'à ce qu'on ait validé
         public static int nb_voyageurs; //
         public static Guid id_assurance;
+        public static Repository Repo = new Repository();
         // GET: Reservation
         [Authorize]
         public ActionResult Reserver(Guid? id)
         {
             if (id != null)
             {
-                Repository Repo = new Repository();
                 id_voyage = (Guid)id;
                 ViewBag.Assurances = Repo.GetAllAssurances();
                 Voyage Vyg = Repo.GetVoyage(id_voyage);//permet d'afficher le bon libellé dans le formulaire 
@@ -49,7 +49,6 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if (nb_voyageurs != 0)
             {
-                Repository Repo = new Repository();
                 List<Voyageur> Vygrs = new List<Voyageur>();
                 for (int i = 1; i <= nb_voyageurs; i++)
                 {
@@ -67,12 +66,12 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if (nb_voyageurs != 0)
             {
-                Repository Repo = new Repository();// On ne remplit le panier que si on a tous les voyageurs
+                // On ne remplit le panier que si on a tous les voyageurs
              //--------------Update Panier----------------------------------------------------------                                                 
                 if (Session["panier"] == null)//Si le panier existe pas on le crée sinon on le récupère
                 { Session["panier"] = new List<ItemPanier>(); }
                 List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];//récupère le panier
-                if (Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage) != null)//
+                if (Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage) != null)// On crée le dossier
                 {
                     Guid id_dossier = (Guid)Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
                     //--------------Update Panier-----------------------------------------------------------
@@ -117,8 +116,6 @@ namespace BoVoyage.Scenario1.Controllers
                             Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
                             Repo.AddVoyageur(Vygr);
                         }
-                        //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
-                        //Une fois les voyageurs ajoutés On met le voyage au panier
 
                     }
                     panier_courant.Add(new ItemPanier
@@ -155,7 +152,6 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if(LoginClient!=null)
             {
-                Repository Repo = new Repository();
                 Repo.NouveauClient(LoginClient, System.Web.HttpContext.Current.Request.Form["name"], System.Web.HttpContext.Current.Request.Form["fname"]);
             }
             return RedirectToAction("Index", "Home");

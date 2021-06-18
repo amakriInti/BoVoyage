@@ -7,11 +7,12 @@
 @{
     foreach (var v in Model)
     {
+        var prix_enfant = v.voyage.PrixVenteUnitaire / 2;
         <h2>Confirmation @v.voyage.Libelle</h2>
 
         <p>Nombre Voyageurs : @v.nombre_voyageurs (dont @v.nombre_enfants enfant(s))</p>
 
-        <p>Prix unitaire : @v.voyage.PrixVenteUnitaire (@v.voyage.PrixVenteUnitaire/2) Euros</p>
+        <p>Prix unitaire : @v.voyage.PrixVenteUnitaire Euros</p>
 
         if(v.assurance!=null)
         { 

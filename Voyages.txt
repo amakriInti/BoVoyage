@@ -348,3 +348,9 @@ L'ensemble marche plutot bien. On va débuguer UploadCsv
 
 18/06/2021: 16:08
 On a inclus la réduction pour les moins de 12 ans et afficher ces infos dans le sous total
+
+à partir de maintenant on va plutôt chercher débuguer/ranger le code/commenter
+On commence par les controleurs
+
+18/06/2021 : 18:02
+On a rajouté l'option qui permet de supprimer un voyage du panier

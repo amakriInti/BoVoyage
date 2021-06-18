@@ -12,9 +12,9 @@ namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
+        public static Repository Repo = new Repository();
         public ActionResult Index()
         {
-            Repository Repo = new Repository();
             List<Voyage> Voyages_Accueil = Repo.GetAllVoyages();
             return View(Voyages_Accueil);
         }
@@ -63,7 +63,6 @@ namespace BoVoyage.Scenario1.Controllers
 
             if (Session["panier"] != null)
             {
-                Repository Repo = new Repository();
                 List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
                 foreach (var item in panier_courant)
                 {
@@ -77,30 +76,29 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult PayerCarte()
         {
-          
+
             if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
             {
                 List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
                 decimal PrixTot = 0;
-                foreach(var item in panier_courant)
+                foreach (var item in panier_courant)
                 {
-                    PrixTot += item.voyage.PrixVenteUnitaire * item.nombre_voyageurs; 
-                    if(item.assurance!=null)
+                    PrixTot += item.voyage.PrixVenteUnitaire * item.nombre_voyageurs;
+                    if (item.assurance != null)
                     {
                         PrixTot += (decimal)item.assurance.Prix;
                     }
-                        
+
                 }
                 ViewBag.montant = PrixTot;
                 return View();
-                
+
             }
             else return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Commandes()
         {
-            Repository Repo = new Repository();
             var client = Repo.GetClientByEmail(User.Identity.GetUserName());
             List<Dossier> Dossiers_client = Repo.GetDossierFromClient(client.Id);
             return View(Dossiers_client);
@@ -110,27 +108,34 @@ namespace BoVoyage.Scenario1.Controllers
         {
             if (id != null)
             {
-                
-                Repository Repo = new Repository();
-                Dossier Doss = Repo.GetDossier(id);//ON récupère le dossier et pour chaque voyageur inscrit on supprime le dossiers
-                foreach(var v in Doss.Voyageurs)
+                Dossier Doss = Repo.GetDossier(id);//On récupère le dossier et pour chaque voyageur inscrit on supprime le dossiers
+                foreach (var v in Doss.Voyageurs)
                 {
                     Voyageur vygr = Repo.GetVoyageur(v.Id);
                     vygr.Dossiers.Remove(Doss);
                 }
                 Repo.SupprimerDossier(id);
-                
+
             }
             return RedirectToAction("Commandes", "Home");
         }
 
         public ActionResult Details_Dossier(Guid? id)
         {
-            Repository Repo = new Repository();
-            //var Doss = Repo.GetAllDossiers();
             var Doss = Repo.GetDetailsDossier(id);
             return View(Doss);
         }
 
+        public ActionResult SupprimerItem(int index)
+        {
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                panier_courant.Remove(panier_courant[index]);
+                Session["panier"] = panier_courant;
+                return RedirectToAction("Panier", "Home");
+            }
+            return RedirectToAction("Panier", "Home");
+        }
     }
 }
