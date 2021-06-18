@@ -14,5 +14,9 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+        public ActionResult Devis()
+        {
+            return View();
+        }
     }
 }

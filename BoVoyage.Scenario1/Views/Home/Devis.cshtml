@@ -31,13 +31,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <style>
+
+        table {
+            border-collapse: collapse;
+            position:absolute;
+            left:68%;
+        }
+        td {
+            box-shadow: 1px 1px 12px #D8D8D8;
+            padding : 2px;           
+        }
+
         .border2 {
             width: 95%;
-            float:right;
+            float: right;
             padding: 5px;
             background: #EFEFEE;
             color: black;
-/*            border-style: groove;
+            /*            border-style: groove;
             border-color: #EFEFEE;*/
             box-shadow: 1px 1px 12px #D8D8D8;
         }
@@ -46,7 +57,7 @@
             padding: 5px;
             background: white;
             color: black;
-/*            border-style: groove;
+            /*            border-style: groove;
             border-color: #EFEFEE;*/
             text-align: center;
             width: 5%;
@@ -64,7 +75,6 @@
             border-radius: 6px;
             border: none;
             font-weight: bold;
-
         }
 
         .textcenter {
@@ -81,23 +91,30 @@
     </style>
 </head>
 <body>
-    <h3 class="textcenter">Récapitulatif de votre voyage</h3>
+    <h3 class="textcenter">Votre Devis</h3>
+
     <div class="row">
         <div class="col-sm-3">
-            <div class="img-rounded " style="box-shadow: 1px 1px 12px #D8D8D8">
-                <a href="#">
-                    <img src="~/Dessins/Image1.jpg" class="img-rounded" style="width:100%" />
-                </a>
-                <div style="padding:10px">
-                    <div>
-                        <h4 style="color:deepskyblue">@Model.Region - @Model.Pays</h4>
-                        <div style="color:dimgray">
-                            <p>Date de départ : @Model.DateAller</p>
-                            <p>Date de retour : @Model.DateRetour</p>
-                            <p>Durée : 8 jours / 7 nuits</p>
-                            <p>Nombre de personne : 1</p>
-                            <p style="font-weight:bolder">Prix total TTC : @Model.Prix €</p>
+            <div>
+                <div>
+                    <div style="box-shadow: 1px 1px 12px #D8D8D8">
+                        <h4 style="color:black"><strong>C-SHARK</strong></h4>
+                        <p><em style="font-size:x-small">Des voyages complètement marteaux</em></p>
+                        <div style="color:black">
+                            <p>Place de la Cathédrale</p>
+                            <p>67000 Strasbourg</p>
                         </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div style="box-shadow: 1px 1px 12px #D8D8D8">
+                        <p>Référence : ID Dossier</p>
+                        <p>Date : Date du devis</p>
+                        <p>N° Client : ID du client</p>
+                        <p>Nom - Prénom</p>
+                        <p>Mail : tuning@nord.com</p>
+                        <p>Numéro de téléphone : 0782786557</p>
                     </div>
                 </div>
             </div>
@@ -106,39 +123,35 @@
         <div class="col-sm-9">
 
             <div class="border1">1</div>
-            <div class="border2"><strong> Répartition des voyageurs</strong></div>
-            <p style="position:relative;top:10px">&nbsp;1 chambre par adulte</p>
+            <div class="border2"><strong> Nombre de voyageurs</strong></div>
+            <p style="position:relative;top:10px">&nbsp;2 adulte(s)</p>
             <br />
 
             <div class="border1">2</div>
-            <div class="border2"><strong> Catégorie d'hébergement</strong></div>
-            <p style="position:relative;top:10px">&nbsp;CHAMBRE DOUBLE CAT-3</p>
+            <div class="border2"><strong> Destination</strong></div>
+            <p style="position:relative;top:10px">&nbsp;Région, Pays, Continent</p>
             <br />
 
             <div class="border1">3</div>
-            <div class="border2"><strong> Type de pension</strong></div>
-            <p style="position:relative;top:10px">&nbsp;Petit déjeuner inclus</p>
+            <div class="border2"><strong> Date aller</strong></div>
+            <p style="position:relative;top:10px">&nbsp;00/00/0000</p>
             <br />
 
             <div class="border1">4</div>
-            <div class="border2"><strong> Transport</strong></div>
-            <p style="position:relative;top:10px">&nbsp;A pied sale petit flemmard</p>
-            <br />
-
-            <div class="border1">5</div>
-            <div class="border2"><strong> Prestations incluses</strong></div>
-            <p style="position:relative;top:10px">&nbsp;SUZUKI SWIFT SPORT (pour faire des bons drifts sa mère)</p>
-            <br />
-
-            <div class="border1">6</div>
-            <div class="border2"><strong> Assurance</strong></div>
-            <p style="position:relative;top:10px">&nbsp;Pas d'assurance pour ce type de voyage</p>
+            <div class="border2"><strong> Date retour</strong></div>
+            <p style="position:relative;top:10px">&nbsp;00/00/0000</p>
             <br />
         </div>
     </div>
     <br />
     <br />
-    <input type="button" class="anybutton" id="myab" value="Procéder au paiement" />
+    <table>
+        <tr>
+        <td>Prix unitaire TTC en euros</td>
+        <td>&nbsp;&nbsp;100 €</td></tr>
+        <tr><td><strong>Prix total TTC en euros</strong></td>
+        <td><strong>&nbsp;&nbsp;200 €</strong></td></tr>
+    </table>
     <br />
     <br />
 </body>

@@ -16,6 +16,11 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
+        public ActionResult Devis()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
