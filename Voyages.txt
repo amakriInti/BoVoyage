@@ -291,3 +291,6 @@ Et ça fonctionne qu'on en prenne une ou pas
 On va tenter de créer la page qui utilise webapi pour simuler un service de paiement bancaire 
 Au départ on lui mettra simplement une suite de chiffre donnée qu'il devra refuser de temps en temps ce qui fera passer 
 l'état de la commande à refuser
+
+18/06/2021 : 09:45
+Scénario de paiement simple validé 

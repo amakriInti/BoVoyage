@@ -74,5 +74,16 @@ namespace BoVoyage.Scenario1.Controllers
             else return RedirectToAction("Index", "Home");
 
         }
+
+        public ActionResult PayerCarte()
+        {
+            ViewBag.montant = 600;
+            if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
+            {
+                List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
+                return View(panier_courant);
+            }
+            else return RedirectToAction("Index", "Home");
+        }
     }
 }

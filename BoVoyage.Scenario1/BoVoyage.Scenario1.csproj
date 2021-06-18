@@ -188,6 +188,7 @@
     <Compile Include="Controllers\ComController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaiementController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Dal\aspnet_Applications.cs" />
     <Compile Include="Dal\aspnet_Membership.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Views\Reservation\Reserver.cshtml" />
     <Content Include="Views\Reservation\EntrerVoyageurs.cshtml" />
     <Content Include="Views\Reservation\Login2.cshtml" />
+    <Content Include="Views\Home\PayerCarte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
