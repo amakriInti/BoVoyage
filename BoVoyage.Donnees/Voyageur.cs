@@ -17,7 +17,7 @@ namespace BoVoyage.Donnees
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Voyageur()
         {
-            this.Dossiers = new HashSet<Dossier>();
+            this.DossierVoyageurs = new HashSet<DossierVoyageur>();
         }
     
         public System.Guid Id { get; set; }
@@ -28,6 +28,6 @@ namespace BoVoyage.Donnees
         public string Mail { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dossier> Dossiers { get; set; }
+        public virtual ICollection<DossierVoyageur> DossierVoyageurs { get; set; }
     }
 }

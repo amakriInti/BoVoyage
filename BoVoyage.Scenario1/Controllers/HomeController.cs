@@ -62,25 +62,37 @@ namespace BoVoyage.Scenario1.Controllers
         /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
-        public ActionResult AffichageVoyage(string lieu, string txtlieu)
-        {
-            try
-            {
-                var ps = metier.DBVoyages(lieu, txtlieu);
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
+        //public ActionResult AffichageVoyage(string lieu, string txtlieu)
+        //{
+        //    try
+        //    {
+        //        var ps = metier.DBVoyages(lieu, txtlieu);
+        //        return View(ps);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
 
-        }
+        //}
         public ActionResult DetailsVoyage(string id)
         {
             if (id == null) return RedirectToAction("Index");
             var detailvoyage = metier.DetailsVoyage(id);
             if (detailvoyage == null) return RedirectToAction("Index");
             return View(detailvoyage);
+        }
+
+        [HttpPost]
+        public ActionResult MotDePasse(int? code)
+        {
+            if (code == 1234)
+            {
+                Session["Passe"] = true;
+                return RedirectToAction("Acceuil", "Photo");
+            }
+            if (code != null) ViewBag.Erreur = "Code incorrect";
+            return View();
         }
     }
 }

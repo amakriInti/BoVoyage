@@ -1,0 +1,22 @@
+﻿@model List<BoVoyage.Donnees.Banque>
+@{
+    ViewBag.Title = "GetBanque";
+}
+
+<h2>GetBanque</h2>
+
+@{
+    foreach (var item in Model)
+    {
+        <p>Solde sur le compte : @item.Solde</p>
+        <br />
+        <p>Numéro de Carte : @item.Carte</p>
+    }
+}
+
+<table>
+    <tr>
+        <th> Nom : </th>
+        <th><input type="text" size="25" id="nom" /></th>
+    </tr>
+</table>

@@ -1,58 +1,173 @@
-﻿@{
-    ViewBag.Title = "Ajout d'un voyage depuis un formulaire";
+﻿
+@{
+    ViewBag.Title = "LectureCsv";
 }
 
-<h2>Ajouter un nouveau voyage</h2>
+<script src="/Scripts/jquery-3.4.1.min.js"></script>
+<style>
+    #div1 {
+        display: flex;
+        justify-content: center;
+    }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+    .tailleimage {
+        /*width: 80%;*/
+        height: 70%;
+        margin: 10px;
+    }
 
-<div class="form-horizontal">
-    <h4>Formulaire</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    .dimTd {
+        text-align: center;
+        width: 150px;
+        height: 190px;
+        margin: 5px;
+    }
+</style>
 
-    <!--Fournisseur-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Fournisseur :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+<h1 style="text-align:center">Liste des voyages proposés</h1>
 
-    <!--Date de départ-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Date de départ :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+<h3 style="color: @ViewBag.color">@ViewBag.ajoutok</h3>
+<div>
+    Voyage :
+    <select style="width:50%;" class="form-select" id="continent" name="Continent">
+        <option value="null">Choix du continent</option>
+        <option value="Afrique">Afrique</option>
+        <option value="Amérique du Nord">Amérique du Nord</option>
+        <option value="Amérique Central">Amérique Central</option>
+        <option value="Amérique du Sud">Amérique du Sud</option>
+        <option value="Antarctique">Antarctique</option>
+        <option value="Arctique">Arctique</option>
+        <option value="Asie">Asie</option>
+        <option value="Europe">Europe</option>
+        <option value="Moyen-Orient">Moyen-Orient</option>
+        <option value="Océanie">Océanie</option>
+    </select>
 
-    <!--Date de retour-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Date de retour :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+    <select style="width:50%;" class="form-select" id='pays'>
+        <option id="paysoption"></option>
+    </select>
 
-    <!--Nombre de place disponible-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Nombre de place disponible :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+    <select style="width:50%;" class="form-select" id='region'>
+        <option id="regionoption"></option>
+    </select>
 
-    <!--Prix d'achat-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Prix d'achat :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+    <br />
+    <br />
+    <input type="button" id="listeVoyageTrie" value="Go" />
+    <br />
+    <br />
 
-    <!--Prix de vente-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Prix de vente :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <!--Description-->
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Description :</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
+    <div id="div1"><p> on va marqué ici</p> </div>
 </div>
-}
+
+<script>
+    $('#continent').change(function () {
+        var continent = $('#continent').val();
+        var pays = $('#paysoption').remove();
+        var region = document.getElementById('region');
+        region.length = 0;
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44307//Api/Voyages/?continent=" + continent + "&pays=" + pays + "&region=" + region,
+            datatype: 'application/json',
+            contentType: 'application/json',
+            success: function (data, status) {
+                if (status == "success") {
+                    fragment = "<option id='paysoption'> </option>";
+                    for (var i = 0; i < data.length; i++) {
+                        fragment += "<option id='paysoption' value='" + data[i] + "'>" + data[i] + "</option>";
+                    }
+                    fragment += "</select >";
+                    $('#pays').html(fragment);
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#pays').html("Erreur");
+            }
+        });
+    })
+
+    $('#pays').change(function () {
+        var continent = $('#continent').val();
+        var pays = $('#pays').val();
+        var region = $('#regionoption').remove();
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44307//Api/Voyages/?continent=" + continent + "&pays=" + pays + "&region=" + region,
+            datatype: 'application/json',
+            contentType: 'application/json',
+            success: function (data, status) {
+                if (status == "success") {
+                    fragment = "<option id='regionoption'> </option>";
+                    for (var i = 0; i < data.length; i++) {
+                        fragment += "<option id='regionoption' value='" + data[i] + "'>" + data[i] + "</option>";
+                    }
+                    fragment += "</select >";
+                    $('#region').html(fragment);
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#region').html("Erreur");
+            }
+        });
+    })
+
+
+    $('#listeVoyageTrie').click(function () {
+        var continent = $('#continent').val();
+        var pays = $('#pays').val();
+        var region = $('#region').val();
+
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44307//Api/Voyages/?continent=" + continent + "&pays=" + pays + "&region=" + region,
+            datatype: 'application/json',
+            contentType: 'application/json',
+            success: function (data, status) {
+                if (status == "success") {
+                    fragment = "<table>";
+                    for (var i = 0; i < data.length; i += 3) {
+                        if (i < data.length) {
+                            fragment += "<tr><td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
+                                "<img src='/Photo/bresil1.jpg' style='width : 100%' />" +
+                                " <div class='card-body'> <h3 class='card-title'>" + data[i].Pays + "</h3> <p class='card-text'>" +
+                                "Pourquoi aller au Brésil ? Tout simplement pour son exubérance, sa nature, son histoire, la culture de ses tribus amazoniennes." +
+                                "Il y a quelque chose d’irrationnel au Brésil, qui stimule la joie de vivre. Naturellement chaleureux et accueillants," +
+                                "les Brésiliens n’ont que peu d’efforts à faire pour enchanter le visiteur.Mais ce qui rend un voyage au Brésil à nul autre pareil, c’est que cette atmosphère unique s’ajoute à l’impressionnant panel de richesses du géant sud - américain." +
+                                "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i].Id + "' class='btn btn-primary'>A partir de " + data[i].PrixVenteUnitaire + "€</a></div></td>";
+                        }
+
+                        if (i + 1 < data.length) {
+                            fragment += "<td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
+                                "<img src='/Photo/cuba1.jpg' style='width : 100%' />" +
+                                " <div class='card-body'> <h3 class='card-title'>" + data[i + 1].Pays + "</h3> <p class='card-text'>" +
+                                "Un classique entre ville et mer! Ce voyage vous promet modernité, élégance et confort, situé au cœur du quartier des affaires de La Havane, en face du Miramar Trade Center et à proximité du front de mer." +
+                                "Cet hôtel propose une connexion Wi - Fi gratuite et est entièrement non - fumeurs, conformément aux tendances actuelles de l'industrie hôtelière." +
+                                "Recommandé pour les voyages d’affaires, les voyages d'incitation, les mariages et les lunes de miel." +
+                                "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i + 1].Id + "' class='btn btn-primary'>A partir de " + data[i + 1].PrixVenteUnitaire + "€</a></div></td>";
+                        }
+
+                        if (i + 2 < data.length) {
+                            fragment += "<td> <div class='col-lg-4'><div class='card' style='width: 30rem; '>" +
+                                "<img src='/Photo/kenya2.jpg' style='width : 100%' />" +
+                                " <div class='card-body'> <h3 class='card-title'>" + data[i + 2].Pays + "</h3> <p class='card-text'>" +
+                                "Un voyage au Kenya, destination des safaris par excellence, est l’occasion de découvrir une nature puissante et omniprésente et de rencontrer le peuple masaï, gardien de ce paradis aux traditions ancestrales. Nos spécialistes de l'Afrique" +
+                                "ont concocté pour vous les meilleures offres de circuits accompagnés et de safaris au Kenya…" +
+                                "À vous de choisir l’itinéraire de vos rêves, sur les pistes de Karen Blixen et d’Hemingway…" +
+                                "</p> <a href='https://localhost:44307/Home/DetailsVoyage/" + data[i + 2].Id + "' class='btn btn-primary'>A partir de " + data[i + 2].PrixVenteUnitaire + "€</a></div></td></tr>";
+                        }
+                    }
+                    fragment += "</table>"
+                    $('#div1').html(fragment);
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#div1').html("Erreur");
+            }
+        });
+    })
+
+</script>
+<hr />

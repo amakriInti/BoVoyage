@@ -17,6 +17,7 @@ namespace BoVoyage.Donnees
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.Banques = new HashSet<Banque>();
             this.Dossiers = new HashSet<Dossier>();
         }
     
@@ -27,6 +28,8 @@ namespace BoVoyage.Donnees
         public string Prenom { get; set; }
         public string PersonneMorale { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Banque> Banques { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossier> Dossiers { get; set; }
     }

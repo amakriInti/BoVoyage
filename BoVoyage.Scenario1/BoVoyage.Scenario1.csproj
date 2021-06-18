@@ -320,6 +320,8 @@
     <Content Include="Voyage_csv_autre\Paris.csv" />
     <Content Include="Views\Commercial\AddVoyageCSV.cshtml" />
     <Content Include="Views\Home\DetailsVoyage.cshtml" />
+    <Content Include="Views\Commercial\GetBanque.cshtml" />
+    <Content Include="Views\Home\MotDePasse.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

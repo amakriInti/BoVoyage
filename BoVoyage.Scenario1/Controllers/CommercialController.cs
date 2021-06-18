@@ -62,5 +62,18 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+
+        public ActionResult GetBanque()
+        {
+            try
+            {
+                var ps = metier.DBBanque();
+                return View(ps);
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
     }
 }

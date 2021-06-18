@@ -48,60 +48,23 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Afficher liste des voyages
         -----------------------------------*/
+        public object GetVoyageFormulaire(string tri, string choix, string choixprecis)
+        {
+            return repository.GetVoyageFormulaire(tri, choix, choixprecis);
+        }
         public object DBVoyages(string tri, string choix)
         {
             return repository.DBVoyages(tri, choix);
         }
 
-        //public string[] DBVoyages(string tri, string choix)
-        //{
-        //    return repository.DBVoyages(tri, choix);
-        //}
-
         public object DetailsVoyage(string id)
         {
             return repository.DetailsVoyage(id);
         }
-
-
-
-        ///*----------------------------------
-        ////Ajout des voyages depuis fichier CSV
-        //-----------------------------------*/
-        //public bool AddVoyageCSV_Metier()
-        //{
-        //    //Lecture du fichier csv -> ps
-        //    //Récupère tous les fichier .csv du répertoire et le met dans un tableau de string
-        //    string[] files = Directory.GetFiles(@"D:\Utilisateurs\LEFEVRE Quentin\Documents\Cour\Cour_INTI\Projet Fin Formation\Application\BoVoyage.Scenario1\Voyage_csv\", "*.csv");
-
-        //    //boucle sur les éléments du tableau de fichier
-        //    for (int i = 0; i < files.Count(); i++)
-        //    {
-        //        //Lecture et ajout dans la DB
-        //        foreach (var ligne in File.ReadAllLines(files[i]))
-        //        {
-        //            try
-        //            {
-        //                var tab = ligne.ToString().Split(';');
-        //                //Ajout dans la DB
-        //                bool CtrlChanges = repository.AddVoyage(tab);
-        //                if (CtrlChanges == false)
-        //                {
-        //                    throw new Exception();
-        //                }
-        //            }
-        //            catch(Exception)
-        //            {
-        //                return false;
-        //            }
-
-        //        }
-        //        //Suppression du fichier
-        //        File.Delete(files[i]);
-        //    }
-        //    return true;
-        //}
-
+        public object DBBanque()
+        {
+            return repository.DBBanque();
+        }
 
         /*----------------------------------
         //Ajout des voyages depuis formulaire

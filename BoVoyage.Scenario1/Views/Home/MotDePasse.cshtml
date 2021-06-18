@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "MotDePasse";
+}
+
+<script src="/Scripts/jquery-3.4.1.min.js"></script>
+<h1 style="text-align : center">MotDePasse</h1>
+<p style="text-align : center">Mot de passe : <input type="password" Id="password" class="password" name="password" /></p>
+
+<div id="pavecentre">
+    <table>
+        <tr>
+            <td><input id="taillebouton" type="submit" value="7" onclick="Remplir(7)" /></td>
+            <td><input id="taillebouton" type="submit" value="8" onclick="Remplir(8)" /></td>
+            <td><input id="taillebouton" type="submit" value="9" onclick="Remplir(9)" /></td>
+
+        </tr>
+        <tr>
+            <td><input id="taillebouton" type="submit" value="4" onclick="Remplir(4)" /></td>
+            <td><input id="taillebouton" type="submit" value="5" onclick="Remplir(5)" /></td>
+            <td><input id="taillebouton" type="submit" value="6" onclick="Remplir(6)" /></td>
+        </tr>
+        <tr>
+            <td><input id="taillebouton" type="submit" value="1" onclick="Remplir(1)" /></td>
+            <td><input id="taillebouton" type="submit" value="2" onclick="Remplir(2)" /></td>
+            <td><input id="taillebouton" type="submit" value="3" onclick="Remplir(3)" /></td>
+        </tr>
+        <tr>
+            <td><input id="taillebouton" type="submit" value="#" onclick="Remplir('#')" /></td>
+            <td><input id="taillebouton" type="submit" value="0" onclick="Remplir(0)" /></td>
+            <td><input id="taillebouton" type="submit" value="*" onclick="Remplir('*')" /></td>
+        </tr>
+    </table>
+
+    <style>
+        #pavecentre {
+            display: flex;
+            justify-content: center;
+        }
+
+        #taillebouton {
+            margin: 5px;
+            width: 100px;
+            height: 70px;
+            background: darkcyan
+        }
+    </style>
+    <script>
+        function Remplir(numero) {
+            Mdp = document.getElementById('password')
+            Mdp.value += numero;
+            if (Mdp.value.length == 4) {
+                var form = document.createElement("form");
+                var element1 = document.createElement("input");
+                form.method = "POST";
+                form.action = "/Home/MotDePasse/";
+
+                element1.value = Mdp.value;
+                element1.name = "code";
+                form.appendChild(element1);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</div>
