@@ -451,11 +451,11 @@
     <Content Include="Views\Home\InformationClient.cshtml" />
     <Content Include="Views\Home\Participant.cshtml" />
     <Content Include="Views\Commercial\AddVoyageFormulaire.cshtml" />
-    <Content Include="Views\Commercial\AffichageVoyage.cshtml" />
     <Content Include="Voyage_csv_autre\Maldives.csv" />
     <Content Include="Voyage_csv_autre\New_Voyage.csv" />
     <Content Include="Voyage_csv_autre\Paris.csv" />
     <Content Include="Views\Commercial\GestionDossiers.cshtml" />
+    <Content Include="Views\Shared\_LayoutAffVoyage.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
