@@ -331,3 +331,17 @@ On va s'assurer qu'il y a un accompagnant et qu'il  est majeur
 
 18/06/2021 : 14:45
 On s'assuré qu'il y avait toujours au moins un accompagnant majeur et qu'il ne pouvait pas y avoir de chiffres dans les noms
+
+On reprend la liste des choses à faire :
+-S'assurer que le sujet doit être né... : x non mais on oublie
+-S'assurer que l'accompagnant est majeur : o
+-S'assurer qu'il n'y en aura qu'un seul (radiobox ou drop down en formulaire 1+ un peu de  c#) :o 
+-Pratiquer un prix réduit s'il y a un enfant de -12 ans  : x
+-Rajouter numéro de téléphone ou email dans le formulaire : x
+-Rajouter la possibilité de souscrire une assurance : o
+-Rajouter la possibilité de supprimer les dossiers : o 
+-Rajouter la possibilité de lister les voyageurs pour les opérations de mailing : x
+-Une commande acceptée (ou non) peut être annulé donc faut que le client ait accès à ses commandes : o
+
+18/06/2021 : 15:07
+L'ensemble marche plutot bien. On va débuguer UploadCsv

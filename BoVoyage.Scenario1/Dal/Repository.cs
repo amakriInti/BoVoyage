@@ -25,27 +25,47 @@ namespace BoVoyage.Scenario1.Dal
 
         internal void ReadCsv()
         {
-           string [] files = Directory.GetFiles(path_csv);
-            foreach (string f in files)
+            try
             {
-                var Vygs = LectureCsv(f); //Lit le fichier CSV
-                Context.Voyages.AddRange(Vygs);//Ajoute à la base de données
-                File.Delete(f);//Efface le fichier 
+                string[] files = Directory.GetFiles(path_csv);
+                foreach (string f in files)
+                {
+                    if (LectureCsv(f) != null)
+                    {
+                        var Vygs = LectureCsv(f); //Lit le fichier CSV
+                        Context.Voyages.AddRange(Vygs);//Ajoute à la base de données
+                        File.Delete(f);//Efface le fichier 
+                    }
+                    else return;
+                }
+                Context.SaveChanges();//sauvegarde les changements 
             }
-            Context.SaveChanges();//sauvegarde les changements 
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         private static List<Voyage> LectureCsv(string path)//fonctions de lecture du fichier csv
         {
             List<Voyage> vy = new List<Voyage>();
-
-            // Lecture du fichier csv -> ps
-            foreach (var ligne in File.ReadAllLines(path))
+            try
             {
-                var tab = ligne.Split(';');
-                vy.Add(new Voyage { Id = Guid.NewGuid(), Fournisseur = tab[0], Libelle = tab[1], DateAller = Convert.ToDateTime(tab[2]), DateRetour = Convert.ToDateTime(tab[3]), MaxVoyageurs = Convert.ToByte(tab[4]), PrixAchatTotal = Convert.ToDecimal(tab[5]), Description = tab[6] });
+                string[] file_reader = File.ReadAllLines(path);
+                foreach (var ligne in file_reader)
+                {
+                    var tab = ligne.Split(';');
+                    vy.Add(new Voyage { Id = Guid.NewGuid(), Fournisseur = tab[0], Libelle = tab[1], DateAller = Convert.ToDateTime(tab[2]), DateRetour = Convert.ToDateTime(tab[3]), MaxVoyageurs = Convert.ToByte(tab[4]), PrixAchatTotal = Convert.ToDecimal(tab[5]), Description = tab[6] });
+                }
+                return vy;
             }
-            return vy;
+
+            catch(Exception)
+            {
+                return null;
+            }
+            // Lecture du fichier csv -> ps
+
         }
 
         internal List<Dossier> GetAllDossiers()//retourne la liste des dossiers
