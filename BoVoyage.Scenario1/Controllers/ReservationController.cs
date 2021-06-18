@@ -75,17 +75,13 @@ namespace BoVoyage.Scenario1.Controllers
                 if (Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage) != null)//
                 {
                     Guid id_dossier = (Guid)Repo.NouveauDossier(User.Identity.GetUserName(), id_voyage);
-                    panier_courant.Add(new ItemPanier { 
-                        voyage = Repo.GetVoyage(id_voyage), 
-                        nombre_voyageurs = nb_voyageurs, 
-                        id_dossier = id_dossier,
-                        assurance = Repo.GetAssurance(id_assurance) });
-                    Session["panier"] = panier_courant;
                     //--------------Update Panier-----------------------------------------------------------
 
                     //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
+                    int nb_enfants = 0;
                     for (int i = 0; i < nb_voyageurs; i++)
                     {
+                       
                         Guid Id_nouveau_voyageur = Guid.NewGuid();//on va faire 2 cas : IsAcc= 1 et IsAcc=0
                         if (System.Web.HttpContext.Current.Request.Form["acc"]== "acc_"+i)
                         {
@@ -114,14 +110,26 @@ namespace BoVoyage.Scenario1.Controllers
                                 DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
                                 IsAccompagnant = false,
                             };
+                            if ((DateTime.Today).Subtract(Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i])).Days < 4380)//S'assure que l'accompagnant a bien 18 ans
+                            {
+                                nb_enfants += 1;
+                            }
                             Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
                             Repo.AddVoyageur(Vygr);
                         }
-
                         //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
                         //Une fois les voyageurs ajoutés On met le voyage au panier
 
                     }
+                    panier_courant.Add(new ItemPanier
+                    {
+                        voyage = Repo.GetVoyage(id_voyage),
+                        nombre_voyageurs = nb_voyageurs,
+                        nombre_enfants = nb_enfants,
+                        id_dossier = id_dossier,
+                        assurance = Repo.GetAssurance(id_assurance)
+                    });
+                    Session["panier"] = panier_courant;
 
                     return RedirectToAction("Confirmation", "Home");// va à confirmation... on ne crée pas de dossier pour l'instant
                 }

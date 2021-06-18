@@ -345,3 +345,6 @@ On reprend la liste des choses à faire :
 
 18/06/2021 : 15:07
 L'ensemble marche plutot bien. On va débuguer UploadCsv
+
+18/06/2021: 16:08
+On a inclus la réduction pour les moins de 12 ans et afficher ces infos dans le sous total

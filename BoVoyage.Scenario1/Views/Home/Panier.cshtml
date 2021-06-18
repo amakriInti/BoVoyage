@@ -17,7 +17,7 @@ else
     foreach (var v in Model)
     {
         <hr />
-        <p>Voyage : @v.voyage.Libelle | Nombre voyageurs : @v.nombre_voyageurs</p>
+        <p>Voyage : @v.voyage.Libelle | Nombre voyageurs : @v.nombre_voyageurs (dont @v.nombre_enfants enfants) | Assurance : @v.assurance</p>
     }
     @Html.ActionLink("Continuer Mes achats", "Index")
     <br />

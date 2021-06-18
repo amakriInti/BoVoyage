@@ -15,12 +15,13 @@
         {
             PrixTot = PrixTot + (decimal)v.assurance.Prix;
         }
+        PrixTot -= (decimal)v.voyage.PrixVenteUnitaire/2 * v.nombre_enfants;
         <hr />
 
         <p>Voyage : @v.voyage.Libelle  </p>
     }
 
-    <p><strong>Prix Total : @PrixTot</strong></p>
+    <p><strong>Prix Total : @PrixTot Euros</strong></p>
 }
 
 @Html.ActionLink("Payer", "Payer")
