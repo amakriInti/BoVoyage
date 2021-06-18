@@ -49,11 +49,11 @@ namespace BoVoyage.Scenario1.Controllers
         /*----------------------------------
         //Affichage des voyages
         -----------------------------------*/
-        public ActionResult AffichageVoyage(string lieu, string txtlieu)
+        public ActionResult AffichageVoyage(string tri, string choix)
         {
             try
             {
-                var ps = metier.DBVoyages(lieu, txtlieu);
+                var ps = metier.DBVoyages(tri, choix);
                 return View(ps);
             }
             catch (Exception)

@@ -22,22 +22,6 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-        /*----------------------------------
-        //Affichage des voyages
-        -----------------------------------*/
-        public ActionResult AffichageVoyage(string tri, string choix)
-        {
-            try
-            {
-                var ps = metier.DBVoyages(tri, choix);
-                return View(ps);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
         /*-------------------------------------------------
         //Ajout des voyages CSV
         --------------------------------------------------*/
