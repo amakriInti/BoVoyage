@@ -125,6 +125,12 @@ namespace BoVoyage.Donnees
             else
                 return query;
         }
+
+        public IQueryable<Employe> GetCommerciaux()
+        {
+            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+        }
+
         public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             try
@@ -206,7 +212,7 @@ namespace BoVoyage.Donnees
             }
             Context.SaveChanges();
         }
-        public IQueryable<DossierDetailCommercial> GetDossiers()
+        public List<DossierDetailCommercial> GetDossiers()
         {
             return Context.Dossiers.Select(d => new DossierDetailCommercial {
                 Id = d.Id,
@@ -215,7 +221,7 @@ namespace BoVoyage.Donnees
                 NbVoyageurs = (byte)Context.DossierVoyageurs.Where(dv => dv.Dossier == d.Id).Count(),
                 Fournisseur = d.Voyage1.Fournisseur.ToString(),
                 etat = (Etat) d.Etat
-            });
+            }).ToList();
         }
 
         public void LoadDroits()

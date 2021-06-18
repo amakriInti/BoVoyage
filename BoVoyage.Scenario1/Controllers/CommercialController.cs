@@ -67,7 +67,8 @@ namespace BoVoyage.Scenario1.Controllers
         -----------------------------------*/
         public ActionResult GestionDossiers()
         {
-            return View();
+            List<string> loginCommerciaux = metier.GetLoginCommerciaux();
+            return View(loginCommerciaux);
         }
     }
 }

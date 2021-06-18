@@ -87,5 +87,20 @@ namespace BoVoyage.Metier
         {
             repository.LoadDroits();
         }
+        /*----------------------------------
+        //Liste des commerciaux
+        -----------------------------------*/
+        public List<string> GetLoginCommerciaux()
+        {
+            return repository.GetCommerciaux().Select(c => c.Login).ToList();
+        }
+
+        /*----------------------------------
+        //Liste des dossiers
+        -----------------------------------*/
+        public object GetDossiers()
+        {
+            return repository.GetDossiers();
+        }
     }
 }
