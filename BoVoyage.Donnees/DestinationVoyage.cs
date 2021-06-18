@@ -17,6 +17,7 @@ namespace BoVoyage.Donnees
         public System.Guid Destination { get; set; }
         public System.Guid Voyage { get; set; }
         public long id { get; set; }
+        public string DestinationVoyage1 { get; set; }
     
         public virtual Destination Destination1 { get; set; }
         public virtual Voyage Voyage1 { get; set; }
