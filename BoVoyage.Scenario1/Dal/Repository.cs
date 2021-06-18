@@ -25,27 +25,47 @@ namespace BoVoyage.Scenario1.Dal
 
         internal void ReadCsv()
         {
-           string [] files = Directory.GetFiles(path_csv);
-            foreach (string f in files)
+            try
             {
-                var Vygs = LectureCsv(f); //Lit le fichier CSV
-                Context.Voyages.AddRange(Vygs);//Ajoute à la base de données
-                File.Delete(f);//Efface le fichier 
+                string[] files = Directory.GetFiles(path_csv);
+                foreach (string f in files)
+                {
+                    if (LectureCsv(f) != null)
+                    {
+                        var Vygs = LectureCsv(f); //Lit le fichier CSV
+                        Context.Voyages.AddRange(Vygs);//Ajoute à la base de données
+                        File.Delete(f);//Efface le fichier 
+                    }
+                    else return;
+                }
+                Context.SaveChanges();//sauvegarde les changements 
             }
-            Context.SaveChanges();//sauvegarde les changements 
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         private static List<Voyage> LectureCsv(string path)//fonctions de lecture du fichier csv
         {
             List<Voyage> vy = new List<Voyage>();
-
-            // Lecture du fichier csv -> ps
-            foreach (var ligne in File.ReadAllLines(path))
+            try
             {
-                var tab = ligne.Split(';');
-                vy.Add(new Voyage { Id = Guid.NewGuid(), Fournisseur = new Guid(tab[0]), Libelle = tab[1], DateAller = Convert.ToDateTime(tab[2]), DateRetour = Convert.ToDateTime(tab[3]), MaxVoyageur = Convert.ToByte(tab[4]), PrixAchatTotal = Convert.ToDecimal(tab[5]), Description = tab[6] });
+                string[] file_reader = File.ReadAllLines(path);
+                foreach (var ligne in file_reader)
+                {
+                    var tab = ligne.Split(';');
+                    vy.Add(new Voyage { Id = Guid.NewGuid(), Fournisseur = new Guid(tab[0]), Libelle = tab[1], DateAller = Convert.ToDateTime(tab[2]), DateRetour = Convert.ToDateTime(tab[3]), MaxVoyageur = Convert.ToByte(tab[4]), PrixAchatTotal = Convert.ToDecimal(tab[5]), Description = tab[6] });
+                }
+                return vy;
             }
-            return vy;
+
+            catch (Exception)
+            {
+                return null;
+            }
+            // Lecture du fichier csv -> ps
+
         }
 
         internal List<Dossier> GetAllDossiers()//retourne la liste des dossiers
@@ -68,7 +88,7 @@ namespace BoVoyage.Scenario1.Dal
         }
 
 
-        internal bool ChangeCommercial(Guid? id_doss,string email)//Change le commercial du dossier sur l'utilisateur connecté
+        internal bool ChangeCommercial(Guid? id_doss, string email)//Change le commercial du dossier sur l'utilisateur connecté
         {
             var employe = Context.Employes.Where(e => e.Login == email).FirstOrDefault();
             if (employe.Statut == 1)
@@ -87,7 +107,7 @@ namespace BoVoyage.Scenario1.Dal
         {
             if (id_doss != null)
             {
-                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 3 ;
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Etat = 3;
                 Context.SaveChanges();
                 return true;
             }
@@ -120,7 +140,7 @@ namespace BoVoyage.Scenario1.Dal
         {
             if (id_doss != null)
             {
-                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Commercial =null;
+                Context.Dossiers.Where(d => d.Id == id_doss).FirstOrDefault().Commercial = null;
                 Context.SaveChanges();
                 return true;
             }
@@ -178,15 +198,24 @@ namespace BoVoyage.Scenario1.Dal
         }
 
 
+        internal List<Dossier> GetDossierFromClient(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Dossiers.Where(d => d.Client == id).ToList();
+            }
+            else return null;
+        }
 
 
-        internal Guid? NouveauDossier(string email,Guid? id_voyage)
+
+        internal Guid? NouveauDossier(string email, Guid? id_voyage)
         {
             if (id_voyage != null)
             {
                 Guid? Id_dossier = Guid.NewGuid();
                 var client = Context.Clients.Where(c => c.Mail == email).FirstOrDefault();
-                if (client==null)
+                if (client == null)
                 {
                     return null;
                 }
@@ -197,11 +226,23 @@ namespace BoVoyage.Scenario1.Dal
             else return null;
         }
 
+        internal bool SupprimerDossier(Guid? id)
+        {
+            if (id != null)
+            {
+                Dossier doss = Context.Dossiers.Where(d => d.Id == id).FirstOrDefault();
+                Context.Dossiers.Remove(doss);
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
+
         internal bool NouveauClient(string email, string nom, string prenom)
         {
             if (email != null)
-            { 
-                Context.Clients.Add(new Client { Id = Guid.NewGuid(), Mail = email, Prenom = prenom, Nom =nom });
+            {
+                Context.Clients.Add(new Client { Id = Guid.NewGuid(), Mail = email, Prenom = prenom, Nom = nom });
                 Context.SaveChanges();
                 return true;
             }
@@ -221,6 +262,15 @@ namespace BoVoyage.Scenario1.Dal
                 return true;
             }
             else return false;
+        }
+
+        internal Voyageur GetVoyageur(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Voyageurs.Where(d => d.Id == id).FirstOrDefault();
+            }
+            else return null;
         }
 
     }
