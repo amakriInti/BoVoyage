@@ -73,7 +73,7 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des clients
         -----------------------------------*/
-        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             return repository.AddClient(nom, mail, telephone, prenom, personneMorale);
         }
@@ -81,7 +81,7 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des voyageurs
         -----------------------------------*/
-        public bool AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        public Guid AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
         {
             return repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
         }
@@ -89,9 +89,9 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout d'une assurance
         -----------------------------------*/
-        public bool AddAssurance(bool assurance)
+        public Guid CreateAssurance(bool annulation, decimal prix)
         {
-            return repository.AddAssurance(assurance);
+            return repository.CreateAssurance(annulation, prix);
         }
 
         /*----------------------------------

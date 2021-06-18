@@ -32,7 +32,8 @@ namespace BoVoyage.Scenario1.Controllers
         }
         public ActionResult ValideAssurance(bool assurance)
         {
-            metier.AddAssurance(assurance);
+            decimal prix = 100;
+            metier.CreateAssurance(assurance, prix);
             return RedirectToAction("Index");
         }
 

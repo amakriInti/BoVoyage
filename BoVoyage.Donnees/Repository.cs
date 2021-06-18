@@ -171,27 +171,22 @@ namespace BoVoyage.Donnees
                 return null;
             }
         }
-        public bool AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            try
+            Guid IdClient = Guid.NewGuid();
+            Context.Clients.Add(new Client
             {
-                Context.Clients.Add(new Client
-                {
-                    Id = Guid.NewGuid(),
-                    Nom = nom,
-                    Prenom = prenom,
-                    Mail = mail,
-                    Telephone = telephone,
-                    PersonneMorale = personneMorale,
-                });
-                Context.SaveChanges();
+                Id = IdClient,
+                Nom = nom,
+                Prenom = prenom,
+                Mail = mail,
+                Telephone = telephone,
+                PersonneMorale = personneMorale,
+            });
+            Context.SaveChanges();
 
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return IdClient;
+
         }
 
         /*------------------------------------------
@@ -288,47 +283,21 @@ namespace BoVoyage.Donnees
             }
             Context.SaveChanges();
         }
-        public bool AddVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        public Guid AddVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
         {
-            try
+            Guid IdVoyageur = Guid.NewGuid();
+            Context.Voyageurs.Add(new Voyageur
             {
-                Context.Voyageurs.Add(new Voyageur
-                {
-                    Id = Guid.NewGuid(),
-                    Nom = nom,
-                    Prenom = prenom,
-                    DateNaissance = naissance,
-                    IsAccompagnant = isAccompagnant,
-                    Mail = mail,
-                });
-                Context.SaveChanges();
+                Id = IdVoyageur,
+                Nom = nom,
+                Prenom = prenom,
+                DateNaissance = naissance,
+                IsAccompagnant = isAccompagnant,
+                Mail = mail,
+            });
+            Context.SaveChanges();
 
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-        public bool AddAssurance(bool assurance)
-        {
-            try
-            {
-                Context.Assurances.Add(new Assurance
-                {
-                    Id = Guid.NewGuid(),
-                    Prix = 105,
-                    Annulation = assurance,
-                });
-                Context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return IdVoyageur;
         }
     }
-
 }
