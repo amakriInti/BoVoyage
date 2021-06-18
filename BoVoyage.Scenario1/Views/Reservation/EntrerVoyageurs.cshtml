@@ -5,7 +5,7 @@
 }
 
 <h2>Entrer Voyageurs</h2>
-
+<strong>Attention, Il faut un accompagnant majeur.</strong>
 
 <form action="/Reservation/EntrerVoyageurs" method="post">
     <div>
@@ -23,29 +23,34 @@
 
             <div>
                 <input type="text" required id="name_@i" name="name_@i" value="name_@i"
-                       checked>
+                      pattern="[a-zA-Z]+" >
                 <label for="name_@i">Nom </label>
             </div>
 
 
             <div>
                 <input type="text" required id="fname_@i" name="fname_@i" value="fname_@i"
-                       checked>
+                       pattern="[a-zA-Z]+">
                 <label for="fname_@i">Prenom </label>
             </div>
 
             <div>
-                <input type="date" required id="date_@i" name="date_@i" value="date_@i">
+                <input type="date" required id="date_@i" name="date_@i" value="date_@i" max="@DateTime.Today">
                 <label for="date_@i">Date Naissance</label>
             </div>
 
-            <div>
+            <!--<div>
                 <select name="acc_@i" id="acc_@i">
                     <option value="false">Non</option>
                     <option value="true">Oui</option>
                 </select>
                 <label for="acc_@i">Accompagnant</label>
-            </div>
+            </div>-->
+
+            <div>
+                <input type="radio" id="acc_@i" name="acc" value="acc_@i" checked>
+                <label for="acc_@i">Accompagnant</label>
+            </div>// donc là je vais recevoir acc_i
 
         }
     }

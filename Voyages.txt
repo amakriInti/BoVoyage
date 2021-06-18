@@ -321,3 +321,13 @@ On va tester en créant un voyage à 4 passagers puis en le supprimant
 Id du voyage à 4 personnes   : 24F00238-F426-4476-8BDF-5816146DA16F
 on l'a trouvé donc on va essayer  de le supprimer
 Quand on supprime un dossier les voyageurs n'y sont plus associés donc ça marche
+
+18/06/2021 : 13:40
+On va faire en sorte que lorsque j'inscris un voyageur s'il existe déjà je ne le rajoute pas
+En fait non car on peut avoir plusieurs voyageurs sur le meme mail (parent-enfant) et ils peuvent avoir le même nom prenom sans avoir le meme mail etc...
+
+18/06/2021 : 13:50
+On va s'assurer qu'il y a un accompagnant et qu'il  est majeur
+
+18/06/2021 : 14:45
+On s'assuré qu'il y avait toujours au moins un accompagnant majeur et qu'il ne pouvait pas y avoir de chiffres dans les noms

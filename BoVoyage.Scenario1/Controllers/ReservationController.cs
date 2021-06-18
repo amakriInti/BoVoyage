@@ -86,17 +86,38 @@ namespace BoVoyage.Scenario1.Controllers
                     //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
                     for (int i = 0; i < nb_voyageurs; i++)
                     {
-                        Guid Id_nouveau_voyageur = Guid.NewGuid();
-                        Voyageur Vygr = new Voyageur
+                        Guid Id_nouveau_voyageur = Guid.NewGuid();//on va faire 2 cas : IsAcc= 1 et IsAcc=0
+                        if (System.Web.HttpContext.Current.Request.Form["acc"]== "acc_"+i)
                         {
-                            Id = Id_nouveau_voyageur,
-                            Nom = System.Web.HttpContext.Current.Request.Form["name_" + i],
-                            Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i],
-                            DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
-                            IsAccompagnant = Convert.ToBoolean(System.Web.HttpContext.Current.Request.Form["acc_" + i]),
-                        };
-                        Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
-                        Repo.AddVoyageur(Vygr);
+                            Voyageur Vygr = new Voyageur
+                            {
+                                Id = Id_nouveau_voyageur,
+                                Nom = System.Web.HttpContext.Current.Request.Form["name_" + i],
+                                Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i],
+                                DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
+                                IsAccompagnant = true,
+                            };
+                            if((DateTime.Today).Subtract(Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i])).Days< 6570)//S'assure que l'accompagnant a bien 18 ans
+                            {
+                                return RedirectToAction("EntrerVoyageurs", "Reservation");
+                            }
+                            Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
+                            Repo.AddVoyageur(Vygr);
+                        }
+                        else
+                        {
+                            Voyageur Vygr = new Voyageur
+                            {
+                                Id = Id_nouveau_voyageur,
+                                Nom = System.Web.HttpContext.Current.Request.Form["name_" + i],
+                                Prenom = System.Web.HttpContext.Current.Request.Form["fname_" + i],
+                                DateNaissance = Convert.ToDateTime(System.Web.HttpContext.Current.Request.Form["date_" + i]),
+                                IsAccompagnant = false,
+                            };
+                            Vygr.Dossiers.Add(Repo.GetDossier(id_dossier));// crée le lien dans la table secondaire
+                            Repo.AddVoyageur(Vygr);
+                        }
+
                         //--------------Création Dossier et Ajout Voyageurs-----------------------------------------------------------
                         //Une fois les voyageurs ajoutés On met le voyage au panier
 
