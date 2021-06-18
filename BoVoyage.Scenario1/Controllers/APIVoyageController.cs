@@ -8,8 +8,10 @@ using System.Web.Http;
 
 namespace BoVoyage.Scenario1.Controllers
 {
+    
     public class APIVoyageController : ApiController
     {
+        public Guid IdVoyageur;
         private ClassMetier metier = new ClassMetier();
         public bool PostParticipant(Participant obj)
         {
@@ -18,7 +20,8 @@ namespace BoVoyage.Scenario1.Controllers
             string mail = obj.mail;
             DateTime naissance = obj.naissance;
             bool isAccompagnant = obj.isAccompagnant;
-            metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
+            IdVoyageur = metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
+            //metier.CreateDossierVoyageur(, IdVoyageur);
             return true;
         }
         

@@ -219,6 +219,18 @@ namespace BoVoyage.Donnees
             Context.SaveChanges();
             return dossierId;
         }
+        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+        {
+            
+            DossierVoyageur dossVoy = new DossierVoyageur
+            {
+                Dossier= dossierId,
+                Voyageur = voyageurId,
+            };
+            Context.DossierVoyageurs.Add(dossVoy);
+            Context.SaveChanges();
+            return true;
+        }
         public void DeleteDossier(Guid dossierId)
         {
             Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == dossierId);

@@ -95,6 +95,22 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Ajout d'un dossier
+        -----------------------------------*/
+        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId)
+        {
+            return repository.CreateDossier( voyageId, clientId, assuranceId, commercialId);
+        }
+
+        /*----------------------------------
+        //Ajout d'un dossierVoyageur
+        -----------------------------------*/
+        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+        {
+            return repository.CreateDossierVoyageur(dossierId, voyageurId);
+        }
+
+        /*----------------------------------
         //Liste des voyages
         -----------------------------------*/
         public object DBVoyages(string tri, string choix)

@@ -8,8 +8,8 @@ namespace BoVoyage.Donnees
 {
     public enum Etat
     {
-        EnAttente,
         EnCours,
+        EnAttente,
         Refusé,
         Accepté,
         Annulé
