@@ -1,6 +1,12 @@
 ﻿<script>
     function GoToPaiement() {
-        window.location = "";
+
+        var Assurance;
+        if (document.getElementById("oui").checked == true) { Assurance = true };
+        if (document.getElementById("non").checked == true) { Assurance = false };
+
+        alert("Votre Voyage à été correctement enregistré, vous recevrez prochainement un mail du conseillez qui vous serra affecté et il vous comfirmera si il reste suffisament de place pour ce voyage.")
+        window.location = "https://localhost:44307/Home/ValideAssurance/?assurance=" + Assurance;
     }
 </script>
 
@@ -10,12 +16,10 @@
 <br />
 <br />
 <br />
-<h3>Souhaitez-vous souscrire une assurance pour ce voyage?</h3>
+<h3>Souhaitez-vous souscrire une assurance annulation pour ce voyage?</h3>
 <form>
-    <input type="radio" name="assurance" checked="checked" /> Non <br />
-    <input type="radio" name="assurance" /> Assurance annulation <br />
-    <input type="radio" name="assurance" /> Assurance Rapatriement <br />
-    <input type="radio" name="assurance" /> Assurance Vol <br />
+    <input type="radio" id="oui" name="assurance" checked="checked" /> Oui <br />
+    <input type="radio" id="non" name="assurance" /> Non <br />
 </form>
 <br />
 <button type="button" onclick="GoToPaiement()"> Passer au paiement </button>

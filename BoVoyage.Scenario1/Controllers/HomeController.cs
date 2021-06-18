@@ -30,6 +30,11 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
+        public ActionResult ValideAssurance(bool assurance)
+        {
+            metier.AddAssurance(assurance);
+            return RedirectToAction("Index");
+        }
 
         public ActionResult About()
         {

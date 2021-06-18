@@ -82,6 +82,14 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Ajout d'une assurance
+        -----------------------------------*/
+        public bool AddAssurance(bool assurance)
+        {
+            return repository.AddAssurance(assurance);
+        }
+
+        /*----------------------------------
         //Liste des voyages
         -----------------------------------*/
         public object DBVoyages(string tri, string choix)

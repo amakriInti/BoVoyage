@@ -152,6 +152,25 @@ namespace BoVoyage.Donnees
                 return false;
             }
         }
+        public bool AddAssurance(bool assurance)
+        {
+            try
+            {
+                Context.Assurances.Add(new Assurance
+                {
+                    Id = Guid.NewGuid(),
+                    Prix = 105,
+                    Annulation = assurance,
+                });
+                Context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 
 }
