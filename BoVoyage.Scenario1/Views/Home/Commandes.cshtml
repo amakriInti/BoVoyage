@@ -1,0 +1,26 @@
+﻿@model List<BoVoyage.Scenario1.Dal.Dossier>
+@using BoVoyage.Scenario1.Models;
+
+    @{
+        ViewBag.Title = "Commandes";
+    }
+
+    <h2>Commandes</h2>
+
+    <body>
+        <ul>
+            @{
+                <li><strong>Mes Dossiers</strong></li>
+                foreach (var v in Model)//affiche les dossier de l'employé
+                {
+                    var etat = (DossierEnum)v.Etat;
+
+                        <li>
+                            <hr />
+                            @v.Client1.Nom | @v.Voyage1.Libelle | @etat  | @Html.ActionLink("Annuler Voyage", "AnnulerVoyage", new { id = v.Id })
+                            <br /> @Html.ActionLink("Détails", "Details_Dossier", new { id = v.Id })
+                        </li>
+         
+                }
+            }
+

@@ -178,6 +178,15 @@ namespace BoVoyage.Scenario1.Dal
         }
 
 
+        internal List<Dossier> GetDossierFromClient(Guid? id)
+        {
+            if (id != null)
+            {
+                return Context.Dossiers.Where(d => d.Client == id).ToList();
+            }
+            else return null;
+        }
+
 
 
         internal Guid? NouveauDossier(string email,Guid? id_voyage)
@@ -195,6 +204,18 @@ namespace BoVoyage.Scenario1.Dal
                 return Id_dossier;
             }
             else return null;
+        }
+
+        internal bool SupprimerDossier(Guid? id)
+        {
+            if (id != null)
+            {
+                Dossier doss = Context.Dossiers.Where(d => d.Id == id).FirstOrDefault();
+                Context.Dossiers.Remove(doss);
+                Context.SaveChanges();
+                return true;
+            }
+            else return false;
         }
 
         internal bool NouveauClient(string email, string nom, string prenom)

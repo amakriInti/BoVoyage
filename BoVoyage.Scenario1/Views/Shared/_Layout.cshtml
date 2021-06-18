@@ -40,6 +40,10 @@
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                             <li>@Html.ActionLink("Panier", "Panier", "Home")</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Mes Commandes", "Commandes", "Home")</li>
+                            }
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>

@@ -14,9 +14,12 @@ namespace BoVoyage.Scenario1.Controllers
         private Model1 db = new Model1();
 
         [HttpGet]
-        public string GetPaiement()//mettre l'objet en paramètre ici
+        public byte GetPaiement()
         {
-            return "1111";
+            Random rnd = new Random(); 
+             byte nombre_validation =  (byte)Math.Round(rnd.NextDouble()*5);
+            return nombre_validation;
         }
+
     }
 }

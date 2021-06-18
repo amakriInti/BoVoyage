@@ -71,6 +71,16 @@ namespace BoVoyage.Scenario1.Controllers
             var Doss = Repo.GetDetailsDossier(id);
             return View(Doss);
         }
-            
+
+        public ActionResult SupprimerDossier(Guid? id)
+        {
+            if (id != null)
+            {
+                Repository Repo = new Repository();
+                Repo.SupprimerDossier(id);
+            }
+            return RedirectToAction("Dossiers", "Com");
+        }
+
     }
 }

@@ -293,4 +293,11 @@ Au départ on lui mettra simplement une suite de chiffre donnée qu'il devra ref
 l'état de la commande à refuser
 
 18/06/2021 : 09:45
-Scénario de paiement simple validé 
+Scénario de paiement simple validé on enchaine sur celui avec le booléen
+
+18/06/2021 : 10:36
+Note : si le paiement est refusé le panier ne se vide pas...Mais en dehors de ça le paiement fonctionne comme prévu 
+Pour l'instant si le paiement est refusé on ne refuse pas le dossier ça laisse la possibilité au client de retenter son paiement.
+
+18/06/2021 : 11:18
+On va permettre au client de consulter l'ensemble de ses commandes d'en supprimer une, et au commercial de faire de même

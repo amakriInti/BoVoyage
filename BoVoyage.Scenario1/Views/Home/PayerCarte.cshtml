@@ -31,13 +31,16 @@
                 success: function (data, status) {
                     if (status == "success") {
                         $('#div1').html("Pas payé")
-                        if (num_carte == data) {
-                            $('#div1').html("Paiement réussi");
-                            $('#div1').html("<a href='/Home/Payer'>Payer</a>");
+                        if (data !=5) {
+                            alert('paiement validé'+data)
+                                var url =' @Url.Action("Payer", "Home")';
+                                window.location.href = url;
                              }
                         else
                         {
-                             $('#div1').html("Paiement refusé");
+                            alert('Paiement refusé'+data);
+                            var url =' @Url.Action("Index", "Home")';
+                            window.location.href = url;
                         }
     //on envoie les données à div0
                     }
@@ -46,7 +49,6 @@
                     $('#div0').html("Erreur");
                     }
             });
-
 
 })
 

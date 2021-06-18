@@ -77,13 +77,43 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult PayerCarte()
         {
-            ViewBag.montant = 600;
+          
             if (Session["panier"] != null)// Si panier est nul, on retourne  à l'accueil
             {
                 List<ItemPanier> panier_courant = (List<ItemPanier>)Session["panier"];
-                return View(panier_courant);
+                decimal PrixTot = 0;
+                foreach(var item in panier_courant)
+                {
+                    PrixTot += item.voyage.PrixVenteUnitaire * item.nombre_voyageurs; 
+                    if(item.assurance!=null)
+                    {
+                        PrixTot += (decimal)item.assurance.Prix;
+                    }
+                        
+                }
+                ViewBag.montant = PrixTot;
+                return View();
+                
             }
             else return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Commandes()
+        {
+            Repository Repo = new Repository();
+            var client = Repo.GetClientByEmail(User.Identity.GetUserName());
+            List<Dossier> Dossiers_client = Repo.GetDossierFromClient(client.Id);
+            return View(Dossiers_client);
+        }
+
+        public ActionResult AnnulerVoyage(Guid? id)
+        {
+            if (id != null)
+            {
+                Repository Repo = new Repository();
+                Repo.SupprimerDossier(id);
+            }
+            return RedirectToAction("Commandes", "Home");
         }
     }
 }
