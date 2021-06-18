@@ -41,6 +41,7 @@
           <Property Name="Destination" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyage" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DestinationVoyage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Dossier">
           <Key>
@@ -285,6 +286,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
           <Property Name="Destination" Type="Guid" Nullable="false" />
           <Property Name="Voyage" Type="Guid" Nullable="false" />
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DestinationVoyage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Destination1" Relationship="Self.FK_DestinationVoyage_Destination" FromRole="DestinationVoyage" ToRole="Destination" />
           <NavigationProperty Name="Voyage1" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="DestinationVoyage" ToRole="Voyage" />
         </EntityType>
@@ -500,6 +502,7 @@ avertissement 6002: La table/vue 'BoVoyage.dbo.DossierVoyageur' n'a pas de clé 
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="Voyage" ColumnName="Voyage" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DestinationVoyage1" ColumnName="DestinationVoyage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
