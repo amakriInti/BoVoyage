@@ -81,5 +81,19 @@ namespace BoVoyage.Scenario1.Controllers
               return RedirectToAction("Dossiers", "Com");
         }
 
-    }
+        public ActionResult Voyageurs()
+        {
+            var Vygrs = Repo.GetAllVoyageurs();
+            return View(Vygrs);
+        }
+
+        public ActionResult SupprimerVoyageur(Guid? id)
+        {
+            if (id != null)
+            {
+                Repo.SupprimerVoyageur(id);
+
+            }
+            return RedirectToAction("Voyageurs", "Com");
+        }
 }

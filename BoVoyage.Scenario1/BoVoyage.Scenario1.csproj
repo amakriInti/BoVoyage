@@ -298,6 +298,7 @@
     <Content Include="Views\Home\PayerCarte.cshtml" />
     <Content Include="Views\Home\Commandes.cshtml" />
     <Content Include="Views\Home\Details_Dossier.cshtml" />
+    <Content Include="Views\Com\Voyageurs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -87,6 +87,17 @@ namespace BoVoyage.Scenario1.Dal
             return liste_doss;
         }
 
+        internal bool SupprimerVoyageur(Guid? id)
+        {
+            if (id != null)
+            {
+                Voyageur vygr = Context.Voyageurs.Where(d => d.Id == id).FirstOrDefault();
+                Context.Voyageurs.Remove(vygr);
+                return true;
+
+            }
+            else return false;
+        }
 
         internal bool ChangeCommercial(Guid? id_doss,string email)//Change le commercial du dossier sur l'utilisateur connecté
         {
@@ -271,6 +282,11 @@ namespace BoVoyage.Scenario1.Dal
                 return Context.Voyageurs.Where(d => d.Id == id).FirstOrDefault();
             }
             else return null;
+        }
+
+        internal List<Voyageur> GetAllVoyageurs()
+        {
+              return Context.Voyageurs.ToList();
         }
 
     }

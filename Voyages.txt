@@ -354,3 +354,6 @@ On commence par les controleurs
 
 18/06/2021 : 18:02
 On a rajouté l'option qui permet de supprimer un voyage du panier
+
+19/06/2021 : 11:57
+On rajoute l'annuaire des voyageurs  sur le site côté commerciaux

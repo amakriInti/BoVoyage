@@ -1,0 +1,14 @@
+﻿@model List<BoVoyage.Scenario1.Dal.Voyageur>
+
+
+<body>
+    <ul>
+        @{
+            foreach (var v in Model)
+            {
+                <hr />
+                <li> @v.Nom | @v.Prenom | @Html.ActionLink("Supprimer Voyageur", "SupprimerVoyageur", new { id = v.Id })</li>
+            }
+        }
+    </ul>
+</body>
