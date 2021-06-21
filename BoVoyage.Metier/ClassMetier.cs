@@ -134,6 +134,13 @@ namespace BoVoyage.Metier
             return repository.DetailsVoyage(id);
         }
         /*----------------------------------
+        //Devis
+        -----------------------------------*/
+        public object Devis(string id)
+        {
+            return repository.Devis(id);
+        }
+        /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/
         public void Load()
