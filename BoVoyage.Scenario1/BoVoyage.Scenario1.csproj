@@ -456,6 +456,8 @@
     <Content Include="Voyage_csv_autre\Paris.csv" />
     <Content Include="Views\Commercial\GestionDossiers.cshtml" />
     <Content Include="Views\Shared\_LayoutAffVoyage.cshtml" />
+    <Content Include="Views\Home\DetailsVoyage.cshtml" />
+    <Content Include="Views\Home\Devis.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

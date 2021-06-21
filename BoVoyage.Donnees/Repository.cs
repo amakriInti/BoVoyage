@@ -205,6 +205,39 @@ namespace BoVoyage.Donnees
                 return null;
             }
         }
+        public object Devis(string id)
+        {
+            var idparsed = Guid.Parse(id);
+            try
+            {
+                var query = (from Voyage in Context.Voyages
+                             join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                             join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                             where Voyage.Id == idparsed
+                             select new VoyageDetail
+                             {
+                                 Id = Voyage.Id,
+                                 DateAller = Voyage.DateAller,
+                                 DateRetour = Voyage.DateRetour,
+                                 MaxVoyageur = Voyage.MaxVoyageur,
+                                 Fournisseur = Voyage.Fournisseur,
+                                 PrixAchatTotal = Voyage.PrixAchatTotal,
+                                 PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                                 DescriptionVoyage = Voyage.Description,
+                                 DescriptionDestination = Destination.Description,
+                                 Continent = Destination.Continent,
+                                 Pays = Destination.Pays,
+                                 Region = Destination.Region,
+                                 Image = Voyage.Image
+                             });
+
+                return query.ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             Guid IdClient = Guid.NewGuid();

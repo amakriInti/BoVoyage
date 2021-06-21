@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Devis";
+}
+@model List<BoVoyage.Donnees.VoyageDetail>
+
+    <h3> Calcul du devis : </h3>
+    <hr />
+    <div>
+        <table>
+            @{
+            foreach (var item in Model)
+            {
+
+            <tr>
+                <td colspan="2">
+                    @{ string image = "/Photo/" + @item.Image;}
+                    <img src="@image" style="width:85%" /><br /><br />
+
+                </td>
+                <td align="center">
+                    <h3> Date et Horaires de Départ :  @item.DateAller </h3><br />
+                    <h3> Date et Horaires de Retour : @item.DateRetour </h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1> Pays : @item.Pays</h1>
+                    <h2> Continent : @item.Continent </h2>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="1">
+                    <h4> @item.DescriptionVoyage </h4>
+                    <h5> <strong>Description :</strong> @item.DescriptionDestination </h5><br /><br />
+                    <h4> Informations complémentaires : </h4>
+                    
+                        <!--Nombre de place disponible-->
+                        <div class="input-group mb-3">
+                            <div style="width:40%;" class="input-group-prepend ">
+                                <label class="input-group-text " for="NbPlace">Nombre de participant adulte(s) et/ou ado(s) :</label>
+                            </div>
+                            <select style="width:50%;" class="form-select" id="NbPlace1" name="NbPlace" required>
+                                <option selected disabled value="">Nombre de participant</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
+                                <option value=10>10</option>
+                                <option value=11>11</option>
+                                <option value=12>12</option>
+                                <option value=13>13</option>
+                                <option value=14>14</option>
+                                <option value=15>15</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Veuillez sélectionner un champs.
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div style="width:40%;" class="input-group-prepend ">
+                                <label class="input-group-text " for="NbPlace">Nombre de participant enfant(s) ( - 16 ans) :</label>
+                            </div>
+                            <select style="width:50%;" class="form-select" id="NbPlace2" name="NbPlace" required>
+                                <option selected disabled value="">Nombre de participant</option>
+                                <option value=0>0</option>
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                                <option value=6>6</option>
+                                <option value=7>7</option>
+                                <option value=8>8</option>
+                                <option value=9>9</option>
+                                <option value=10>10</option>
+                                <option value=11>11</option>
+                                <option value=12>12</option>
+                                <option value=13>13</option>
+                                <option value=14>14</option>
+                                <option value=15>15</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Veuillez sélectionner un champs.
+                            </div>
+                        </div>
+                        <div>
+                            Assurances : <br />
+                            <input type="checkbox" id="AssuAnnuC" /> Annulation <br />
+                            <input type="checkbox" id="AssuVols" /> Vols <br />
+                            
+                        </div><br />
+                        <button onclick="add()">Calculer</button><br /><br />
+
+
+                    
+
+                    <h3> Prix total : résultat ici </h3>
+                    <a href="#" class="btn btn-primary">Réservation</a>
+
+                </td>
+
+            </tr>
+            }
+            }
+        </table>
+    </div>
+    @* /*--------------------------------------
+    //Calcul
+    --------------------------------------*/*@
+    <script>
+        function add() {
+            let nbAdult = $('#NbPlace1').val();
+            let nbEnfant = $('#NbPlace2').val();
+
+            var AssuAnnu = false;
+            if (document.getElementById("AssuAnnuC").checked == true) { AssuAnnu = true };
+            if (document.getElementById("AssuAnnuC").checked == false) { AssuAnnu = false };
+
+           var AssuVols = false;
+            if (document.getElementById("AssuVols").checked == true) { AssuAnnu = true };
+            if (document.getElementById("AssuVols").checked == false) { AssuAnnu = false };
+            
+            alert("Adulte=" + nbAdult + ", enfant=" + nbEnfant + "Annu=" + AssuAnnu + "Vols=" + AssuVols);
+        }
+    </script>
