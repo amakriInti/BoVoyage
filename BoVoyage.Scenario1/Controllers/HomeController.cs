@@ -5,11 +5,17 @@ using System.IO;
 using System;
 using BoVoyage.Metier;
 using System.Collections;
+using BoVoyage.Donnees;
 
 namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            panier = new Panier();
+        }
+        public Panier panier;
 
         private ClassMetier metier = new ClassMetier();
         public ActionResult Index()
@@ -19,14 +25,29 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult InformationClient(Guid IdVoyage)
         {
-            Session["Voyage"] = IdVoyage;
+            
+            panier.IdVoyage = IdVoyage;
+            Session["panier"] = panier;
             return View();
         }
 
         public ActionResult Participant(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            Guid IdClient = metier.AddClient(nom, mail, telephone, prenom, personneMorale);
-            Session["Client"] = IdClient;
+            if (Session["panier"] != null) { panier = (Panier)Session["panier"]; }
+            panier.Client = metier.CreateClient(nom, mail, telephone, prenom, personneMorale);
+            Session["panier"] = panier;
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult Participant(List<Voyageur> voyageurs)
+        {
+            panier = (Panier)Session["panier"];
+            foreach (var voyageur in voyageurs)
+            {
+                panier.Voyageurs.Add(metier.CreateVoyageurs(voyageur));
+            }
+            Session["panier"] = panier;
             return View();
         }
         public ActionResult Assurance()
@@ -35,11 +56,16 @@ namespace BoVoyage.Scenario1.Controllers
         }
         public ActionResult ValideAssurance(bool assurance)
         {
+            panier = (Panier)Session["panier"];
             decimal prix = 100;
-            Guid IdAssurance = metier.CreateAssurance(assurance, prix);
-            var IdVoyage = (Guid)Session["Voyage"];
-            var IdClient = (Guid)Session["Client"];
-            Guid IdDossier = metier.CreateDossier(IdVoyage, IdClient, IdAssurance);
+            panier.Assurance = metier.CreateAssurance(assurance, prix);
+            panier.Dossier = metier.CreateDossier(panier.IdVoyage, panier.Client.Id, panier.Assurance.Id);
+            metier.AddClient(panier.Client);
+            metier.AddVoyageurs(panier.Voyageurs);
+            metier.AddAssurance(panier.Assurance);
+            metier.AddDossier(panier.Dossier);
+            metier.AddDossierVoyageurs(panier.Dossier, panier.Voyageurs);
+            Session["panier"] = panier;
             return RedirectToAction("Index");
         }
 
@@ -76,5 +102,14 @@ namespace BoVoyage.Scenario1.Controllers
             if (detailvoyage == null) return RedirectToAction("Index");
             return View(detailvoyage);
         }
+
+    }
+    public class Panier
+    {
+        public Guid IdVoyage { get; set; }
+        public Dossier Dossier { get; set; }
+        public Assurance Assurance { get; set; }
+        public Client Client { get; set; }
+        public List<Voyageur> Voyageurs { get; set; }
     }
 }

@@ -73,43 +73,68 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des clients
         -----------------------------------*/
-        public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        public Client CreateClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            return repository.AddClient(nom, mail, telephone, prenom, personneMorale);
+            return repository.CreateClient(nom, mail, telephone, prenom, personneMorale);
+        }
+        public bool AddClient(Client client)
+        {
+            repository.AddClient(client.Id, client.Nom, client.Prenom, client.Mail, client.PersonneMorale, client.Telephone);
+            return true;
         }
 
         /*----------------------------------
         //Ajout des voyageurs
         -----------------------------------*/
-        public Guid AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        public Voyageur CreateVoyageurs(Voyageur v)
         {
-            Guid IdVoyageur = repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
-            return IdVoyageur;
+            return repository.CreateVoyageur(v.Nom, v.Prenom, v.DateNaissance, v.IsAccompagnant, v.Mail);
+        }
+        public bool AddVoyageurs(List<Voyageur> voyageurs)
+        {
+            foreach (Voyageur voyageur in voyageurs)
+            {
+                repository.AddVoyageurs(voyageur.Id, voyageur.Nom, voyageur.Prenom, voyageur.Mail, voyageur.DateNaissance, voyageur.IsAccompagnant);
+            }
+            return true;
         }
 
         /*----------------------------------
         //Ajout d'une assurance
         -----------------------------------*/
-        public Guid CreateAssurance(bool annulation, decimal prix)
+        public Assurance CreateAssurance(bool annulation, decimal prix)
         {
             return repository.CreateAssurance(annulation, prix);
+        }
+        public bool AddAssurance(Assurance assurance)
+        {
+            repository.AddAssurance(assurance.Id, assurance.Annulation, assurance.Prix);
+            return true;
         }
 
         /*----------------------------------
         //Ajout d'un dossier
         -----------------------------------*/
-        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId)
+        public Dossier CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId)
         {
-            Guid IdDossier = repository.CreateDossier(voyageId, clientId, assuranceId);
-            return IdDossier;
+            return repository.CreateDossier(voyageId, clientId, assuranceId);
+        }
+        public bool AddDossier(Dossier dossier)
+        {
+            repository.AddDossier(dossier.Id, dossier.Voyage, dossier.Client, dossier.Assurance, dossier.Commercial, dossier.Etat);
+            return true;
         }
 
         /*----------------------------------
         //Ajout d'un dossierVoyageur
         -----------------------------------*/
-        public bool CreateDossierVoyageur(Guid dossierId)
+
+        public bool AddDossierVoyageurs(Dossier dossier, List<Voyageur> voyageurs)
         {
-            repository.CreateDossierVoyageur(dossierId);
+            foreach (Voyageur voyageur in voyageurs)
+            {
+                repository.AddDossierVoyageurs(dossier.Id, voyageur.Id);
+            }
             return true;
         }
 
