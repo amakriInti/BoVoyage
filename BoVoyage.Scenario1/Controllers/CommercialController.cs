@@ -72,6 +72,10 @@ namespace BoVoyage.Scenario1.Controllers
             {
                 region = Request.Form["NewRegion"];
             }
+            if (region == null)
+            {
+                region = "N/A";
+            }
             string DescriptionDestination = Request.Form["DescriptionDestination"];
             string[] NewVoyage = { dateDepart, dateRetour, nbPlace, fournisseur, prixAchat, prixVente, descriptionVoyage, continent, pays, region, DescriptionDestination };
 
