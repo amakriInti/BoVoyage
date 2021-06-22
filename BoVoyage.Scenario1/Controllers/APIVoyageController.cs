@@ -1,4 +1,5 @@
 ﻿using BoVoyage.Metier;
+using BoVoyage.Scenario1.Temp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web.Http;
 
 namespace BoVoyage.Scenario1.Controllers
 {
-    
+
     public class APIVoyageController : ApiController
     {
         public Guid IdVoyageur;
@@ -20,11 +21,10 @@ namespace BoVoyage.Scenario1.Controllers
             string mail = obj.mail;
             DateTime naissance = obj.naissance;
             bool isAccompagnant = obj.isAccompagnant;
-            IdVoyageur = metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
-            //metier.CreateDossierVoyageur(, IdVoyageur);
+            var IdVoyageur = metier.AddVoyageurs(nom, prenom, naissance, isAccompagnant, mail);
+            metier.CreateDossierVoyageur(IdVoyageur);
             return true;
         }
-        
     }
     public class Participant
     {
@@ -34,5 +34,4 @@ namespace BoVoyage.Scenario1.Controllers
         public bool isAccompagnant { get; set; }
         public DateTime naissance { get; set; }
     }
-      
 }

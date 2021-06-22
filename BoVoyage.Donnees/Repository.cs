@@ -204,27 +204,30 @@ namespace BoVoyage.Donnees
             Context.SaveChanges();
             return assuranceId;
         }
-        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId, Etat etat = Etat.EnAttente)
+        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId)
         {
             Guid dossierId = Guid.NewGuid();
+            Etat etat = Etat.EnAttente;
             Dossier doss = new Dossier {
                 Id = dossierId,
                 Voyage = voyageId,
                 Client = clientId,
                 Etat = (byte)etat,
                 Assurance = assuranceId,
-                Commercial = commercialId
+                Commercial = null
             };
             Context.Dossiers.Add(doss);
             Context.SaveChanges();
             return dossierId;
         }
-        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+        public bool CreateDossierVoyageur(Guid voyageurId)
         {
-            
+            Guid dossierId = Guid.Empty;
+            Guid dossiervoyageurId = Guid.NewGuid();
             DossierVoyageur dossVoy = new DossierVoyageur
             {
-                Dossier= dossierId,
+                Id = dossiervoyageurId,
+                Dossier = dossierId,
                 Voyageur = voyageurId,
             };
             Context.DossierVoyageurs.Add(dossVoy);
@@ -236,9 +239,9 @@ namespace BoVoyage.Donnees
             Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == dossierId);
             Assurance ass = Context.Assurances.FirstOrDefault(a => a.Id == doss.Assurance);
             IQueryable<Voyageur> voyageurs = Context.DossierVoyageurs.Where(dv => dv.Dossier == dossierId).Select(dv => Context.Voyageurs.FirstOrDefault(v => v.Id == dv.Voyageur));
-            
+
             // Suppression des voyageurs
-            foreach(Voyageur voyageur in voyageurs)
+            foreach (Voyageur voyageur in voyageurs)
             {
                 Context.Voyageurs.Remove(voyageur);
             }
@@ -253,7 +256,7 @@ namespace BoVoyage.Donnees
         }
         public void ResetDossiers()
         {
-            foreach(Dossier doss in Context.Dossiers)
+            foreach (Dossier doss in Context.Dossiers)
             {
                 DeleteDossier(doss.Id);
             }
@@ -261,13 +264,14 @@ namespace BoVoyage.Donnees
         }
         public List<DossierDetailCommercial> GetDossiers()
         {
-            return Context.Dossiers.Select(d => new DossierDetailCommercial {
+            return Context.Dossiers.Select(d => new DossierDetailCommercial
+            {
                 Id = d.Id,
                 DateAller = d.Voyage1.DateAller,
                 DateRetour = d.Voyage1.DateRetour,
                 NbVoyageurs = (byte)Context.DossierVoyageurs.Where(dv => dv.Dossier == d.Id).Count(),
                 Fournisseur = d.Voyage1.Fournisseur.ToString(),
-                etat = (Etat) d.Etat
+                etat = (Etat)d.Etat
             }).ToList();
         }
 

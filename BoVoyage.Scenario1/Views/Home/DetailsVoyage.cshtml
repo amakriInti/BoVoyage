@@ -58,7 +58,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="#" class="btn btn-primary">Réservation</a>
+                        @{string u = "/Home/InformationClient/?IdVoyage=" + @item.Id;}
+                        
+                        <a href="@u" class="btn btn-primary">Réservation</a>
 
                     </td>
                 </tr>

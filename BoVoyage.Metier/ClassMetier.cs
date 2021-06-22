@@ -83,7 +83,8 @@ namespace BoVoyage.Metier
         -----------------------------------*/
         public Guid AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
         {
-            return repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
+            Guid IdVoyageur = repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
+            return IdVoyageur;
         }
 
         /*----------------------------------
@@ -97,17 +98,19 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout d'un dossier
         -----------------------------------*/
-        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId)
+        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId)
         {
-            return repository.CreateDossier( voyageId, clientId, assuranceId, commercialId);
+            Guid IdDossier = repository.CreateDossier(voyageId, clientId, assuranceId);
+            return IdDossier;
         }
 
         /*----------------------------------
         //Ajout d'un dossierVoyageur
         -----------------------------------*/
-        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+        public bool CreateDossierVoyageur(Guid dossierId)
         {
-            return repository.CreateDossierVoyageur(dossierId, voyageurId);
+            repository.CreateDossierVoyageur(dossierId);
+            return true;
         }
 
         /*----------------------------------

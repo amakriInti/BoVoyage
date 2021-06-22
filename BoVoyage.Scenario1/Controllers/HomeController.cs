@@ -10,9 +10,6 @@ namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
-        public Guid IdClient;
-        public Guid IdAssurance;
-        public Guid IdDossier;
 
         private ClassMetier metier = new ClassMetier();
         public ActionResult Index()
@@ -20,14 +17,16 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
-        public ActionResult InformationClient()
+        public ActionResult InformationClient(Guid IdVoyage)
         {
+            Session["Voyage"] = IdVoyage;
             return View();
         }
 
         public ActionResult Participant(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            IdClient = metier.AddClient(nom, mail, telephone, prenom, personneMorale);
+            Guid IdClient = metier.AddClient(nom, mail, telephone, prenom, personneMorale);
+            Session["Client"] = IdClient;
             return View();
         }
         public ActionResult Assurance()
@@ -37,10 +36,11 @@ namespace BoVoyage.Scenario1.Controllers
         public ActionResult ValideAssurance(bool assurance)
         {
             decimal prix = 100;
-            IdAssurance = metier.CreateAssurance(assurance, prix);
-            //IdDossier = metier.CreateDossier(  , IdClient, IdAssurance, null);
+            Guid IdAssurance = metier.CreateAssurance(assurance, prix);
+            var IdVoyage = (Guid)Session["Voyage"];
+            var IdClient = (Guid)Session["Client"];
+            Guid IdDossier = metier.CreateDossier(IdVoyage, IdClient, IdAssurance);
             return RedirectToAction("Index");
-
         }
 
         public ActionResult About()

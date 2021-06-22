@@ -56,9 +56,9 @@
         </EntityType>
         <EntityType Name="DossierVoyageur">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyageur" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Dossier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -301,9 +301,9 @@
         </EntityType>
         <EntityType Name="DossierVoyageur">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Voyageur" Type="Guid" Nullable="false" />
           <Property Name="Dossier" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Dossier1" Relationship="Self.FK_DossierVoyageur_Dossier" FromRole="DossierVoyageur" ToRole="Dossier" />
@@ -549,7 +549,7 @@
           <EntitySetMapping Name="DossierVoyageurs">
             <EntityTypeMapping TypeName="BoVoyageModel.DossierVoyageur">
               <MappingFragment StoreEntitySet="DossierVoyageur">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Voyageur" ColumnName="Voyageur" />
                 <ScalarProperty Name="Dossier" ColumnName="Dossier" />
               </MappingFragment>
@@ -609,7 +609,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
