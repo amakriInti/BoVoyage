@@ -85,78 +85,44 @@ namespace BoVoyage.Donnees
                 return false;
             }
         }
-        /*------------------------------------------
-        //Affichage statut employé
-        -------------------------------------------*/
+
         public IQueryable<Employe> GetCommerciaux()
         {
             return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
         }
 
-        /*------------------------------------------
-        //Remplissage combobox
-        -------------------------------------------*/
-        public object GetVoyageFormulaire(string continent, string pays, string region)
-        {
-            var query = (from Voyage in Context.Voyages
-                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
-                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
-                         select new VoyageDetail
-                         {
-                             Id = Voyage.Id,
-                             DateAller = Voyage.DateAller,
-                             DateRetour = Voyage.DateRetour,
-                             MaxVoyageur = Voyage.MaxVoyageur,
-                             Fournisseur = Voyage.Fournisseur,
-                             PrixAchatTotal = Voyage.PrixAchatTotal,
-                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                             DescriptionVoyage = Voyage.Description,
-                             DescriptionDestination = Destination.Description,
-                             Continent = Destination.Continent,
-                             Pays = Destination.Pays,
-                             Region = Destination.Region
-                         });
-            //return query.ToList();
-            if (query.Any(c => c.Region == region))
-                return query.Where(b => b.Region == region).ToList();
-
-            else if (query.Any(c => c.Pays == pays))
-                return query.Where(c => c.Pays == pays).Select(c => c.Region).ToList().Distinct();
-
-            else if (query.Any(c => c.Continent == continent))
-                return query.Where(c => c.Continent == continent).Select(c => c.Pays).ToList().Distinct();
-
-            else if (continent == null)
-                return query.ToList();
-            else
-                return query;
-        }
-
         public object DBVoyages(string tri, string choix)
         {
             var query = (from Voyage in Context.Voyages
-                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
-                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
-                         select new VoyageDetail
-                         {
-                             Id = Voyage.Id,
-                             DateAller = Voyage.DateAller,
-                             DateRetour = Voyage.DateRetour,
-                             MaxVoyageur = Voyage.MaxVoyageur,
-                             Fournisseur = Voyage.Fournisseur,
-                             PrixAchatTotal = Voyage.PrixAchatTotal,
-                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
-                             DescriptionVoyage = Voyage.Description,
-                             DescriptionDestination = Destination.Description,
-                             Continent = Destination.Continent,
-                             Pays = Destination.Pays,
-                             Region = Destination.Region,
-                             Image = Voyage.Image
-                         });
+                        join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                        join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                        select new VoyageDetail {
+                            Id = Voyage.Id,
+                            DateAller = Voyage.DateAller,
+                            DateRetour = Voyage.DateRetour,
+                            MaxVoyageur = Voyage.MaxVoyageur,
+                            Fournisseur = Voyage.Fournisseur,
+                            PrixAchatTotal = Voyage.PrixAchatTotal,
+                            PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                            DescriptionVoyage = Voyage.Description,
+                            DescriptionDestination = Destination.Description,
+                            Continent = Destination.Continent,
+                            Pays = Destination.Pays,
+                            Region = Destination.Region,
+                            Image = Voyage.Image
+                        });
             //return query.ToList();
-            if (tri == "Fournisseur")
+            if (tri == "DateAller")
+                return query.Where(c => c.DateAller == DateTime.Parse(choix)).ToList();
+            else if (tri == "DateRetour")
+                return query.Where(c => c.DateRetour == DateTime.Parse(choix)).ToList();
+            else if (tri == "MaxVoyageur")
+                return query.Where(c => c.MaxVoyageur >= byte.Parse(choix)).ToList();
+            else if (tri == "Fournisseur")
                 if (choix == "null" || choix == null) return query.Select(c => c.Fournisseur).ToList().Distinct();
                 else return query.Where(c => c.Fournisseur == choix).ToList();
+            else if (tri == "PrixVenteUnitaire")
+                return query.Where(c => c.PrixVenteUnitaire == decimal.Parse(choix)).ToList();
             else if (tri == "Continent")
                 if (choix == "null" || choix == null) return query.Select(c => c.Continent).ToList().Distinct();
                 else return query.Where(c => c.Continent == choix).ToList();
@@ -340,10 +306,7 @@ namespace BoVoyage.Donnees
 
         public void LoadDroits()
         {
-            //Récupère les autorisations de la classe données>droits et les stocke dans un doctionnaire
             Dictionary<string, StatutEnum> etats = droits.Load();
-
-            //Ajoute les droits défini dans la base dedonnée
             foreach (KeyValuePair<string, StatutEnum> kvp in etats)
             {
                 if (!Roles.IsUserInRole(kvp.Key, kvp.Value.ToString())) Roles.AddUserToRole(kvp.Key, kvp.Value.ToString());
