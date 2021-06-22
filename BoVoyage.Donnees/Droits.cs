@@ -34,6 +34,9 @@ namespace BoVoyage.Donnees
             etat.Add("lefevre_quentin@outlook.fr", StatutEnum.Admin);
             etat.Add("diego.striegel@gmail.com", StatutEnum.Admin);
 
+            //Role de commercial
+            etat.Add("andre@bovayage.com", StatutEnum.Commercial);
+
             //Attribution des roles commercial (On garde quand même)
             /*
             var mails = repository.GetAllMails(StatutEnum.Commercial);

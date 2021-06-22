@@ -307,7 +307,10 @@ namespace BoVoyage.Donnees
 
         public void LoadDroits()
         {
+            //Récupère les autorisations de la classe données>droits et les stocke dans un doctionnaire
             Dictionary<string, StatutEnum> etats = droits.Load();
+
+            //Ajoute les droits défini dans la base dedonnée
             foreach (KeyValuePair<string, StatutEnum> kvp in etats)
             {
                 if (!Roles.IsUserInRole(kvp.Key, kvp.Value.ToString())) Roles.AddUserToRole(kvp.Key, kvp.Value.ToString());

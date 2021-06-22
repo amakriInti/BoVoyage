@@ -11,6 +11,7 @@ namespace BoVoyage.Scenario1.Controllers
     /*-------------------------------------------------
     //Page commerciale
     --------------------------------------------------*/
+    [Authorize(Roles = "Commercial, Admin")]
     public class CommercialController : Controller
     {
         private ClassMetier metier = new ClassMetier();
