@@ -19,7 +19,6 @@ namespace BoVoyage.Scenario1.Controllers
         {
             return View();
         }
-
         public ActionResult InformationClient()
         {
             return View();
@@ -75,6 +74,13 @@ namespace BoVoyage.Scenario1.Controllers
             var detailvoyage = metier.DetailsVoyage(id);
             if (detailvoyage == null) return RedirectToAction("Index");
             return View(detailvoyage);
+        }
+        public ActionResult Devis(string id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            var devis = metier.DetailsVoyage(id);
+            if (devis == null) return RedirectToAction("Index");
+            return View(devis);
         }
     }
 }
