@@ -119,6 +119,14 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Liste pour combobox
+        -----------------------------------*/
+        public object GetVoyageFormulaire(string tri, string choix, string choixprecis)
+        {
+            return repository.GetVoyageFormulaire(tri, choix, choixprecis);
+        }
+
+        /*----------------------------------
         //Détail des voyages
         -----------------------------------*/
         public object DetailsVoyage(string id)

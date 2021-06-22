@@ -11,6 +11,7 @@ namespace BoVoyage.Scenario1.Controllers
     /*-------------------------------------------------
     //Page commerciale
     --------------------------------------------------*/
+    [Authorize(Roles = "Commercial, Admin")]
     public class CommercialController : Controller
     {
         private ClassMetier metier = new ClassMetier();
@@ -71,6 +72,10 @@ namespace BoVoyage.Scenario1.Controllers
             if (region == "Autre")
             {
                 region = Request.Form["NewRegion"];
+            }
+            if (region == null)
+            {
+                region = "N/A";
             }
             string DescriptionDestination = Request.Form["DescriptionDestination"];
             string[] NewVoyage = { dateDepart, dateRetour, nbPlace, fournisseur, prixAchat, prixVente, descriptionVoyage, continent, pays, region, DescriptionDestination };
