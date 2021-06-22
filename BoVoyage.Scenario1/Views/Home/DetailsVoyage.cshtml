@@ -5,16 +5,6 @@
 
     <h4>Voyage</h4>
     <hr />
-    @*@{
-    foreach (var item in Model)
-    {
-    @item.Id;
-    @item.Pays;
-    @item.Continent;
-    @item.Region;
-    @item.DateAller;
-    }
-    }*@
     <div>
         <table>
             @{
@@ -43,6 +33,7 @@
                     <h4> @item.DescriptionVoyage </h4>
                     <h5> <strong>Description :</strong> @item.DescriptionDestination </h5><br />
                     <a href="#" class="btn btn-primary">Réservation</a>
+                    <a href="https://localhost:44307/Home/Devis/ @item.Id" class="btn btn-primary">Devis</a>
                 </td>
             </tr>
             }
