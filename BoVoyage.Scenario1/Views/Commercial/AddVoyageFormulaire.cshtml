@@ -241,7 +241,7 @@
         <!--Bouton validation-->
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Ajouter ce voyage</button>
-            @(Html.ActionLink("Retourner à la liste des voyages", "AffichageVoyage", new { id = 1 }, new { @class = "btn btn-secondary" }))
+            @(Html.ActionLink("Retourner à la liste des voyages", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" }))
         </div>
     </div>
 }

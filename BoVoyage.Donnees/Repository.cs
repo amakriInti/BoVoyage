@@ -406,7 +406,7 @@ namespace BoVoyage.Donnees
         }
 
         /*------------------------------------------
-        //Ajout des dossiers dans DB
+        //Ajout des dossiers voyageur dans DB
         -------------------------------------------*/
         public bool AddDossierVoyageurs(Guid dossierId, Guid voyageurId)
         {
