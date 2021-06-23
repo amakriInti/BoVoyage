@@ -173,7 +173,7 @@ namespace BoVoyage.Donnees
         }
         public Client CreateClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            /*Context.Clients.Add(*/ return new Client
+            return new Client
             {
                 Id = Guid.NewGuid(),
                 Nom = nom,

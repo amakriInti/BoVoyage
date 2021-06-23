@@ -11,13 +11,14 @@ namespace BoVoyage.Scenario1.Controllers
 {
     public class HomeController : Controller
     {
+        private ClassMetier metier = new ClassMetier();
+        private Panier panier;
         public HomeController()
         {
             panier = new Panier();
+            panier.Voyageurs = new  List<Voyageur>();
         }
-        public Panier panier;
 
-        private ClassMetier metier = new ClassMetier();
         public ActionResult Index()
         {
             return View();
@@ -25,7 +26,6 @@ namespace BoVoyage.Scenario1.Controllers
 
         public ActionResult InformationClient(Guid IdVoyage)
         {
-            
             panier.IdVoyage = IdVoyage;
             Session["panier"] = panier;
             return View();
@@ -45,6 +45,7 @@ namespace BoVoyage.Scenario1.Controllers
             panier = (Panier)Session["panier"];
             foreach (var voyageur in voyageurs)
             {
+
                 panier.Voyageurs.Add(metier.CreateVoyageurs(voyageur));
             }
             Session["panier"] = panier;
@@ -60,13 +61,24 @@ namespace BoVoyage.Scenario1.Controllers
             decimal prix = 100;
             panier.Assurance = metier.CreateAssurance(assurance, prix);
             panier.Dossier = metier.CreateDossier(panier.IdVoyage, panier.Client.Id, panier.Assurance.Id);
+            Session["panier"] = panier;
+            
+            return RedirectToAction("Recap");
+        }
+        public ActionResult Recap()
+        {
+            return View();
+        }
+        public ActionResult Validation()
+        {
+            panier = (Panier)Session["panier"];
             metier.AddClient(panier.Client);
             metier.AddVoyageurs(panier.Voyageurs);
             metier.AddAssurance(panier.Assurance);
             metier.AddDossier(panier.Dossier);
             metier.AddDossierVoyageurs(panier.Dossier, panier.Voyageurs);
             Session["panier"] = panier;
-            return RedirectToAction("Index");
+            return View();
         }
 
         public ActionResult About()

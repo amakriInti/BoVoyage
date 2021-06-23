@@ -182,8 +182,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\APIVoyageController.cs" />
-    <Compile Include="Controllers\ComController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\DossiersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -349,11 +347,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Photo\bresil1.jpg" />
     <Content Include="Photo\cuba1.jpg" />
-    <Content Include="Photo\kenya1.gif" />
     <Content Include="Photo\kenya2.jpg" />
     <Content Include="Photo\Perou1.jpg" />
     <Content Include="Photo\seychelles.jpg" />
     <Content Include="Photo\stras.jpg" />
+    <Content Include="Scripts\bootstrap-datepicker.fr.js" />
     <Content Include="Voyage.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -447,7 +445,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Com\Index.cshtml" />
     <Content Include="Views\Home\Assurance.cshtml" />
     <Content Include="Views\Home\InformationClient.cshtml" />
     <Content Include="Views\Home\Participant.cshtml" />
@@ -458,6 +455,8 @@
     <Content Include="Views\Commercial\GestionDossiers.cshtml" />
     <Content Include="Views\Shared\_LayoutAffVoyage.cshtml" />
     <Content Include="Views\Home\DetailsVoyage.cshtml" />
+    <Content Include="Views\Home\Recap.cshtml" />
+    <Content Include="Views\Home\Validation.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
