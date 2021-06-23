@@ -1,0 +1,42 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "GestionDossiers";
+}
+
+<h2>GestionDossiers</h2>
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th scope="col">
+                Numéro de dossier
+            </th>
+            <th scope="col">
+                Assignation
+                <select id="assignation">
+                    <option value="Tous">Tous</option>
+                    <option value="Non attribué">Non attribué</option>
+                    @foreach (var com in Model)
+                    {
+                        @Html.Raw("<option value=\"" + com + "\">" + com + "</option>");
+                    }
+                </select>
+            </th>
+            <th scope="col">
+                Fournisseur
+            </th>
+            <th scope="col">
+                Date départ
+            </th>
+            <th scope="col">
+                Date arrivée
+            </th>
+            <th scope="col">
+                Etat
+            </th>
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+</div>

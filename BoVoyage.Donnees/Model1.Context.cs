@@ -30,6 +30,7 @@ namespace BoVoyage.Donnees
         public virtual DbSet<Destination> Destinations { get; set; }
         public virtual DbSet<DestinationVoyage> DestinationVoyages { get; set; }
         public virtual DbSet<Dossier> Dossiers { get; set; }
+        public virtual DbSet<DossierVoyageur> DossierVoyageurs { get; set; }
         public virtual DbSet<Employe> Employes { get; set; }
         public virtual DbSet<Voyage> Voyages { get; set; }
         public virtual DbSet<Voyageur> Voyageurs { get; set; }

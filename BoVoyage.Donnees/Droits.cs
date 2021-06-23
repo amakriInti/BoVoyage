@@ -8,12 +8,10 @@ namespace BoVoyage.Donnees
 {
     public class Droits
     {
-        private Repository repository = new Repository();
-
         /*----------------------------------------
         //Initialisation des roles
         ----------------------------------------*/
-        public void Load()
+        public Dictionary<string, StatutEnum> Load()
         {
             // aspnet_regsql.exe -S .\SQLEXPRESS -E -A all -d BoVoyage
 
@@ -28,19 +26,26 @@ namespace BoVoyage.Donnees
             if (!Roles.RoleExists(StatutEnum.Commercial.ToString())) Roles.CreateRole(StatutEnum.Commercial.ToString());
             if (!Roles.RoleExists(StatutEnum.Admin.ToString())) Roles.CreateRole(StatutEnum.Admin.ToString());
 
-            //Attribution des roles admin
-            if (!Roles.IsUserInRole("krystal.ml.frances@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("krystal.ml.frances@gmail.com", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("vincentrigoni68@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("vincentrigoni68@gmail.com", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("alexandre.argento@ymail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("alexandre.argento@ymail.com", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString())) Roles.AddUserToRole("lefevre_quentin@outlook.fr", StatutEnum.Admin.ToString());
-            if (!Roles.IsUserInRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString())) Roles.AddUserToRole("diego.striegel@gmail.com", StatutEnum.Admin.ToString());
+            //Attribution des roles
+            Dictionary<string, StatutEnum> etat = new Dictionary<string, StatutEnum>();
+            etat.Add("krystal.ml.frances@gmail.com", StatutEnum.Admin);
+            etat.Add("vincentrigoni68@gmail.com", StatutEnum.Admin);
+            etat.Add("alexandre.argento@ymail.com", StatutEnum.Admin);
+            etat.Add("lefevre_quentin@outlook.fr", StatutEnum.Admin);
+            etat.Add("diego.striegel@gmail.com", StatutEnum.Admin);
 
-            //Attribution des roles commercial
+            //Role de commercial
+            etat.Add("andre@bovayage.com", StatutEnum.Commercial);
+
+            //Attribution des roles commercial (On garde quand même)
+            /*
             var mails = repository.GetAllMails(StatutEnum.Commercial);
             foreach (var mail in mails)
             {
                 if (!Roles.IsUserInRole(mail, StatutEnum.Commercial.ToString())) Roles.AddUserToRole(mail, StatutEnum.Commercial.ToString());
             }
+            */
+            return etat;
         }
     }
 }
