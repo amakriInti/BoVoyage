@@ -182,8 +182,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\APIVoyageController.cs" />
-    <Compile Include="Controllers\ComController.cs" />
     <Compile Include="Controllers\CommercialController.cs" />
     <Compile Include="Controllers\DossiersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -196,6 +194,7 @@
     <Compile Include="Models\Etat.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Panier.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -346,14 +345,19 @@
     <Content Include="Dessins\0.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Photo\algerie1.jpg" />
     <Content Include="Photo\bresil1.jpg" />
+    <Content Include="Photo\chine1.jpg" />
     <Content Include="Photo\cuba1.jpg" />
-    <Content Include="Photo\kenya1.gif" />
+    <Content Include="Photo\france1.jpg" />
+    <Content Include="Photo\grece1.jpeg" />
+    <Content Include="Photo\japon1.jpeg" />
     <Content Include="Photo\kenya2.jpg" />
     <Content Include="Photo\Perou1.jpg" />
     <Content Include="Photo\seychelles.jpg" />
     <Content Include="Photo\stras.jpg" />
-    <Content Include="Voyage.html" />
+    <Content Include="Photo\tailand.jpg" />
+    <Content Include="Scripts\bootstrap-datepicker.fr.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -446,7 +450,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Com\Index.cshtml" />
     <Content Include="Views\Home\Assurance.cshtml" />
     <Content Include="Views\Home\InformationClient.cshtml" />
     <Content Include="Views\Home\Participant.cshtml" />
@@ -458,6 +461,10 @@
     <Content Include="Views\Shared\_LayoutAffVoyage.cshtml" />
     <Content Include="Views\Home\DetailsVoyage.cshtml" />
     <Content Include="Views\Home\Devis.cshtml" />
+    <Content Include="Views\Commercial\AddVoyageCSV.cshtml" />
+    <Content Include="Views\Home\Recap.cshtml" />
+    <Content Include="Views\Home\Validation.cshtml" />
+    <Content Include="Views\Home\RecapDossier.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -486,6 +493,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BoVoyage.Donnees\BoVoyage.Donnees.csproj">
+      <Project>{67e1b2b5-c42c-4fb7-9c00-a06a768e7ad8}</Project>
+      <Name>BoVoyage.Donnees</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BoVoyage.Metier\BoVoyage.Metier.csproj">
       <Project>{cb02ec49-97c1-4f30-a51a-728cf77c94d5}</Project>
       <Name>BoVoyage.Metier</Name>

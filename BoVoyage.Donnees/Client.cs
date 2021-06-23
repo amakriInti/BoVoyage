@@ -21,11 +21,11 @@ namespace BoVoyage.Donnees
         }
     
         public System.Guid Id { get; set; }
+        public string PersonneMorale { get; set; }
         public string Nom { get; set; }
+        public string Prenom { get; set; }
         public string Mail { get; set; }
         public string Telephone { get; set; }
-        public string Prenom { get; set; }
-        public string PersonneMorale { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossier> Dossiers { get; set; }

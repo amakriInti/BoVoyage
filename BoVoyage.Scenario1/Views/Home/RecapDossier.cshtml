@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "RecapDossier";
+}
+@model List<BoVoyage.Donnees.VoyageDetail>
+
+<h3>Récapitulatif du dossier</h3>
+<hr />
+<div>
+    <table>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td colspan="2">
+                        @{ string image = "/Photo/" + @item.Image;}
+                        <img src="@image" style="width:85%" /><br /><br />
+
+                    </td>
+                    <td align="center">
+                        <h3> Date et Horaires de Départ :  @item.DateAller </h3><br />
+                        <h3> Date et Horaires de Retour : @item.DateRetour </h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h1> Pays : @item.Pays</h1>
+                        <h2> Continent : @item.Continent </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nom Prénom du Client :
+                        Nbre de personnes :
+                        Nbre d'enfants :
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://localhost:44307/Home/Devis/ @item.Id" class="btn btn-primary">Revoir le voyage</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" class="btn btn-secondary">Modification du voyage</a>
+                        <h5> Attention : Si la demande de modification comprend le nombre de participants ou les dates du voyage, alors le dossier devra être re-valider.</h5><br />
+                        <br />
+                        <a href="#" class="btn btn-warning">Annulation du voyage</a>
+                        <h5> Vous ne serez rembourser uniquement si vous avez choisi l'assurance annulation.</h5>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

@@ -1,11 +1,9 @@
 ﻿<script>
-    function GoToPaiement() {
+    function GoToRecap() {
 
         var Assurance;
         if (document.getElementById("oui").checked == true) { Assurance = true };
         if (document.getElementById("non").checked == true) { Assurance = false };
-
-        alert("Votre Voyage à été correctement enregistré, vous recevrez prochainement un mail du conseillez qui vous serra affecté et il vous comfirmera si il reste suffisament de place pour ce voyage.")
         window.location = "https://localhost:44307/Home/ValideAssurance/?assurance=" + Assurance;
     }
 </script>
@@ -22,4 +20,4 @@
     <input type="radio" id="non" name="assurance" /> Non <br />
 </form>
 <br />
-<button type="button" onclick="GoToPaiement()"> Passer au paiement </button>
+<button type="button" onclick="GoToRecap()"> Récapitulatif de commande </button>

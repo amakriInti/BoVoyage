@@ -8,8 +8,8 @@ namespace BoVoyage.Scenario1.Models
 {
     public enum Etat
     {
-        EnAttente,
         EnCours,
+        EnAttente,
         Refusé,
         Accepté,
         Annulé

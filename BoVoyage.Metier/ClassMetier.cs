@@ -73,41 +73,76 @@ namespace BoVoyage.Metier
         /*----------------------------------
         //Ajout des clients
         -----------------------------------*/
-        public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+        //Temp
+        public Client CreateClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            return repository.AddClient(nom, mail, telephone, prenom, personneMorale);
+            return repository.CreateClient(nom, mail, telephone, prenom, personneMorale);
+        }
+        //Dans DB
+        public bool AddClient(Client client)
+        {
+            repository.AddClient(client.Id, client.Nom, client.Prenom, client.Mail, client.PersonneMorale, client.Telephone);
+            return true;
         }
 
         /*----------------------------------
         //Ajout des voyageurs
         -----------------------------------*/
-        public Guid AddVoyageurs(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        //temp
+        public Voyageur CreateVoyageurs(Voyageur v)
         {
-            return repository.AddVoyageur(nom, prenom, naissance, isAccompagnant, mail);
+            return repository.CreateVoyageur(v.Nom, v.Prenom, v.DateNaissance, v.IsAccompagnant, v.Mail);
+        }
+        //Dans DB
+        public bool AddVoyageurs(List<Voyageur> voyageurs)
+        {
+            foreach (Voyageur voyageur in voyageurs)
+            {
+                repository.AddVoyageurs(voyageur.Id, voyageur.Nom, voyageur.Prenom, voyageur.Mail, voyageur.DateNaissance, voyageur.IsAccompagnant);
+            }
+            return true;
         }
 
         /*----------------------------------
         //Ajout d'une assurance
         -----------------------------------*/
-        public Guid CreateAssurance(bool annulation, decimal prix)
+        //Temp
+        public Assurance CreateAssurance(bool annulation, decimal prix)
         {
             return repository.CreateAssurance(annulation, prix);
+        }
+        //Dans DB
+        public bool AddAssurance(Assurance assurance)
+        {
+            repository.AddAssurance(assurance.Id, assurance.Annulation, assurance.Prix);
+            return true;
         }
 
         /*----------------------------------
         //Ajout d'un dossier
         -----------------------------------*/
-        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId)
+        //Temp
+        public Dossier CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId)
         {
-            return repository.CreateDossier( voyageId, clientId, assuranceId, commercialId);
+            return repository.CreateDossier(voyageId, clientId, assuranceId);
+        }
+        //Dans DB
+        public bool AddDossier(Dossier dossier)
+        {
+            repository.AddDossier(dossier.Id, dossier.Voyage, dossier.Client, dossier.Assurance, dossier.Commercial, dossier.Etat);
+            return true;
         }
 
         /*----------------------------------
-        //Ajout d'un dossierVoyageur
+        //Ajout d'un dossierVoyageur dans DB
         -----------------------------------*/
-        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+        public bool AddDossierVoyageurs(Dossier dossier, List<Voyageur> voyageurs)
         {
-            return repository.CreateDossierVoyageur(dossierId, voyageurId);
+            foreach (Voyageur voyageur in voyageurs)
+            {
+                repository.AddDossierVoyageurs(dossier.Id, voyageur.Id);
+            }
+            return true;
         }
 
         /*----------------------------------
@@ -133,6 +168,7 @@ namespace BoVoyage.Metier
         {
             return repository.DetailsVoyage(id);
         }
+
         /*----------------------------------
         //Devis
         -----------------------------------*/
@@ -140,6 +176,7 @@ namespace BoVoyage.Metier
         {
             return repository.Devis(id);
         }
+
         /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/
@@ -147,8 +184,9 @@ namespace BoVoyage.Metier
         {
             repository.LoadDroits();
         }
+
         /*----------------------------------
-        //Liste des commerciaux
+        //Liste des commerciaux (à vérifier)
         -----------------------------------*/
         public List<string> GetLoginCommerciaux()
         {
@@ -156,7 +194,7 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
-        //Liste des dossiers
+        //Liste des dossiers (à vérifier)
         -----------------------------------*/
         public object GetDossiers()
         {

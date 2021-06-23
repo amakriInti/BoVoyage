@@ -8,8 +8,12 @@ using System.Web.Http;
 
 namespace BoVoyage.Scenario1.Controllers
 {
+    /*--------------------
+    //Controleur API
+    --------------------*/
     public class DossiersController : ApiController
     {
+        //à vérifier
         private ClassMetier metier = new ClassMetier();
         // GET: api/Dossiers
         public object GetDossiers()
