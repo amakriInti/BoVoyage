@@ -11,6 +11,10 @@ namespace BoVoyage.Donnees
     {
         private BoVoyageContext Context = new BoVoyageContext();
         private Droits droits = new Droits();
+
+        /*------------------------------------------
+        //Récupérer les statuts des employés
+        -------------------------------------------*/
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();
@@ -86,11 +90,48 @@ namespace BoVoyage.Donnees
             }
         }
 
-        public IQueryable<Employe> GetCommerciaux()
+        /*------------------------------------------
+        //Remplissage combobox
+        -------------------------------------------*/
+        public object GetVoyageFormulaire(string continent, string pays, string region)
         {
-            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+            var query = (from Voyage in Context.Voyages
+                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                         select new VoyageDetail
+                         {
+                             Id = Voyage.Id,
+                             DateAller = Voyage.DateAller,
+                             DateRetour = Voyage.DateRetour,
+                             MaxVoyageur = Voyage.MaxVoyageur,
+                             Fournisseur = Voyage.Fournisseur,
+                             PrixAchatTotal = Voyage.PrixAchatTotal,
+                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                             DescriptionVoyage = Voyage.Description,
+                             DescriptionDestination = Destination.Description,
+                             Continent = Destination.Continent,
+                             Pays = Destination.Pays,
+                             Region = Destination.Region
+                         });
+            //return query.ToList();
+            if (query.Any(c => c.Region == region))
+                return query.Where(b => b.Region == region).ToList();
+
+            else if (query.Any(c => c.Pays == pays))
+                return query.Where(c => c.Pays == pays).Select(c => c.Region).ToList().Distinct();
+
+            else if (query.Any(c => c.Continent == continent))
+                return query.Where(c => c.Continent == continent).Select(c => c.Pays).ToList().Distinct();
+
+            else if (continent == null)
+                return query.ToList();
+            else
+                return query;
         }
 
+        /*------------------------------------------
+        //Requetes divers Voyage
+        -------------------------------------------*/
         public object DBVoyages(string tri, string choix)
         {
             var query = (from Voyage in Context.Voyages
@@ -111,8 +152,29 @@ namespace BoVoyage.Donnees
                             Region = Destination.Region,
                             Image = Voyage.Image
                         });
+
+            if (tri == "Fournisseur")
+                if (choix == "null" || choix == null) return query.Select(c => c.Fournisseur).ToList().Distinct();
+                else return query.Where(c => c.Fournisseur == choix).ToList();
+            else if (tri == "Continent")
+                if (choix == "null" || choix == null) return query.Select(c => c.Continent).ToList().Distinct();
+                else return query.Where(c => c.Continent == choix).ToList();
+            else if (tri == "Pays")
+                if (choix == "null" || choix == null) return query.Select(c => c.Pays).ToList().Distinct();
+                else return query.Where(c => c.Pays == choix).ToList();
+            else if (tri == "Region")
+                if (choix == "null" || choix == null) return query.Select(c => c.Region).ToList().Distinct();
+                else return query.Where(c => c.Region == choix).ToList();
+            else if (tri == null)
+                return query.ToList();
+            else
+                return query;
+
+            /*---------------------
+            //Ancienne version
+            ---------------------*/
             //return query.ToList();
-            if (tri == "DateAller")
+            /*if (tri == "DateAller")
                 return query.Where(c => c.DateAller == DateTime.Parse(choix)).ToList();
             else if (tri == "DateRetour")
                 return query.Where(c => c.DateRetour == DateTime.Parse(choix)).ToList();
@@ -135,9 +197,12 @@ namespace BoVoyage.Donnees
             else if (tri == null)
                 return query.ToList();
             else
-                return query;
+                return query;*/
         }
 
+        /*------------------------------------------
+        //Requete de tout les éléments d'un voyage
+        -------------------------------------------*/
         public object DetailsVoyage(string id)
         {
             var idparsed = Guid.Parse(id);
@@ -171,6 +236,10 @@ namespace BoVoyage.Donnees
                 return null;
             }
         }
+
+        /*------------------------------------------
+        //Remplissage combobox (à remodifier) 
+        -------------------------------------------*/
         public object Devis(string id)
         {
             var idparsed = Guid.Parse(id);
@@ -204,66 +273,158 @@ namespace BoVoyage.Donnees
                 return null;
             }
         }
-        public Guid AddClient(string nom, string mail, string telephone, string prenom, string personneMorale)
+
+        /*------------------------------------------
+        //Création du client avant insertion dans DB
+        -------------------------------------------*/
+        public Client CreateClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
-            Guid IdClient = Guid.NewGuid();
-            Context.Clients.Add(new Client
+            return new Client
             {
-                Id = IdClient,
+                Id = Guid.NewGuid(),
                 Nom = nom,
                 Prenom = prenom,
                 Mail = mail,
                 Telephone = telephone,
                 PersonneMorale = personneMorale,
-            });
-            Context.SaveChanges();
-
-            return IdClient;
-
+            };
         }
 
         /*------------------------------------------
-        //Opérations sur les dossiers (Commercial ou client)
+        //Ajout du client dans DB
         -------------------------------------------*/
-        public Guid CreateAssurance(bool annulation, decimal prix)
+        public bool AddClient(Guid Id, string Nom, string Prenom, string Mail, string PersonneMorale, string Telephone)
         {
-            Guid assuranceId = Guid.NewGuid();
-            Assurance ass = new Assurance {
-                Id = assuranceId,
+            Context.Clients.Add(new Client
+            {
+                Id = Id,
+                Nom = Nom,
+                Prenom = Prenom,
+                Mail = Mail,
+                PersonneMorale = PersonneMorale,
+                Telephone = Telephone,
+            });
+            Context.SaveChanges();
+            return true;
+        }
+
+        /*------------------------------------------
+        //Création du voyageur avant insertion dans DB
+        -------------------------------------------*/
+        public Voyageur CreateVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        {
+
+            return new Voyageur
+            {
+                Id = Guid.NewGuid(),
+                Nom = nom,
+                Prenom = prenom,
+                DateNaissance = naissance,
+                IsAccompagnant = isAccompagnant,
+                Mail = mail,
+            };
+        }
+
+        /*------------------------------------------
+        //Ajout des voyageurs dans DB
+        -------------------------------------------*/
+        public bool AddVoyageurs(Guid Id, string Nom, string Prenom, string Mail, DateTime DateNaissance, bool IsAccompagnant)
+        {
+            Context.Voyageurs.Add(new Voyageur
+            {
+                Id = Id,
+                Nom = Nom,
+                Prenom = Prenom,
+                Mail = Mail,
+                DateNaissance = DateNaissance,
+                IsAccompagnant = IsAccompagnant,
+            });
+            Context.SaveChanges();
+            return true;
+        }
+
+        /*------------------------------------------
+        //Création de l'assurrance avant insertion dans DB (a modifier)
+        -------------------------------------------*/
+        public Assurance CreateAssurance(bool annulation, decimal? prix)
+        {
+            return new Assurance
+            {
+                Id = Guid.NewGuid(),
                 Annulation = annulation,
                 Prix = prix
             };
-            Context.Assurances.Add(ass);
-            Context.SaveChanges();
-            return assuranceId;
         }
-        public Guid CreateDossier(Guid voyageId, Guid clientId, Guid assuranceId, Guid commercialId, Etat etat = Etat.EnAttente)
+
+        /*------------------------------------------
+        //Ajout des assurrances dans DB (a modifier)
+        -------------------------------------------*/
+        public bool AddAssurance(Guid Id, bool Annulation, decimal? Prix)
         {
-            Guid dossierId = Guid.NewGuid();
-            Dossier doss = new Dossier {
-                Id = dossierId,
+            Context.Assurances.Add(new Assurance
+            {
+                Id = Id,
+                Annulation = Annulation,
+                Prix = Prix,
+            });
+            Context.SaveChanges();
+            return true;
+        }
+
+        /*------------------------------------------
+        //Création du dossier avant insertion dans DB
+        -------------------------------------------*/
+        public Dossier CreateDossier(Guid voyageId, Guid clientId, Guid? assuranceId)
+        {
+            return new Dossier
+            {
+                Id = Guid.NewGuid(),
                 Voyage = voyageId,
                 Client = clientId,
-                Etat = (byte)etat,
+                Etat = (byte)Etat.EnAttente,
                 Assurance = assuranceId,
-                Commercial = commercialId
+                Commercial = null
             };
-            Context.Dossiers.Add(doss);
-            Context.SaveChanges();
-            return dossierId;
         }
-        public bool CreateDossierVoyageur(Guid dossierId, Guid voyageurId)
+
+        /*------------------------------------------
+        //Ajout des dossiers dans DB
+        -------------------------------------------*/
+        public bool AddDossier(Guid Id, Guid Voyage, Guid Client, Guid? Assurance, Guid? Commercial, byte Etat)
         {
-            
+            Context.Dossiers.Add(new Dossier
+            {
+                Id = Id,
+                Voyage = Voyage,
+                Client = Client,
+                Assurance = Assurance,
+                Commercial = Commercial,
+                Etat = Etat,
+            });
+            Context.SaveChanges();
+            return true;
+        }
+
+        /*------------------------------------------
+        //Ajout des dossiers dans DB
+        -------------------------------------------*/
+        public bool AddDossierVoyageurs(Guid dossierId, Guid voyageurId)
+        {
+            Guid dossiervoyageurId = Guid.NewGuid();
             DossierVoyageur dossVoy = new DossierVoyageur
             {
-                Dossier= dossierId,
+                Id = dossiervoyageurId,
+                Dossier = dossierId,
                 Voyageur = voyageurId,
             };
             Context.DossierVoyageurs.Add(dossVoy);
             Context.SaveChanges();
             return true;
         }
+
+        /*------------------------------------------
+        //Suppression d'un dossier (à vérifier)
+        -------------------------------------------*/
         public void DeleteDossier(Guid dossierId)
         {
             Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == dossierId);
@@ -284,6 +445,10 @@ namespace BoVoyage.Donnees
 
             Context.SaveChanges();
         }
+
+        /*------------------------------------------
+        //Suppression de tout les dossiers (à vérifier)
+        -------------------------------------------*/
         public void ResetDossiers()
         {
             foreach(Dossier doss in Context.Dossiers)
@@ -292,6 +457,19 @@ namespace BoVoyage.Donnees
             }
             Context.SaveChanges();
         }
+
+
+        /*------------------------------------------
+        //Affichage statut employé (à vérififer)
+        -------------------------------------------*/
+        public IQueryable<Employe> GetCommerciaux()
+        {
+            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+        }
+
+        /*------------------------------------------
+        //List de tout les dossier pour les commerciaux (à vérifier)
+        -------------------------------------------*/
         public List<DossierDetailCommercial> GetDossiers()
         {
             return Context.Dossiers.Select(d => new DossierDetailCommercial {
@@ -304,9 +482,15 @@ namespace BoVoyage.Donnees
             }).ToList();
         }
 
+        /*------------------------------------------
+        //Chargement des doits
+        -------------------------------------------*/
         public void LoadDroits()
         {
+            //Récupère les autorisations de la classe données>droits et les stocke dans un doctionnaire
             Dictionary<string, StatutEnum> etats = droits.Load();
+
+            //Ajoute les droits défini dans la base dedonnée
             foreach (KeyValuePair<string, StatutEnum> kvp in etats)
             {
                 if (!Roles.IsUserInRole(kvp.Key, kvp.Value.ToString())) Roles.AddUserToRole(kvp.Key, kvp.Value.ToString());
@@ -327,22 +511,6 @@ namespace BoVoyage.Donnees
                 }
             }
             Context.SaveChanges();
-        }
-        public Guid AddVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
-        {
-            Guid IdVoyageur = Guid.NewGuid();
-            Context.Voyageurs.Add(new Voyageur
-            {
-                Id = IdVoyageur,
-                Nom = nom,
-                Prenom = prenom,
-                DateNaissance = naissance,
-                IsAccompagnant = isAccompagnant,
-                Mail = mail,
-            });
-            Context.SaveChanges();
-
-            return IdVoyageur;
         }
     }
 }

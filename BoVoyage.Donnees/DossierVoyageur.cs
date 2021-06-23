@@ -14,7 +14,7 @@ namespace BoVoyage.Donnees
     
     public partial class DossierVoyageur
     {
-        public long id { get; set; }
+        public System.Guid Id { get; set; }
         public System.Guid Voyageur { get; set; }
         public System.Guid Dossier { get; set; }
     

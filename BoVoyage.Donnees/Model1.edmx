@@ -18,11 +18,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PersonneMorale" Type="nvarchar(max)" />
           <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Telephone" Type="nvarchar(max)" />
-          <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PersonneMorale" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Destination">
           <Key>
@@ -38,9 +38,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Destination" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyage" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DestinationVoyage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Dossier">
@@ -56,9 +56,9 @@
         </EntityType>
         <EntityType Name="DossierVoyageur">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Voyageur" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Dossier" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -254,11 +254,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PersonneMorale" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PersonneMorale" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Client" FromRole="Client" ToRole="Dossier" />
         </EntityType>
         <EntityType Name="Destination">
@@ -276,9 +276,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Destination" Type="Guid" Nullable="false" />
           <Property Name="Voyage" Type="Guid" Nullable="false" />
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DestinationVoyage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Destination1" Relationship="Self.FK_DestinationVoyage_Destination" FromRole="DestinationVoyage" ToRole="Destination" />
           <NavigationProperty Name="Voyage1" Relationship="Self.FK_DestinationVoyage_Voyage" FromRole="DestinationVoyage" ToRole="Voyage" />
@@ -301,9 +301,9 @@
         </EntityType>
         <EntityType Name="DossierVoyageur">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Voyageur" Type="Guid" Nullable="false" />
           <Property Name="Dossier" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Dossier1" Relationship="Self.FK_DossierVoyageur_Dossier" FromRole="DossierVoyageur" ToRole="Dossier" />
@@ -505,11 +505,11 @@
             <EntityTypeMapping TypeName="BoVoyageModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonneMorale" ColumnName="PersonneMorale" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="PersonneMorale" ColumnName="PersonneMorale" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -527,9 +527,9 @@
           <EntitySetMapping Name="DestinationVoyages">
             <EntityTypeMapping TypeName="BoVoyageModel.DestinationVoyage">
               <MappingFragment StoreEntitySet="DestinationVoyage">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Destination" ColumnName="Destination" />
                 <ScalarProperty Name="Voyage" ColumnName="Voyage" />
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="DestinationVoyage1" ColumnName="DestinationVoyage" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -549,7 +549,7 @@
           <EntitySetMapping Name="DossierVoyageurs">
             <EntityTypeMapping TypeName="BoVoyageModel.DossierVoyageur">
               <MappingFragment StoreEntitySet="DossierVoyageur">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Voyageur" ColumnName="Voyageur" />
                 <ScalarProperty Name="Dossier" ColumnName="Dossier" />
               </MappingFragment>
@@ -609,7 +609,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
