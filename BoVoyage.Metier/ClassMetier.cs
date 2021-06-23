@@ -98,6 +98,15 @@ namespace BoVoyage.Metier
             }
             return true;
         }
+        //Dans DB
+        public bool AddVoyageurs(List<Voyageur> voyageurs)
+        {
+            foreach (Voyageur voyageur in voyageurs)
+            {
+                repository.AddVoyageurs(voyageur.Id, voyageur.Nom, voyageur.Prenom, voyageur.Mail, voyageur.DateNaissance, voyageur.IsAccompagnant);
+            }
+            return true;
+        }
 
         /*----------------------------------
         //Ajout d'une assurance
@@ -126,7 +135,7 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
-        //Ajout d'un dossierVoyageur
+        //Ajout d'un dossierVoyageur dans DB
         -----------------------------------*/
 
         public bool AddDossierVoyageurs(Dossier dossier, List<Voyageur> voyageurs)
@@ -147,12 +156,29 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
+        //Liste pour combobox
+        -----------------------------------*/
+        public object GetVoyageFormulaire(string tri, string choix, string choixprecis)
+        {
+            return repository.GetVoyageFormulaire(tri, choix, choixprecis);
+        }
+
+        /*----------------------------------
         //Détail des voyages
         -----------------------------------*/
         public object DetailsVoyage(string id)
         {
             return repository.DetailsVoyage(id);
         }
+
+        /*----------------------------------
+        //Devis
+        -----------------------------------*/
+        public object Devis(string id)
+        {
+            return repository.Devis(id);
+        }
+
         /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/
@@ -160,8 +186,9 @@ namespace BoVoyage.Metier
         {
             repository.LoadDroits();
         }
+
         /*----------------------------------
-        //Liste des commerciaux
+        //Liste des commerciaux (à vérifier)
         -----------------------------------*/
         public List<string> GetLoginCommerciaux()
         {
@@ -169,7 +196,7 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
-        //Liste des dossiers
+        //Liste des dossiers (à vérifier)
         -----------------------------------*/
         public object GetDossiers()
         {

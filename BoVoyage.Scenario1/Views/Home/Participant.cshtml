@@ -242,26 +242,26 @@
     //}
     
     function GoToAssurance(t) {
-    
+
         var Nom = $('#formulaire' + t + ' #nom').val();
         var Prenom = $('#formulaire' + t + ' #prenom').val();
         var Mail = $('#formulaire' + t + ' #mail').val();
-    
+
         var IsAccompagnant = false;
         if ($('#formulaire' + t + ' #accompagnant').prop("checked") == true) { IsAccompagnant = true; }
-    
+
         var Annee = $('#formulaire' + t + ' #annee').val();
         var Mois = $('#formulaire' + t + ' #mois').val();
         var Jour = $('#formulaire' + t + ' #jour').val();
         var NaissanceC = new Date(Annee, Mois, Jour);
         var Naissance = NaissanceC.toJSON();
-    
+
         var Participant = { "nom": Nom, "prenom": Prenom, "mail": Mail, "isAccompagnant": IsAccompagnant, "naissance": Naissance };
         return Participant;
-    
+
         //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
-        
-    
+
+
     }
 
     function MultipliParticipant() {

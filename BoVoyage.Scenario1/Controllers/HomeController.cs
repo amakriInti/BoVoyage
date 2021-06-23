@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System;
 using BoVoyage.Metier;
+using BoVoyage.Donnees; //(à supprimer après modif vincent)
 using System.Collections;
 using BoVoyage.Donnees;
 
@@ -31,6 +32,9 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
+        /*-------------------------
+        //Formulaire participant affichage + envoi formulaire client (httppost)
+        --------------------------*/
         public ActionResult Participant(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             if (Session["panier"] != null) { panier = (Panier)Session["panier"]; }
@@ -51,10 +55,34 @@ namespace BoVoyage.Scenario1.Controllers
             Session["panier"] = panier;
             return View();
         }
+
+        /*-------------------------
+        //Formulaire participant envoi 
+        --------------------------*/
+        [HttpPost]
+        public ActionResult Participant(List<Voyageur> voyageurs)
+        {
+            panier = (Panier)Session["panier"];
+            foreach (var voyageur in voyageurs)
+            {
+
+                panier.Voyageurs.Add(metier.CreateVoyageurs(voyageur));
+            }
+            Session["panier"] = panier;
+            return View();
+        }
+
+        /*-------------------------
+        //Formulaire assurance affichage
+        --------------------------*/
         public ActionResult Assurance()
         {
             return View();
         }
+
+        /*-------------------------
+        //Formulaire assurance envoie (à mettre en httpPost)
+        --------------------------*/
         public ActionResult ValideAssurance(bool assurance)
         {
             panier = (Panier)Session["panier"];
@@ -81,11 +109,17 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
         }
 
+        /*-------------------------
+        //A propos
+        --------------------------*/
         public ActionResult About()
         {
             return View();
         }
 
+        /*-------------------------
+        //Contact
+        --------------------------*/
         public ActionResult Contact()
         {
             return View();
@@ -107,6 +141,9 @@ namespace BoVoyage.Scenario1.Controllers
             }
         }
 
+        /*----------------------------------
+        //Affichage détail des voyages
+        -----------------------------------*/
         public ActionResult DetailsVoyage(string id)
         {
             if (id == null) return RedirectToAction("Index");

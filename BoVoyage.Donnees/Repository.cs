@@ -11,6 +11,10 @@ namespace BoVoyage.Donnees
     {
         private BoVoyageContext Context = new BoVoyageContext();
         private Droits droits = new Droits();
+
+        /*------------------------------------------
+        //Récupérer les statuts des employés
+        -------------------------------------------*/
         internal List<string> GetAllMails(StatutEnum statut)
         {
             var liste = Context.Employes.ToList();
@@ -34,7 +38,7 @@ namespace BoVoyage.Donnees
             });
             return employeId;
         }
-
+        //1
         /*------------------------------------------
         //Ajouter les voyages dans la base de donnée
         -------------------------------------------*/
@@ -86,11 +90,48 @@ namespace BoVoyage.Donnees
             }
         }
 
-        public IQueryable<Employe> GetCommerciaux()
+        /*------------------------------------------
+        //Remplissage combobox
+        -------------------------------------------*/
+        public object GetVoyageFormulaire(string continent, string pays, string region)
         {
-            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+            var query = (from Voyage in Context.Voyages
+                         join DestinationVoyage in Context.DestinationVoyages on Voyage.Id equals DestinationVoyage.Voyage
+                         join Destination in Context.Destinations on DestinationVoyage.Destination equals Destination.Id
+                         select new VoyageDetail
+                         {
+                             Id = Voyage.Id,
+                             DateAller = Voyage.DateAller,
+                             DateRetour = Voyage.DateRetour,
+                             MaxVoyageur = Voyage.MaxVoyageur,
+                             Fournisseur = Voyage.Fournisseur,
+                             PrixAchatTotal = Voyage.PrixAchatTotal,
+                             PrixVenteUnitaire = Voyage.PrixVenteUnitaire,
+                             DescriptionVoyage = Voyage.Description,
+                             DescriptionDestination = Destination.Description,
+                             Continent = Destination.Continent,
+                             Pays = Destination.Pays,
+                             Region = Destination.Region
+                         });
+            //return query.ToList();
+            if (query.Any(c => c.Region == region))
+                return query.Where(b => b.Region == region).ToList();
+
+            else if (query.Any(c => c.Pays == pays))
+                return query.Where(c => c.Pays == pays).Select(c => c.Region).ToList().Distinct();
+
+            else if (query.Any(c => c.Continent == continent))
+                return query.Where(c => c.Continent == continent).Select(c => c.Pays).ToList().Distinct();
+
+            else if (continent == null)
+                return query.ToList();
+            else
+                return query;
         }
 
+        /*------------------------------------------
+        //Requetes divers Voyage
+        -------------------------------------------*/
         public object DBVoyages(string tri, string choix)
         {
             var query = (from Voyage in Context.Voyages
@@ -111,8 +152,29 @@ namespace BoVoyage.Donnees
                             Region = Destination.Region,
                             Image = Voyage.Image
                         });
+
+            if (tri == "Fournisseur")
+                if (choix == "null" || choix == null) return query.Select(c => c.Fournisseur).ToList().Distinct();
+                else return query.Where(c => c.Fournisseur == choix).ToList();
+            else if (tri == "Continent")
+                if (choix == "null" || choix == null) return query.Select(c => c.Continent).ToList().Distinct();
+                else return query.Where(c => c.Continent == choix).ToList();
+            else if (tri == "Pays")
+                if (choix == "null" || choix == null) return query.Select(c => c.Pays).ToList().Distinct();
+                else return query.Where(c => c.Pays == choix).ToList();
+            else if (tri == "Region")
+                if (choix == "null" || choix == null) return query.Select(c => c.Region).ToList().Distinct();
+                else return query.Where(c => c.Region == choix).ToList();
+            else if (tri == null)
+                return query.ToList();
+            else
+                return query;
+
+            /*---------------------
+            //Ancienne version
+            ---------------------*/
             //return query.ToList();
-            if (tri == "DateAller")
+            /*if (tri == "DateAller")
                 return query.Where(c => c.DateAller == DateTime.Parse(choix)).ToList();
             else if (tri == "DateRetour")
                 return query.Where(c => c.DateRetour == DateTime.Parse(choix)).ToList();
@@ -135,9 +197,12 @@ namespace BoVoyage.Donnees
             else if (tri == null)
                 return query.ToList();
             else
-                return query;
+                return query;*/
         }
 
+        /*------------------------------------------
+        //Requete de tout les éléments d'un voyage
+        -------------------------------------------*/
         public object DetailsVoyage(string id)
         {
             var idparsed = Guid.Parse(id);
@@ -226,7 +291,7 @@ namespace BoVoyage.Donnees
         }
 
         /*------------------------------------------
-        //Opérations sur les dossiers (Commercial ou client)
+        //Ajout des voyageurs dans DB
         -------------------------------------------*/
         public Assurance CreateAssurance(bool annulation, decimal? prix)
         {
@@ -285,6 +350,10 @@ namespace BoVoyage.Donnees
             Context.SaveChanges();
             return true;
         }
+
+        /*------------------------------------------
+        //Suppression d'un dossier (à vérifier)
+        -------------------------------------------*/
         public void DeleteDossier(Guid dossierId)
         {
             Dossier doss = Context.Dossiers.FirstOrDefault(d => d.Id == dossierId);
@@ -305,6 +374,10 @@ namespace BoVoyage.Donnees
 
             Context.SaveChanges();
         }
+
+        /*------------------------------------------
+        //Suppression de tout les dossiers (à vérifier)
+        -------------------------------------------*/
         public void ResetDossiers()
         {
             foreach (Dossier doss in Context.Dossiers)
@@ -313,6 +386,19 @@ namespace BoVoyage.Donnees
             }
             Context.SaveChanges();
         }
+
+
+        /*------------------------------------------
+        //Affichage statut employé (à vérififer)
+        -------------------------------------------*/
+        public IQueryable<Employe> GetCommerciaux()
+        {
+            return Context.Employes.Where(e => e.Statut == (byte)StatutEnum.Commercial);
+        }
+
+        /*------------------------------------------
+        //List de tout les dossier pour les commerciaux (à vérifier)
+        -------------------------------------------*/
         public List<DossierDetailCommercial> GetDossiers()
         {
             return Context.Dossiers.Select(d => new DossierDetailCommercial
@@ -326,9 +412,15 @@ namespace BoVoyage.Donnees
             }).ToList();
         }
 
+        /*------------------------------------------
+        //Chargement des doits
+        -------------------------------------------*/
         public void LoadDroits()
         {
+            //Récupère les autorisations de la classe données>droits et les stocke dans un doctionnaire
             Dictionary<string, StatutEnum> etats = droits.Load();
+
+            //Ajoute les droits défini dans la base dedonnée
             foreach (KeyValuePair<string, StatutEnum> kvp in etats)
             {
                 if (!Roles.IsUserInRole(kvp.Key, kvp.Value.ToString())) Roles.AddUserToRole(kvp.Key, kvp.Value.ToString());

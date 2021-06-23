@@ -3,28 +3,18 @@
 }
 @model List<BoVoyage.Donnees.VoyageDetail>
 
-<h4>Voyage</h4>
-<hr />
-@*@{
-        foreach (var item in Model)
-        {
-            @item.Id;
-            @item.Pays;
-            @item.Continent;
-            @item.Region;
-            @item.DateAller;
-        }
-    }*@
-<div>
-    <table>
-        @{
+    <h4>Voyage</h4>
+    <hr />
+    <div>
+        <table>
+            @{
             foreach (var item in Model)
             {
 
-                <tr>
-                    <td>
-                        @{ string image = "/Photo/" + @item.Image;}
-                        <img src="@image" style="width:50%" />;
+            <tr>
+                <td colspan="2">
+                    @{ string image = "/Photo/" + @item.Image;}
+                    <img src="@image" style="width:85%" /><br/><br/>
 
                     </td>
                 </tr>
@@ -67,8 +57,6 @@
 
 
             }
-        }
-
-    </table>
-</div>
-
+            }
+        </table>
+    </div>
