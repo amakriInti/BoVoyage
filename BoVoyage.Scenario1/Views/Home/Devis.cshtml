@@ -5,13 +5,19 @@
 
 <h3> Calcul du devis : </h3>
 <hr />
+@{
+    foreach (var item in Model)
+    {
+        var PrixUnitaire = @item.PrixVenteUnitaire;
+        <div id="prix" @*value="@item.PrixVenteUnitaire"*@>@item.PrixVenteUnitaire</div>
+    }
+}
 <div>
     <table>
         @{
             foreach (var item in Model)
             {
-                var PrixUnitaire = @item.PrixVenteUnitaire;
-
+                
                 <tr>
                     <td colspan="2">
                         @{ string image = "/Photo/" + @item.Image;}
@@ -101,12 +107,13 @@
 
 
                         <h3> Prix total : resultat </h3>
-                        <a href="#" class="btn btn-primary">Réservation</a>
+                        <a href="#" class="btn btn-warning">Réservation</a>
 
                     </td>
 
                 </tr>
             }
+
         }
     </table>
 </div>
@@ -118,11 +125,13 @@
     function add() {
 
         //nbre de places
-        var nbAdult = $('#NbPlace1').val();
-        var nbEnfant = $('#NbPlace2').val();
+        var nbAdult = Number($('#NbPlace1').val());
+        var nbEnfant = Number($('#NbPlace2').val());
+        var prix = document.getElementById("prix").value;
+        alert(prix);
 
         //calcul
-        var sum = nbAdult + nbEnfant;
+        var sum = nbAdult * prix + nbEnfant * prix *0.60;
         alert(sum);
 
         //assurances
@@ -135,7 +144,7 @@
         // recup idvoyage
         // var idvoyage = window.location.search;
         var idvoyage = '23a4b802-dcfd-4735-8a01-325b65b8ea40'
-        
+
 
 
         //Prix unitaire
