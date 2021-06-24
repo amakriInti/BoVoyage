@@ -274,7 +274,9 @@ namespace BoVoyage.Donnees
             }
         }
 
+
         /*---------------------------------------------Travail de vincent ------------------------------------*/
+        #region
         /*------------------------------------------
         //Création du client avant insertion dans DB
         -------------------------------------------
@@ -422,7 +424,7 @@ namespace BoVoyage.Donnees
             Context.SaveChanges();
             return true;
         }*/
-
+        #endregion
         /*---------------------------------------------New version ------------------------------------*/
         /*------------------------------------------
         //Ajout du client dans DB

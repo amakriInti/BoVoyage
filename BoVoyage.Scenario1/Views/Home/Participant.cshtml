@@ -111,8 +111,6 @@
 
 @section Scripts{
     <script>
-        //var voyageurs = [];
-
         /*--------------------------------------
         //Désactiver le remplissage automatique sur tout le formulaire
         ---------------------------------------*/
@@ -215,305 +213,308 @@
     </script>
 }
 
+<!--Vincent-->
+<section>
 
-<!--
-<br />
-<br />
-<br />
-<br />
-<form method="post">
-    Vous souhaitez inscrire :
-    <select onchange="MultipliParticipant()" name="selection" id="selection">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-    </select>
-    Participants
-
-    <button type="button" onclick="AjoutParticipant()"> Ajout d'un participant </button>
-    <button type="button" onclick="SupprParticipant()"> Supression d'un participant </button>
+    <!--
     <br />
-    <div id="suite" class="suite">
-        <div id="formulaire1">
-            <h3>Participant numero : <span id="nb">1</span></h3>
-            <table>
-                <tr>
-                    <th> Nom : </th>
-                    <th><input type="text" size="25" name="voyageurs[0].Nom" /></th>
-                </tr>
-                <tr>
-                    <th> Prenom : </th>
-                    <th><input type="text" size="25" name="voyageurs[0].Prenom" /></th>
-                </tr>
-                <tr>
-                    <th> Date de naissance : </th>
-                    <th>
+    <br />
+    <br />
+    <br />
+    <form method="post">
+        Vous souhaitez inscrire :
+        <select onchange="MultipliParticipant()" name="selection" id="selection">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+        </select>
+        Participants
 
-                        jour
-                        <select name="voyageurs[0].Jour">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
-                            <option>24</option>
-                            <option>25</option>
-                            <option>26</option>
-                            <option>27</option>
-                            <option>28</option>
-                            <option>29</option>
-                            <option>30</option>
-                            <option>31</option>
-                        </select>
-                        mois
-                        <select name="voyageurs[0].Mois">
-                            <option value="0">Janvier</option>
-                            <option value="1">Fevrier</option>
-                            <option value="2">Mars</option>
-                            <option value="3">Avril</option>
-                            <option value="4">Mai</option>
-                            <option value="5">Juin</option>
-                            <option value="6">Juillet</option>
-                            <option value="7">Aout</option>
-                            <option value="8">Septembre</option>
-                            <option value="9">Octobre</option>
-                            <option value="10">Novembre</option>
-                            <option value="11">Decembre</option>
-                        </select>
-                        année
-                        <select name="voyageurs[0].Annee">
-                            <option>1920</option>
-                            <option>1921</option>
-                            <option>1922</option>
-                            <option>1923</option>
-                            <option>1924</option>
-                            <option>1925</option>
-                            <option>1926</option>
-                            <option>1927</option>
-                            <option>1928</option>
-                            <option>1929</option>
-                            <option>1930</option>
-                            <option>1931</option>
-                            <option>1932</option>
-                            <option>1933</option>
-                            <option>1934</option>
-                            <option>1935</option>
-                            <option>1936</option>
-                            <option>1937</option>
-                            <option>1938</option>
-                            <option>1939</option>
-                            <option>1940</option>
-                            <option>1941</option>
-                            <option>1942</option>
-                            <option>1943</option>
-                            <option>1944</option>
-                            <option>1945</option>
-                            <option>1946</option>
-                            <option>1947</option>
-                            <option>1948</option>
-                            <option>1949</option>
-                            <option>1950</option>
-                            <option>1951</option>
-                            <option>1952</option>
-                            <option>1953</option>
-                            <option>1954</option>
-                            <option>1955</option>
-                            <option>1956</option>
-                            <option>1957</option>
-                            <option>1958</option>
-                            <option>1959</option>
-                            <option>1960</option>
-                            <option>1961</option>
-                            <option>1962</option>
-                            <option>1963</option>
-                            <option>1964</option>
-                            <option>1965</option>
-                            <option>1966</option>
-                            <option>1967</option>
-                            <option>1968</option>
-                            <option>1969</option>
-                            <option>1970</option>
-                            <option>1971</option>
-                            <option>1972</option>
-                            <option>1973</option>
-                            <option>1974</option>
-                            <option>1975</option>
-                            <option>1976</option>
-                            <option>1977</option>
-                            <option>1978</option>
-                            <option>1979</option>
-                            <option>1980</option>
-                            <option>1981</option>
-                            <option>1982</option>
-                            <option>1983</option>
-                            <option>1984</option>
-                            <option>1985</option>
-                            <option>1986</option>
-                            <option>1987</option>
-                            <option>1988</option>
-                            <option>1989</option>
-                            <option>1990</option>
-                            <option>1991</option>
-                            <option>1992</option>
-                            <option>1993</option>
-                            <option>1994</option>
-                            <option>1995</option>
-                            <option>1996</option>
-                            <option>1997</option>
-                            <option>1998</option>
-                            <option>1999</option>
-                            <option>2000</option>
-                            <option>2001</option>
-                            <option>2002</option>
-                            <option>2003</option>
-                            <option>2004</option>
-                            <option>2005</option>
-                            <option>2006</option>
-                            <option>2007</option>
-                            <option>2008</option>
-                            <option>2009</option>
-                            <option>2010</option>
-                            <option>2011</option>
-                            <option>2012</option>
-                            <option>2013</option>
-                            <option>2014</option>
-                            <option>2015</option>
-                            <option>2016</option>
-                            <option>2017</option>
-                            <option>2018</option>
-                            <option>2019</option>
-                            <option>2020</option>
-                            <option>2021</option>
-                        </select>
+        <button type="button" onclick="AjoutParticipant()"> Ajout d'un participant </button>
+        <button type="button" onclick="SupprParticipant()"> Supression d'un participant </button>
+        <br />
+        <div id="suite" class="suite">
+            <div id="formulaire1">
+                <h3>Participant numero : <span id="nb">1</span></h3>
+                <table>
+                    <tr>
+                        <th> Nom : </th>
+                        <th><input type="text" size="25" name="voyageurs[0].Nom" /></th>
+                    </tr>
+                    <tr>
+                        <th> Prenom : </th>
+                        <th><input type="text" size="25" name="voyageurs[0].Prenom" /></th>
+                    </tr>
+                    <tr>
+                        <th> Date de naissance : </th>
+                        <th>
 
-                    </th>
-                </tr>
-                <tr>
-                    <th>Adresse Mail : </th>
-                    <th><input type="text" size="25" name="voyageurs[0].Mail" /></th>
-                </tr>
-            </table><br />
+                            jour
+                            <select name="voyageurs[0].Jour">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                                <option>26</option>
+                                <option>27</option>
+                                <option>28</option>
+                                <option>29</option>
+                                <option>30</option>
+                                <option>31</option>
+                            </select>
+                            mois
+                            <select name="voyageurs[0].Mois">
+                                <option value="0">Janvier</option>
+                                <option value="1">Fevrier</option>
+                                <option value="2">Mars</option>
+                                <option value="3">Avril</option>
+                                <option value="4">Mai</option>
+                                <option value="5">Juin</option>
+                                <option value="6">Juillet</option>
+                                <option value="7">Aout</option>
+                                <option value="8">Septembre</option>
+                                <option value="9">Octobre</option>
+                                <option value="10">Novembre</option>
+                                <option value="11">Decembre</option>
+                            </select>
+                            année
+                            <select name="voyageurs[0].Annee">
+                                <option>1920</option>
+                                <option>1921</option>
+                                <option>1922</option>
+                                <option>1923</option>
+                                <option>1924</option>
+                                <option>1925</option>
+                                <option>1926</option>
+                                <option>1927</option>
+                                <option>1928</option>
+                                <option>1929</option>
+                                <option>1930</option>
+                                <option>1931</option>
+                                <option>1932</option>
+                                <option>1933</option>
+                                <option>1934</option>
+                                <option>1935</option>
+                                <option>1936</option>
+                                <option>1937</option>
+                                <option>1938</option>
+                                <option>1939</option>
+                                <option>1940</option>
+                                <option>1941</option>
+                                <option>1942</option>
+                                <option>1943</option>
+                                <option>1944</option>
+                                <option>1945</option>
+                                <option>1946</option>
+                                <option>1947</option>
+                                <option>1948</option>
+                                <option>1949</option>
+                                <option>1950</option>
+                                <option>1951</option>
+                                <option>1952</option>
+                                <option>1953</option>
+                                <option>1954</option>
+                                <option>1955</option>
+                                <option>1956</option>
+                                <option>1957</option>
+                                <option>1958</option>
+                                <option>1959</option>
+                                <option>1960</option>
+                                <option>1961</option>
+                                <option>1962</option>
+                                <option>1963</option>
+                                <option>1964</option>
+                                <option>1965</option>
+                                <option>1966</option>
+                                <option>1967</option>
+                                <option>1968</option>
+                                <option>1969</option>
+                                <option>1970</option>
+                                <option>1971</option>
+                                <option>1972</option>
+                                <option>1973</option>
+                                <option>1974</option>
+                                <option>1975</option>
+                                <option>1976</option>
+                                <option>1977</option>
+                                <option>1978</option>
+                                <option>1979</option>
+                                <option>1980</option>
+                                <option>1981</option>
+                                <option>1982</option>
+                                <option>1983</option>
+                                <option>1984</option>
+                                <option>1985</option>
+                                <option>1986</option>
+                                <option>1987</option>
+                                <option>1988</option>
+                                <option>1989</option>
+                                <option>1990</option>
+                                <option>1991</option>
+                                <option>1992</option>
+                                <option>1993</option>
+                                <option>1994</option>
+                                <option>1995</option>
+                                <option>1996</option>
+                                <option>1997</option>
+                                <option>1998</option>
+                                <option>1999</option>
+                                <option>2000</option>
+                                <option>2001</option>
+                                <option>2002</option>
+                                <option>2003</option>
+                                <option>2004</option>
+                                <option>2005</option>
+                                <option>2006</option>
+                                <option>2007</option>
+                                <option>2008</option>
+                                <option>2009</option>
+                                <option>2010</option>
+                                <option>2011</option>
+                                <option>2012</option>
+                                <option>2013</option>
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                            </select>
 
-            <input type="checkbox" name="voyageurs[0].Accompagnant" /> Je suis un accompagnant d'un groupe scolaire <br />
-            <br /><br />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Adresse Mail : </th>
+                        <th><input type="text" size="25" name="voyageurs[0].Mail" /></th>
+                    </tr>
+                </table><br />
+
+                <input type="checkbox" name="voyageurs[0].Accompagnant" /> Je suis un accompagnant d'un groupe scolaire <br />
+                <br /><br />
+            </div>
         </div>
-    </div>
 
-    <input type="submit" id="btInscrire" value=" Inscrire les participants" />
-    <button type="button" onclick="Assurance()"> Etape suivante </button>
+        <input type="submit" id="btInscrire" value=" Inscrire les participants" />
+        <button type="button" onclick="Assurance()"> Etape suivante </button>
 
-</form>
-<script>
+    </form>
+    <script>
+       var voyageurs = [];
 
-
-    function Assurance() {
-        window.location = "https://localhost:44307/Home/Assurance"
-    }
-
-    //function MultiPost() {
-
-    //    var element = $(".suite div");
-    //    var nombre = element.length;
-    //    var i = 1;
-
-    //    for (i; i < nombre + 1; i++) {
-
-    //        var Participant = new Object();
-    //        Participant = GoToAssurance(i);
-
-    //        //$.ajax({
-    //        //    type: "POST",
-    //        //    url: "https://localhost:44307/api/APIVoyage",
-    //        //    dataType: 'json',
-    //        //    data: Participant,
-    //        //    success: function (data, status, xhr) { },
-    //        //    error: function (xhr, status, error) {
-    //        //        alert('Erreur de communication');
-    //        //    }
-    //        //});
-    //    }
-    //    alert("Participants correctement inscrit")
-    //    $('#btInscrire').prop('disabled', true);
-    //}
-
-    function GoToAssurance(t) {
-
-        var Nom = $('#formulaire' + t + ' #nom').val();
-        var Prenom = $('#formulaire' + t + ' #prenom').val();
-        var Mail = $('#formulaire' + t + ' #mail').val();
-
-        var IsAccompagnant = false;
-        if ($('#formulaire' + t + ' #accompagnant').prop("checked") == true) { IsAccompagnant = true; }
-
-        var Annee = $('#formulaire' + t + ' #annee').val();
-        var Mois = $('#formulaire' + t + ' #mois').val();
-        var Jour = $('#formulaire' + t + ' #jour').val();
-        var NaissanceC = new Date(Annee, Mois, Jour);
-        var Naissance = NaissanceC.toJSON();
-
-        var Participant = { "nom": Nom, "prenom": Prenom, "mail": Mail, "isAccompagnant": IsAccompagnant, "naissance": Naissance };
-        return Participant;
-
-        //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
-
-
-    }
-
-    function MultipliParticipant() {
-        var x = document.getElementById("selection").value;
-        var element = $(".suite div");
-        var nombre = element.length;
-        if (nombre < x) {
-            for (nombre; nombre < x; nombre++) {
-                document.getElementById("nb").innerHTML = nombre + 1;
-                AjoutParticipant(nombre + 1);
-            }
+        function Assurance() {
+            window.location = "https://localhost:44307/Home/Assurance"
         }
-        if (nombre >= x) {
-            for (nombre; nombre > x; nombre--) {
-                SupprParticipant();
-            }
+
+        //function MultiPost() {
+
+        //    var element = $(".suite div");
+        //    var nombre = element.length;
+        //    var i = 1;
+
+        //    for (i; i < nombre + 1; i++) {
+
+        //        var Participant = new Object();
+        //        Participant = GoToAssurance(i);
+
+        //        //$.ajax({
+        //        //    type: "POST",
+        //        //    url: "https://localhost:44307/api/APIVoyage",
+        //        //    dataType: 'json',
+        //        //    data: Participant,
+        //        //    success: function (data, status, xhr) { },
+        //        //    error: function (xhr, status, error) {
+        //        //        alert('Erreur de communication');
+        //        //    }
+        //        //});
+        //    }
+        //    alert("Participants correctement inscrit")
+        //    $('#btInscrire').prop('disabled', true);
+        //}
+
+        function GoToAssurance(t) {
+
+            var Nom = $('#formulaire' + t + ' #nom').val();
+            var Prenom = $('#formulaire' + t + ' #prenom').val();
+            var Mail = $('#formulaire' + t + ' #mail').val();
+
+            var IsAccompagnant = false;
+            if ($('#formulaire' + t + ' #accompagnant').prop("checked") == true) { IsAccompagnant = true; }
+
+            var Annee = $('#formulaire' + t + ' #annee').val();
+            var Mois = $('#formulaire' + t + ' #mois').val();
+            var Jour = $('#formulaire' + t + ' #jour').val();
+            var NaissanceC = new Date(Annee, Mois, Jour);
+            var Naissance = NaissanceC.toJSON();
+
+            var Participant = { "nom": Nom, "prenom": Prenom, "mail": Mail, "isAccompagnant": IsAccompagnant, "naissance": Naissance };
+            return Participant;
+
+            //window.location = "https://localhost:44307/Home/Assurance/?nom=" + Nom + "&prenom=" + Prenom + "&naissance=" + NaissanceC + "&isAccompagnant=" + IsAccompagnant + "&mail=" + Mail;
+
+
         }
-        document.getElementById("nb").innerHTML = 1;
-    }
 
-    function AjoutParticipant(t) {
-        var para = document.createElement("div");
-        var d = document.getElementById("formulaire1").innerHTML.replace(/voyageurs\[0\]/g, "voyageurs\[" + (t - 1) + "\]");
+        function MultipliParticipant() {
+            var x = document.getElementById("selection").value;
+            var element = $(".suite div");
+            var nombre = element.length;
+            if (nombre < x) {
+                for (nombre; nombre < x; nombre++) {
+                    document.getElementById("nb").innerHTML = nombre + 1;
+                    AjoutParticipant(nombre + 1);
+                }
+            }
+            if (nombre >= x) {
+                for (nombre; nombre > x; nombre--) {
+                    SupprParticipant();
+                }
+            }
+            document.getElementById("nb").innerHTML = 1;
+        }
 
-        para.innerHTML = d;
+        function AjoutParticipant(t) {
+            var para = document.createElement("div");
+            var d = document.getElementById("formulaire1").innerHTML.replace(/voyageurs\[0\]/g, "voyageurs\[" + (t - 1) + "\]");
 
-        para.setAttribute("id", "formulaire" + t)
-        document.getElementById("suite").appendChild(para);
-    }
+            para.innerHTML = d;
 
-    function SupprParticipant() {
-        var suite = document.getElementById("suite");
-        suite.removeChild(suite.lastChild);
-    }
-</script>
--->
+            para.setAttribute("id", "formulaire" + t)
+            document.getElementById("suite").appendChild(para);
+        }
+
+        function SupprParticipant() {
+            var suite = document.getElementById("suite");
+            suite.removeChild(suite.lastChild);
+        }
+    </script>
+    -->
+</section>
