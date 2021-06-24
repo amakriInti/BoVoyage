@@ -274,9 +274,10 @@ namespace BoVoyage.Donnees
             }
         }
 
+        /*---------------------------------------------Travail de vincent ------------------------------------*/
         /*------------------------------------------
         //Création du client avant insertion dans DB
-        -------------------------------------------*/
+        -------------------------------------------
         public Client CreateClient(string nom, string mail, string telephone, string prenom, string personneMorale)
         {
             return new Client
@@ -288,12 +289,145 @@ namespace BoVoyage.Donnees
                 Telephone = telephone,
                 PersonneMorale = personneMorale,
             };
-        }
+        }*/
 
         /*------------------------------------------
         //Ajout du client dans DB
-        -------------------------------------------*/
+        -------------------------------------------
         public bool AddClient(Guid Id, string Nom, string Prenom, string Mail, string PersonneMorale, string Telephone)
+        {
+            Context.Clients.Add(new Client
+            {
+                Id = Id,
+                Nom = Nom,
+                Prenom = Prenom,
+                Mail = Mail,
+                PersonneMorale = PersonneMorale,
+                Telephone = Telephone,
+            });
+            Context.SaveChanges();
+            return true;
+        }*/
+
+        /*------------------------------------------
+        //Création du voyageur avant insertion dans DB
+        -------------------------------------------
+        public Voyageur CreateVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
+        {
+
+            return new Voyageur
+            {
+                Id = Guid.NewGuid(),
+                Nom = nom,
+                Prenom = prenom,
+                DateNaissance = naissance,
+                IsAccompagnant = isAccompagnant,
+                Mail = mail,
+            };
+        }*/
+
+        /*------------------------------------------
+        //Ajout des voyageurs dans DB
+        -------------------------------------------
+        public bool AddVoyageurs(Guid Id, string Nom, string Prenom, string Mail, DateTime DateNaissance, bool IsAccompagnant)
+        {
+            Context.Voyageurs.Add(new Voyageur
+            {
+                Id = Id,
+                Nom = Nom,
+                Prenom = Prenom,
+                Mail = Mail,
+                DateNaissance = DateNaissance,
+                IsAccompagnant = IsAccompagnant,
+            });
+            Context.SaveChanges();
+            return true;
+        }*/
+
+        /*------------------------------------------
+        //Création de l'assurrance avant insertion dans DB (a modifier)
+        -------------------------------------------
+        public Assurance CreateAssurance(bool annulation, decimal? prix)
+        {
+            return new Assurance
+            {
+                Id = Guid.NewGuid(),
+                Annulation = annulation,
+                Prix = prix
+            };
+        }*/
+
+        /*------------------------------------------
+        //Ajout des assurrances dans DB (a modifier)
+        -------------------------------------------
+        public bool AddAssurance(Guid Id, bool Annulation, decimal? Prix)
+        {
+            Context.Assurances.Add(new Assurance
+            {
+                Id = Id,
+                Annulation = Annulation,
+                Prix = Prix,
+            });
+            Context.SaveChanges();
+            return true;
+        }*/
+
+        /*------------------------------------------
+        //Création du dossier avant insertion dans DB
+        -------------------------------------------
+        public Dossier CreateDossier(Guid voyageId, Guid clientId, Guid? assuranceId)
+        {
+            return new Dossier
+            {
+                Id = Guid.NewGuid(),
+                Voyage = voyageId,
+                Client = clientId,
+                Etat = (byte)Etat.EnAttente,
+                Assurance = assuranceId,
+                Commercial = null
+            };
+        }*/
+
+        /*------------------------------------------
+        //Ajout des dossiers dans DB
+        -------------------------------------------
+        public bool AddDossier(Guid Id, Guid Voyage, Guid Client, Guid? Assurance, Guid? Commercial, byte Etat)
+        {
+            Context.Dossiers.Add(new Dossier
+            {
+                Id = Id,
+                Voyage = Voyage,
+                Client = Client,
+                Assurance = Assurance,
+                Commercial = Commercial,
+                Etat = Etat,
+            });
+            Context.SaveChanges();
+            return true;
+        }*/
+
+        /*------------------------------------------
+        //Ajout des dossiers voyageur dans DB
+        -------------------------------------------
+        public bool AddDossierVoyageurs(Guid dossierId, Guid voyageurId)
+        {
+            Guid dossiervoyageurId = Guid.NewGuid();
+            DossierVoyageur dossVoy = new DossierVoyageur
+            {
+                Id = dossiervoyageurId,
+                Dossier = dossierId,
+                Voyageur = voyageurId,
+            };
+            Context.DossierVoyageurs.Add(dossVoy);
+            Context.SaveChanges();
+            return true;
+        }*/
+
+        /*---------------------------------------------New version ------------------------------------*/
+        /*------------------------------------------
+        //Ajout du client dans DB
+        -------------------------------------------*/
+        public bool AddClient(Guid Id, string PersonneMorale, string Nom, string Prenom, string Mail, string Telephone)
         {
             Context.Clients.Add(new Client
             {
@@ -309,26 +443,9 @@ namespace BoVoyage.Donnees
         }
 
         /*------------------------------------------
-        //Création du voyageur avant insertion dans DB
-        -------------------------------------------*/
-        public Voyageur CreateVoyageur(string nom, string prenom, DateTime naissance, bool isAccompagnant, string mail)
-        {
-
-            return new Voyageur
-            {
-                Id = Guid.NewGuid(),
-                Nom = nom,
-                Prenom = prenom,
-                DateNaissance = naissance,
-                IsAccompagnant = isAccompagnant,
-                Mail = mail,
-            };
-        }
-
-        /*------------------------------------------
         //Ajout des voyageurs dans DB
         -------------------------------------------*/
-        public bool AddVoyageurs(Guid Id, string Nom, string Prenom, string Mail, DateTime DateNaissance, bool IsAccompagnant)
+        public bool AddVoyageurs(Guid Id, string Nom, string Prenom, DateTime DateNaissance,bool IsAccompagnant, string Mail)
         {
             Context.Voyageurs.Add(new Voyageur
             {
@@ -344,19 +461,6 @@ namespace BoVoyage.Donnees
         }
 
         /*------------------------------------------
-        //Création de l'assurrance avant insertion dans DB (a modifier)
-        -------------------------------------------*/
-        public Assurance CreateAssurance(bool annulation, decimal? prix)
-        {
-            return new Assurance
-            {
-                Id = Guid.NewGuid(),
-                Annulation = annulation,
-                Prix = prix
-            };
-        }
-
-        /*------------------------------------------
         //Ajout des assurrances dans DB (a modifier)
         -------------------------------------------*/
         public bool AddAssurance(Guid Id, bool Annulation, decimal? Prix)
@@ -365,41 +469,26 @@ namespace BoVoyage.Donnees
             {
                 Id = Id,
                 Annulation = Annulation,
-                Prix = Prix,
-            });
+                Prix = Prix
+            }) ;
+
             Context.SaveChanges();
             return true;
         }
 
         /*------------------------------------------
-        //Création du dossier avant insertion dans DB
-        -------------------------------------------*/
-        public Dossier CreateDossier(Guid voyageId, Guid clientId, Guid? assuranceId)
-        {
-            return new Dossier
-            {
-                Id = Guid.NewGuid(),
-                Voyage = voyageId,
-                Client = clientId,
-                Etat = (byte)Etat.EnAttente,
-                Assurance = assuranceId,
-                Commercial = null
-            };
-        }
-
-        /*------------------------------------------
         //Ajout des dossiers dans DB
         -------------------------------------------*/
-        public bool AddDossier(Guid Id, Guid Voyage, Guid Client, Guid? Assurance, Guid? Commercial, byte Etat)
+        public bool AddDossier(Guid IdDossier, Guid IdVoyage, Guid IdClient, byte Etat, Guid IdAssurance, Guid? IdCommercial)
         {
             Context.Dossiers.Add(new Dossier
             {
-                Id = Id,
-                Voyage = Voyage,
-                Client = Client,
-                Assurance = Assurance,
-                Commercial = Commercial,
+                Id = IdDossier,
+                Voyage = IdVoyage,
+                Client = IdClient,
                 Etat = Etat,
+                Assurance = IdAssurance,
+                Commercial = IdCommercial
             });
             Context.SaveChanges();
             return true;
@@ -411,13 +500,12 @@ namespace BoVoyage.Donnees
         public bool AddDossierVoyageurs(Guid dossierId, Guid voyageurId)
         {
             Guid dossiervoyageurId = Guid.NewGuid();
-            DossierVoyageur dossVoy = new DossierVoyageur
+            Context.DossierVoyageurs.Add(new DossierVoyageur
             {
                 Id = dossiervoyageurId,
                 Dossier = dossierId,
                 Voyageur = voyageurId,
-            };
-            Context.DossierVoyageurs.Add(dossVoy);
+            });
             Context.SaveChanges();
             return true;
         }
