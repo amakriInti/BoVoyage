@@ -90,14 +90,6 @@ namespace BoVoyage.Metier
         {
             return repository.CreateVoyageur(v.Nom, v.Prenom, v.DateNaissance, v.IsAccompagnant, v.Mail);
         }
-        public bool AddVoyageurs(List<Voyageur> voyageurs)
-        {
-            foreach (Voyageur voyageur in voyageurs)
-            {
-                repository.AddVoyageurs(voyageur.Id, voyageur.Nom, voyageur.Prenom, voyageur.Mail, voyageur.DateNaissance, voyageur.IsAccompagnant);
-            }
-            return true;
-        }
         //Dans DB
         public bool AddVoyageurs(List<Voyageur> voyageurs)
         {

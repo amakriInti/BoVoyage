@@ -43,18 +43,6 @@ namespace BoVoyage.Scenario1.Controllers
             return View();
 
         }
-        [HttpPost]
-        public ActionResult Participant(List<Voyageur> voyageurs)
-        {
-            panier = (Panier)Session["panier"];
-            foreach (var voyageur in voyageurs)
-            {
-
-                panier.Voyageurs.Add(metier.CreateVoyageurs(voyageur));
-            }
-            Session["panier"] = panier;
-            return View();
-        }
 
         /*-------------------------
         //Formulaire participant envoi 
