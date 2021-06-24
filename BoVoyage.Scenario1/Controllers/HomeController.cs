@@ -6,7 +6,7 @@ using System;
 using BoVoyage.Metier;
 //using BoVoyage.Donnees; //(à supprimer après modif vincent)
 using System.Collections;
-using BoVoyage.Donnees;
+using BoVoyage.Scenario1.Models;
 
 namespace BoVoyage.Scenario1.Controllers
 {

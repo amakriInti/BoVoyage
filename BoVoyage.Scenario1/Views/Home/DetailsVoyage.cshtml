@@ -3,60 +3,40 @@
 }
 @model List<BoVoyage.Donnees.VoyageDetail>
 
-    <h4>Voyage</h4>
-    <hr />
-    <div>
-        <table>
-            @{
+<h4>Voyage</h4>
+<hr />
+<div>
+    <table>
+        @{
             foreach (var item in Model)
             {
 
-            <tr>
-                <td colspan="2">
-                    @{ string image = "/Photo/" + @item.Image;}
-                    <img src="@image" style="width:85%" /><br/><br/>
+                <tr>
+                    <td colspan="2">
+                        @{ string image = "/Photo/" + @item.Image;}
+                        <img src="@image" style="width:85%" /><br /><br />
 
+                    </td>
+                    <td align="center">
+                        <h3> Date et Horaires de Départ :  @item.DateAller </h3><br />
+                        <h3> Date et Horaires de Retour : @item.DateRetour </h3>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <h1> Pays : @item.Pays</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <h2> Continent : @item.Continent </h2>
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <h3> Date et Horaires de Départ :  @item.DateAller </h3>
-
+                    <td rowspan="1">
+                        <h4> @item.DescriptionVoyage </h4>
+                        <h5> <strong>Description :</strong> @item.DescriptionDestination </h5><br />
+                        <a href="https://localhost:44307/Home/InformationClient/?IdVoyage=@item.Id" class="btn btn-primary">Réservation</a>
+                        <a href="https://localhost:44307/Home/Devis/ @item.Id" class="btn btn-primary">Devis</a>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <h3> Date et Horaires de Retour : @item.DateRetour </h3>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4> Description : @item.DescriptionDestination </h4>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @{string u = "/Home/InformationClient/?IdVoyage=" + @item.Id;}
-                        
-                        <a href="@u" class="btn btn-primary">Réservation</a>
-
-                    </td>
-                </tr>
-
-
             }
-            }
-        </table>
-    </div>
+        }
+    </table>
+</div>

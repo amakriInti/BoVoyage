@@ -355,7 +355,6 @@
     <Content Include="Photo\seychelles.jpg" />
     <Content Include="Photo\stras.jpg" />
     <Content Include="Scripts\bootstrap-datepicker.fr.js" />
-    <Content Include="Voyage.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -462,6 +461,7 @@
     <Content Include="Views\Home\Validation.cshtml" />
     <Content Include="Views\Home\RecapDossier.cshtml" />
     <Content Include="Views\Home\Paiement.cshtml" />
+    <Content Include="Views\Home\Devis.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
