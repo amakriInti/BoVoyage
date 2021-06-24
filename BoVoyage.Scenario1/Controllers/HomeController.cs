@@ -35,8 +35,9 @@ namespace BoVoyage.Scenario1.Controllers
         }
 
 
-        /*
-         * -----------------Travail de vincent --------------------------------------------------
+
+        /* -----------------Travail de vincent --------------------------------------------------*/
+        #region
         /*-------------------------
         //Formulaire client
         --------------------------
@@ -127,6 +128,7 @@ namespace BoVoyage.Scenario1.Controllers
             Session["panier"] = panier;
             return View();
         }*/
+        #endregion
 
         /*----------------------------Version new------------------------------
         /*-------------------------

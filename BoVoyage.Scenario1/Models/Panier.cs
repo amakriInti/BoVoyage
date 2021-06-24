@@ -13,12 +13,6 @@ namespace BoVoyage.Scenario1.Models
     {
         private ClassMetier metier = new ClassMetier();
 
-        /*public Guid IdVoyage { get; set; }
-        public Dossier Dossier { get; set; }
-        public Assurance Assurance { get; set; }
-        public Client Client { get; set; }
-        public List<Voyageur> Voyageurs { get; set; }*/
-
         //Table Dossier
         public Guid IdDossier { get; set; }
         public Guid IdVoyage { get; set; }
