@@ -1,8 +1,37 @@
-﻿
-@{
-    ViewBag.Title = "Validation du paiement";
+﻿@{
+    ViewBag.Title = "Réservation d'un voyage - Confirmation de paiement";
 }
 
+<h2>Réservation du voyage</h2>
+<br />
+@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { area = "", enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Confirmation de paiement</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="mb-3">
+            <h2>Félicitation!</h2>
+            <p for="AssuranceAnnu" class="form-label">
+                Votre séjour à été correctement enregistré.<br/>
+                Un conseiller vous sera prochainement affecté.<br/>
+                Vous recevrez, dans les plus bref délai, un email copntenant un lien de suivi numérique concernant votre dossier.<br/>
+                En cas de problème ou d'annulation, merci d'en faire part au plus vite à votre conseiller via le bouton "notification" dans l'onglet Gestion de mon dossier.<br/>
+            </p>
+        </div>
+
+        <!--Bouton validation-->
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Aller au gestionnaire de dossier(non fonctionnel)</button>
+            @(Html.ActionLink("Retourner à la liste des voyages", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" }))
+        </div>
+    </div>
+}
+
+<!--
 <br />
 <br />
 
@@ -15,3 +44,4 @@
     Votre Voyage à été correctement enregistré, vous recevrez prochainement un email du conseillé qui vous sera affecté et il vous comfirmera votre départ dans le cas où il reste suffisament de place pour ce voyage.
 </h4>
 <button type="button" onclick="Retour()"> Retour à l'accueil</button>
+-->

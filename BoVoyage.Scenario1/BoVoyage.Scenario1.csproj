@@ -460,6 +460,8 @@
     <Content Include="Views\Home\DetailsVoyage.cshtml" />
     <Content Include="Views\Home\Recap.cshtml" />
     <Content Include="Views\Home\Validation.cshtml" />
+    <Content Include="Views\Home\RecapDossier.cshtml" />
+    <Content Include="Views\Home\Paiement.cshtml" />
     <None Include="Web.Alexandre.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -488,10 +490,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BoVoyage.Donnees\BoVoyage.Donnees.csproj">
-      <Project>{67E1B2B5-C42C-4FB7-9C00-A06A768E7AD8}</Project>
-      <Name>BoVoyage.Donnees</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BoVoyage.Metier\BoVoyage.Metier.csproj">
       <Project>{cb02ec49-97c1-4f30-a51a-728cf77c94d5}</Project>
       <Name>BoVoyage.Metier</Name>

@@ -1,12 +1,81 @@
-﻿<script>
-    function GoToRecap() {
+﻿@{
+    ViewBag.Title = "Réservation d'un voyage - Assurances";
+}
 
-        var Assurance;
-        if (document.getElementById("oui").checked == true) { Assurance = true };
-        if (document.getElementById("non").checked == true) { Assurance = false };
-        window.location = "https://localhost:44307/Home/ValideAssurance/?assurance=" + Assurance;
-    }
-</script>
+<h2>Réservation du voyage</h2>
+<br />
+@using (Html.BeginForm("Assurance", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Ajout des assurances</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!--Assurance annulation-->
+        <div class="input-group mb-3">
+            <label for="AssuranceAnnu" class="form-label">Souhaitez-vous souscrire une assurance annulation pour ce voyage?</label>
+            <div class="form-check">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="AssuranceAnnu" id="AssuranceAnnu_True" value="True" required>
+                    <label class="form-check-label" for="AssuranceAnnu_True">Oui</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="AssuranceAnnu" id="AssuranceAnnu_False" value="False" required>
+                    <label class="form-check-label" for="AssuranceAnnu_False">Non</label>
+                </div>
+                <div class="invalid-feedback">
+                    Veuillez remplir ce champ.
+                </div>
+            </div>
+        </div>
+
+        <!--Bouton validation-->
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Valider les assurances</button>
+            @(Html.ActionLink("Retourner à la liste des voyages", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" }))
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script>
+        /*--------------------------------------
+        //Erreur
+        --------------------------------------*/
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}
+
+<!--
+            < script >
+            function GoToRecap() {
+
+                var Assurance;
+                if (document.getElementById("oui").checked == true) { Assurance = true };
+                if (document.getElementById("non").checked == true) { Assurance = false };
+                window.location = "https://localhost:44307/Home/ValideAssurance/?assurance=" + Assurance;
+            }
+    </script>
 
 
 
@@ -21,3 +90,4 @@
 </form>
 <br />
 <button type="button" onclick="GoToRecap()"> Récapitulatif de commande </button>
+    -->

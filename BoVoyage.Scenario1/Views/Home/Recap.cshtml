@@ -1,6 +1,31 @@
-﻿
-<br/>
-<br/>
+﻿@{
+    ViewBag.Title = "Réservation d'un voyage - Récapitulatif de commande";
+}
+
+<h2>Réservation du voyage</h2>
+<br />
+@using (Html.BeginForm("Paiement", "Home", FormMethod.Get, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Récapitulatif de commande</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h1>En développement</h1>
+
+        <!--Bouton validation-->
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Passer au paiement</button>
+            @(Html.ActionLink("Retourner à la liste des voyages", "Index", "Home", new { area = "" }, new { @class = "btn btn-secondary" }))
+        </div>
+    </div>
+}
+
+<!--
+<br />
+<br />
 <script>
     function Paiement() {
         window.location = "https://localhost:44307/Home/Validation";
@@ -11,4 +36,4 @@
     Récapitulatif de voyage
 </h2>
 <button type="button" onclick="Paiement()"> Simulez un paiement</button>
-
+    -->
