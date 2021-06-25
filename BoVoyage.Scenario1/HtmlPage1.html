@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .container-principal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .container-secondaire {
+            flex-direction: column;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        .container-tertiaire {
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            padding: 5px;
+            flex-flow: row wrap;
+        }
+
+        .item-participant {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<!--largeur : width
+    hauteur : height-->
+<body>
+    <div class="container-principal">
+        <div style="background-color:red; width:70%;" id="Participant-client" class="container-secondaire">
+            <div style="background-color:yellow;" id="client" class="container-secondaire">
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <h3>Client</h3>
+                </div>
+                <div style="background-color:blueviolet;" id=detail-participant>
+                    <p>Civilité</p>
+                    <p>Nom</p>
+                    <p>Prenom</p>
+                    <p>Mail</p>
+                </div>
+            </div>
+            <div style="background-color:gray;" id="participnt" class="container-secondaire">
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <h3>Participant</h3>
+                </div>
+                <div style="background-color:blueviolet;" id=detail-participant class="container-tertiaire">
+                    <div style="background-color:green; width:150px" id=detail-participant class="item-participant">
+                        <p>Nom</p>
+                        <p>Prenom</p>
+                        <p>Date de naissance</p>
+                        <p>Email</p>
+                    </div>
+                    <div style="background-color: green; width: 150px" id=detail-participant class="item-participant">
+                        <p>Nom</p>
+                        <p>Prenom</p>
+                        <p>Date de naissance</p>
+                        <p>Email</p>
+                    </div>
+                    <div style="background-color: green; width: 150px" id=detail-participant class="item-participant">
+                        <p>Nom</p>
+                        <p>Prenom</p>
+                        <p>Date de naissance</p>
+                        <p>Email</p>
+                    </div>
+                    <div style="background-color: green; width: 150px" id=detail-participant class="item-participant">
+                        <p>Nom</p>
+                        <p>Prenom</p>
+                        <p>Date de naissance</p>
+                        <p>Email</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:blue; width:30%" id="voyage" class="container-secondaire">
+            <div style="background-color:yellow;" id="client" class="container-secondaire">
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <h3>Voyage</h3>
+                </div>
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <p>Image</p>
+                    <p>Destination</p>
+                    <div style="background-color:pink" class="item-participant">
+                        <p>Continent</p>
+                        <p>Pays</p>
+                        <p>Région</p>
+                    </div>
+                    <p>Date aller</p>
+                    <p>Date retour</p>
+                </div>
+            </div>
+            <div style="background-color:gray;" id="client" class="container-secondaire">
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <h3>Participant</h3>
+                </div>
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <p>Adulte</p>
+                    <p>Enfants</p>
+                </div>
+            </div>
+            <div style="background-color:cyan;" id="client" class="container-secondaire">
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <h3>Paiement</h3>
+                </div>
+                <div style="background-color:navajowhite;" id="texte-participant">
+                    <div style="background-color: limegreen;" class="container-tertiaire">
+                        <p style="background-color: purple; margin-right: 100px">N° carte bancaire</p>
+                        <p style="background-color: mediumpurple;">Expiration</p>
+                    </div>
+                    <div>
+                        <p>CVV</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+</body>
+</html>

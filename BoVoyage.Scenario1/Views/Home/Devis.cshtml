@@ -9,7 +9,7 @@
     foreach (var item in Model)
     {
         var PrixUnitaire = @item.PrixVenteUnitaire;
-        <div id="prix" @*value="@item.PrixVenteUnitaire"*@>@item.PrixVenteUnitaire</div>
+        <span id="prix">@item.PrixVenteUnitaire</span>
     }
 }
 <div>
@@ -127,11 +127,11 @@
         //nbre de places
         var nbAdult = Number($('#NbPlace1').val());
         var nbEnfant = Number($('#NbPlace2').val());
-        var prix = document.getElementById("prix").value;
+        var prix = Number(document.getElementById("prix").innerHTML);
         alert(prix);
 
         //calcul
-        var sum = nbAdult * prix + nbEnfant * prix *0.60;
+        var sum = nbAdult * prix + nbEnfant * prix * 0.60;
         alert(sum);
 
         //assurances
@@ -148,7 +148,7 @@
 
 
         //Prix unitaire
-        var prixUnit = 0;
+        /*var prixUnit = 0;
         $.ajax({
             type: 'GET',
             url: window.location.origin + "/api/Voyages/?lieu=PrixVenteUnitaire&txtlieu=" + idvoyage,
@@ -165,11 +165,11 @@
                 alert("error");
             }
         });
-        alert(prixUnit);
+        alert(prixUnit);*/
 
 
         //document.getElementById("sum").value = sum;
 
-        alert("Adulte=" + nbAdult + ", enfant=" + nbEnfant + "Annu=" + AssuAnnu + "Vols=" + AssuVols);
+        //alert("Adulte=" + nbAdult + ", enfant=" + nbEnfant + "Annu=" + AssuAnnu + "Vols=" + AssuVols);
     }
 </script>

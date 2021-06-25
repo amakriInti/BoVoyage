@@ -346,6 +346,7 @@
     <Content Include="Dessins\0.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Photo\algerie1.jpg" />
     <Content Include="Photo\bresil1.jpg" />
     <Content Include="Photo\chine1.jpg" />
