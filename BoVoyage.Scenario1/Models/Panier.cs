@@ -28,6 +28,8 @@ namespace BoVoyage.Scenario1.Models
         public string PrenomClient { get; set; }
         public string MailClient { get; set; }
         public string Telephone { get; set; }
+        //remplissage automatique du client dans les particpants
+        public bool Participe { get; set; }
 
         //Table Voyageur
         public List<VoyageursPanier> VoyageurPanier { get; set; }

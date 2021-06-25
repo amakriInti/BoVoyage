@@ -169,6 +169,16 @@ namespace BoVoyage.Scenario1.Controllers
                 string prenom = Request.Form["Prenom"];
                 string mail = Request.Form["Mail"];
                 string telephone = Request.Form["Telephone"];
+                string participeform = Request.Form["Participe"];
+                bool participe = false;
+                if (participeform == "true")
+                {
+                    participe = true;
+                }
+                else
+                {
+                    participe = false;
+                }
 
                 //Appel du panier
                 panier = (Panier)Session["panier"];
@@ -180,6 +190,8 @@ namespace BoVoyage.Scenario1.Controllers
                 panier.PrenomClient = prenom;
                 panier.MailClient = mail;
                 panier.Telephone = telephone;
+                panier.Participe = participe;
+                
 
                 //Enregistrement du panier
                 Session["panier"] = panier;
@@ -199,7 +211,24 @@ namespace BoVoyage.Scenario1.Controllers
             }
             else
             {
-                return View();
+                panier = (Panier)Session["panier"];
+                bool participe = panier.Participe;
+                if (participe == true)
+                {
+                    string nomclient = panier.NomClient;
+                    ViewBag.nomclient = nomclient;
+                    string prenomclient = panier.PrenomClient;
+                    ViewBag.prenomclient = prenomclient;
+                    string mailclient = panier.MailClient;
+                    ViewBag.mailclient = mailclient;
+                    Session["panier"] = panier;
+                    return View();
+                }
+                else
+                {
+                    Session["panier"] = panier;
+                    return View();
+                }
             }
         }
 
@@ -341,7 +370,26 @@ namespace BoVoyage.Scenario1.Controllers
             }
             else
             {
-                return View();
+                panier = (Panier)Session["panier"];
+                string nomclient = panier.NomClient;
+                ViewBag.nomclient = nomclient;
+                string prenomclient = panier.PrenomClient;
+                ViewBag.prenomclient = prenomclient;
+                string mailclient = panier.MailClient;
+                ViewBag.mailclient = mailclient;
+                string persmor = panier.PersonneMorale;
+                ViewBag.persmor = persmor;
+                List<VoyageursPanier> voyageurs = panier.VoyageurPanier;
+                ViewBag.voyageurs = voyageurs;
+                string voyageId = panier.IdVoyage.ToString();
+                ViewBag.voyageId = voyageId;
+                bool assurance = panier.Annulation;
+                ViewBag.assurance = assurance;
+
+                var detailvoyage = metier.DetailsVoyage(voyageId);
+
+                Session["panier"] = panier;
+                return View(detailvoyage);
             }
         }
 
@@ -453,17 +501,6 @@ namespace BoVoyage.Scenario1.Controllers
             var detailvoyage = metier.DetailsVoyage(id);
             if (detailvoyage == null) return RedirectToAction("Index");
             return View(detailvoyage);
-        }
-
-        /*----------------------------------
-        //Affichage du devis
-        -----------------------------------*/
-        public ActionResult Devis(string id)
-        {
-            if (id == null) return RedirectToAction("Index");
-            var devis = metier.DetailsVoyage(id);
-            if (devis == null) return RedirectToAction("Index");
-            return View(devis);
         }
 
         /*-------------------------

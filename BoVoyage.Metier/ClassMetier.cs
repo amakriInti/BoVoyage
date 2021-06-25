@@ -225,14 +225,6 @@ namespace BoVoyage.Metier
         }
 
         /*----------------------------------
-        //Devis
-        -----------------------------------*/
-        public object Devis(string id)
-        {
-            return repository.Devis(id);
-        }
-
-        /*----------------------------------
         //Initialisation des roles
         -----------------------------------*/
         public void Load()

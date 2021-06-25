@@ -3,8 +3,15 @@
 }
 @model List<BoVoyage.Donnees.VoyageDetail>
 
-<h4>Voyage</h4>
+<h4> Voyage</h4>
 <hr />
+@{
+    foreach (var item in Model)
+    {
+        var PrixUnitaire = @item.PrixVenteUnitaire;
+        <div id="prix" hidden>@item.PrixVenteUnitaire</div>
+    }
+}
 <div>
     <table>
         @{
@@ -31,12 +38,144 @@
                 <tr>
                     <td rowspan="1">
                         <h4> @item.DescriptionVoyage </h4>
-                        <h5> <strong>Description :</strong> @item.DescriptionDestination </h5><br />
-                        <a href="https://localhost:44307/Home/InformationClient/?IdVoyage=@item.Id" class="btn btn-warning">Réservation</a>
-                        <a href="https://localhost:44307/Home/Devis/ @item.Id" class="btn btn-primary">Devis</a>
+                        <h5> <strong>Description :</strong> @item.DescriptionDestination </h5><br /><br />
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Réaliser une visualisation de devis.
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse hide" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <h4> Informations complémentaires : </h4>
+
+                                        Nombre de place disponible
+                                        <div class="input-group mb-3">
+                                            <div style="width:40%;" class="input-group-prepend ">
+                                                <label class="input-group-text " for="NbPlace">Nombre de participant adulte(s) et/ou ado(s) :</label>
+                                            </div>
+                                            <select style="width:50%;" class="form-select" id="NbPlace1" name="NbPlace" required>
+                                                <option selected disabled value="">Nombre d'adulte(s)</option>
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                                <option value=4>4</option>
+                                                <option value=5>5</option>
+                                                <option value=6>6</option>
+                                                <option value=7>7</option>
+                                                <option value=8>8</option>
+                                                <option value=9>9</option>
+                                                <option value=10>10</option>
+                                                <option value=11>11</option>
+                                                <option value=12>12</option>
+                                                <option value=13>13</option>
+                                                <option value=14>14</option>
+                                                <option value=15>15</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Veuillez sélectionner un champs.
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div style="width:40%;" class="input-group-prepend ">
+                                                <label class="input-group-text " for="NbPlace">Nombre de participant enfant(s) ( - 16 ans) :</label>
+                                            </div>
+                                            <select style="width:50%;" class="form-select" id="NbPlace2" name="NbPlace" required>
+                                                <option selected disabled value="">Nombre d'enfant(s)</option>
+                                                <option value=0>0</option>
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                                <option value=4>4</option>
+                                                <option value=5>5</option>
+                                                <option value=6>6</option>
+                                                <option value=7>7</option>
+                                                <option value=8>8</option>
+                                                <option value=9>9</option>
+                                                <option value=10>10</option>
+                                                <option value=11>11</option>
+                                                <option value=12>12</option>
+                                                <option value=13>13</option>
+                                                <option value=14>14</option>
+                                                <option value=15>15</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Veuillez sélectionner un champs.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Assurances : <br />
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="AssuAnnuC">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Annulation <strong>( + 100€ ) </strong>
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="AssuVols" disabled>
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Vols ( prochainement )
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <br />
+                                        <button onclick="add()" class="btn btn-outline-success">Calculer</button>
+                                        <br />
+                                        <br />
+
+                                        <h3 id="prixTotal"> </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br /><a href="https://localhost:44307/Home/InformationClient/?IdVoyage=@item.Id" class="btn btn-warning">Réservation</a>
                     </td>
                 </tr>
             }
         }
     </table>
 </div>
+
+<!-----------------------------------------
+//Calcul
+------------------------------------------->
+<script>
+    function add() {
+
+        //nbre de places
+        var nbAdult = Number($('#NbPlace1').val());
+        var nbEnfant = Number($('#NbPlace2').val());
+        var prix = parseFloat(document.getElementById("prix").innerHTML);
+
+        //assurances
+        var AssuAnnu = false;
+        if (document.getElementById("AssuAnnuC").checked == true) { AssuAnnu = true };
+
+        var AssuVols = false;
+        if (document.getElementById("AssuVols").checked == true) { AssuVols = true };
+
+        var assurance = 0;
+        if (AssuAnnu == true) { assurance = 100 }
+        else if (AssuAnnu == false) { assurance = 0 };
+
+        //calcul
+        var sum = nbAdult * prix + nbEnfant * prix * 0.60 + assurance;
+
+        document.getElementById("prixTotal").innerHTML = "Prix total : " + sum + "€";
+
+        //alert("Adulte=" + nbAdult + ", enfant=" + nbEnfant + "Annu=" + AssuAnnu + "Vols=" + AssuVols);
+    }
+</script>

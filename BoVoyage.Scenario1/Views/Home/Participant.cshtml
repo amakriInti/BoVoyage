@@ -45,7 +45,7 @@
                     <div style="width:20%;" class="input-group-prepend ">
                         <label class="input-group-text " for="Nom">Nom :</label>
                     </div>
-                    <input type="text" id=Nom class="form-control" name="Participant[0].Nom" placeholder="NOM" required>
+                    <input type="text" id=Nom class="form-control" name="Participant[0].Nom" value=@ViewBag.nomclient placeholder="NOM" required >
                     <div class="invalid-feedback">
                         Veuillez remplir ce champ.
                     </div>
@@ -56,7 +56,7 @@
                     <div style="width:20%;" class="input-group-prepend ">
                         <label class="input-group-text " for="Prenom">Prénom :</label>
                     </div>
-                    <input type="text" id=Prenom class="form-control" name="Participant[0].Prenom" placeholder="Prénom" required>
+                    <input type="text" id=Prenom class="form-control" name="Participant[0].Prenom" value=@ViewBag.prenomclient placeholder="Prénom" required>
                     <div class="invalid-feedback">
                         Veuillez remplir ce champ.
                     </div>
@@ -83,7 +83,7 @@
                     <div style="width:20%;" class="input-group-prepend ">
                         <label class="input-group-text " for="Mail">Email :</label>
                     </div>
-                    <input type="text" id=Mail class="form-control" name="Participant[0].Mail" placeholder="exemple@domaine.fr" required>
+                    <input type="text" id=Mail class="form-control" name="Participant[0].Mail" value=@ViewBag.mailclient placeholder="exemple@domaine.fr" required>
                     <div class="invalid-feedback">
                         Veuillez remplir ce champ.
                     </div>
@@ -136,6 +136,7 @@
             disableTouchKeyboard: true,
             weekStart: 1,
             setDate: new Date(),
+            endDate: today,
             todayHighlight: true,
             format: 'dd/mm/yyyy'
         });
@@ -199,11 +200,38 @@
 
             para.innerHTML = d;
 
-            para.setAttribute("id", "Participant" + numero)
+            para.setAttribute("id", "Participant" + numero);
+            
             document.getElementById("Formulaire").appendChild(para);
-        }
+            $('#Participant' + numero + ' #Nom').removeAttr("value");
+            $('#Participant' + numero + ' #Prenom').removeAttr("value");
+            $('#Participant' + numero + ' #Mail').removeAttr("value");
 
+            /*--------------------------------------
+            //Calendrier
+            --------------------------------------*/
+            //date du jour
+            var today = new Date();
+            today.setDate(today.getDate());
+
+            //Option mini calendrier datepicker
+            //div encadrant input class=input-daterange
+            //input :(id=start, id=end)
+            $('.datepicker').datepicker({
+                language: 'fr',
+                orientation: "top right",
+                autoclose: true,
+                clearBtn: true,
+                disableTouchKeyboard: true,
+                weekStart: 1,
+                setDate: new Date(),
+                endDate: today,
+                todayHighlight: true,
+                format: 'dd/mm/yyyy'
+            });
+        }
         /*--------------------------------------
+
         //Suppression de participant
         --------------------------------------*/
         function SupprParticipant() {
