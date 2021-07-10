@@ -29,6 +29,8 @@ namespace BoVoyage.Scenario1.Dal
         public decimal PrixAchatTotal { get; set; }
         public decimal PrixVenteUnitaire { get; set; }
         public string Description { get; set; }
+        public string Agence { get; set; }
+        public string Libelle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dossier> Dossiers { get; set; }
